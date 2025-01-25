@@ -159,7 +159,7 @@ prepare questions.  The hints are for the GitHub path in the browser.
 1. **Which files include the word "position"**?
    (Hint: the GitHub search on top of the repository view)
 1. In the `simulate.py` file,
-   find out who modified the "gravitational constant"
+   find out who modified the "time step"
    last and **in which commit**.
    (Hint: "Blame" view in the file view)
 1. Can you use this code yourself? **Are you allowed to share
