@@ -19,8 +19,8 @@ sys.path.insert(0, os.path.abspath("."))
 # -- Project information -----------------------------------------------------
 
 project = "Reproducible research software development using Python (ML example)"
-copyright = "CodeRefinery team (CC-BY license)"
-author = "CodeRefinery team"
+copyright = "CodeRefinery contributors (CC-BY license)"
+author = "CodeRefinery contributors"
 github_user = "coderefinery"
 github_repo_name = "reproducible-python"  # auto-detected from dirname if blank
 github_version = "main"
