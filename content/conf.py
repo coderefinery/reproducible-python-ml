@@ -22,7 +22,7 @@ project = "Reproducible research software development using Python (ML example)"
 copyright = "CodeRefinery contributors (CC-BY license)"
 author = "CodeRefinery contributors"
 github_user = "coderefinery"
-github_repo_name = "reproducible-python"  # auto-detected from dirname if blank
+github_repo_name = "reproducible-python-ml"  # auto-detected from dirname if blank
 github_version = "main"
 conf_py_path = "/content/"  # with leading and trailing slash
 

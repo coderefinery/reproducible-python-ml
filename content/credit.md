@@ -1,9 +1,11 @@
 # Credit
 
-The following material (all CC-BY) was reused to create this workshop material:
-- <https://coderefinery.github.io/research-software-engineering/>
-- <https://coderefinery.github.io/mini-workshop/>
-- <https://coderefinery.github.io/git-collaborative/>
-- <https://coderefinery.github.io/git-intro/>
-- <https://coderefinery.github.io/documentation/>
-- <https://coderefinery.github.io/reproducible-research/>
+This lesson is a mashup of the following sources (all CC-BY):
+- <https://github.com/coderefinery/reproducible-python> (shares common history with this lesson)
+- <https://github.com/coderefinery/python-progression>
+
+The lesson uses the following example repository:
+- <https://github.com/workshop-material/classification-task>
+
+The classification task has replaced the "planets" example repository used in
+the original lesson.
