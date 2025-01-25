@@ -102,7 +102,7 @@ There are unfortunately many ways to package a Python project:
 If a local install worked, push the `pyproject.toml` to GitHub and try to install the package from GitHub.
 
 In a `requirements.txt` file, you can specify the GitHub repository and the branch:
-```txt
+```
 git+https://github.com/workshop-material/countstars.git@main
 ```
 
