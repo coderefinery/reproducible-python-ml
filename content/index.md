@@ -12,9 +12,6 @@ We will work with an example project and go through all important steps of a typ
 software project.  Once we have seen the building blocks, we will try to **apply
 them to own projects**.
 
-
-## Prerequisites
-
 :::{prereq} Preparation
 1. Get a **GitHub account** following [these instructions](https://coderefinery.github.io/installation/github/).
 1. You will need a **text editor**. If you don't have a favorite one, we recommend
