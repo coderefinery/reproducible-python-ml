@@ -5,7 +5,7 @@
 
 This is a **hands-on course on research software engineering**. In this
 workshop we assume that most workshop participants use Python in their work or
-a leading a group which uses Python.  Therefore, some of the examples will use
+are leading a group which uses Python.  Therefore, some of the examples will use
 Python as the example language.
 
 We will work with an example project and go through all important steps of a typical
