@@ -30,7 +30,7 @@ them to own projects**.
 - 13:00-13:30 - **Welcome and introduction**
   - Practical information (tools, communication, breaks, etc.)
   - Motivation (reproducibility, robustness, distribution, improvement, trust, etc.)
-  - {ref}`example-project`
+  - {doc}`example`
 
 - 13:30-14:45 - {ref}`version-control` (1/2)
   - {ref}`version-control-motivation` (15 min)
