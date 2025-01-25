@@ -18,7 +18,7 @@ sys.path.insert(0, os.path.abspath("."))
 
 # -- Project information -----------------------------------------------------
 
-project = "Reproducible research software development using Python"
+project = "Reproducible research software development using Python (ML example)"
 copyright = "CodeRefinery team (CC-BY license)"
 author = "CodeRefinery team"
 github_user = "coderefinery"
