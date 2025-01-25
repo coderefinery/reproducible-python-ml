@@ -139,7 +139,7 @@ Diátaxis is a systematic approach to technical documentation authoring.
 
 :::{prereq} Preparation
 In this episode we will use the following 5 packages which we installed
-previously as part of the {ref}`conda` or {ref}`venv`:
+previously as part of the {doc}`installation`:
 ```
 myst-parser
 sphinx

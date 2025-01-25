@@ -1,0 +1,28 @@
+name: course
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python <= 3.12
+  - click
+  - numpy
+  - pandas
+  - scipy
+  - altair
+  - vl-convert-python
+  - jupyterlab
+  - pytest
+  - scalene
+  - ruff
+  - icecream
+  - snakemake-minimal
+  - myst-parser
+  - sphinx
+  - sphinx-rtd-theme
+  - sphinx-autoapi
+  - sphinx-autobuild
+  - black
+  - isort
+  - pip
+  - pip:
+    - jupyterlab-code-formatter

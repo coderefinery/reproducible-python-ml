@@ -22,12 +22,7 @@ them to own projects**.
 1. **If you prefer to work in the terminal** and not in VS Code, set up these two (skip this if you use VS Code):
    - [Git in the terminal](https://coderefinery.github.io/installation/git-in-terminal/)
    - [SSH or HTTPS connection to GitHub from terminal](https://coderefinery.github.io/installation/ssh/)
-1. **One of these two software environments** (if you are not sure which one to
-   choose or have no preference, choose Conda):
-   - {ref}`conda`
-   - {ref}`venv` (Snakemake is not available in this environment)
-1. **Optional** and only on Linux: [Apptainer](https://apptainer.org/) following
-   [these instructions](https://apptainer.org/docs/admin/1.3/installation.html#install-from-pre-built-packages).
+1. Follow {doc}`installation` (but we will do this together at the beginning of the workshop).
 :::
 
 
@@ -76,7 +71,7 @@ them to own projects**.
 
 - 09:00-10:30 - {ref}`testing`
 
-- 10:45-12:15 - {ref}`reusable`
+- 10:45-12:15 - {doc}`dependencies`
 
 - 13:00-14:45 - Code quality and good practices
   - {ref}`refactoring-concepts` (15 min)
@@ -99,8 +94,7 @@ them to own projects**.
 :caption: Software environment
 :hidden:
 
-installation/conda
-installation/virtual-environment
+installation.md
 ```
 
 ```{toctree}
@@ -113,7 +107,7 @@ version-control
 documentation
 collaboration
 testing
-reusable
+dependencies
 refactoring-concepts
 refactoring-demo
 software-licensing
