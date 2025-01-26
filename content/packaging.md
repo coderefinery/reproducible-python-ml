@@ -2,19 +2,19 @@
 
 :::{objectives}
 In this episode we will create a pip-installable Python package and learn how
-to deploy it to PyPI. As example, we will use the star counting script which
-we created in the previous episode.
+to deploy it to PyPI. As example, we can use one of the Python scripts from our
+example repository.
 :::
 
 
-## Creating a Python package with the help of flit
+## Creating a Python package with the help of [Flit](https://flit.pypa.io/)
 
 There are unfortunately many ways to package a Python project:
 - `setuptools` is the most common way to package a Python project. It is very
   powerful and flexible, but also can get complex.
-- `flit` is a simpler alternative to `setuptools`. It is less powerful, but
+- `flit` is a simpler alternative to `setuptools`. It is less versatile, but
   also easier to use.
-- `poetry` is a modern packaging tool which is more powerful than `flit` and
+- `poetry` is a modern packaging tool which is more versatile than `flit` and
   also easier to use than `setuptools`.
 - `twine` is another tool to upload packages to PyPI.
 - ...
@@ -26,33 +26,39 @@ There are unfortunately many ways to package a Python project:
   > Make the easy things easy and the hard things possible is an old motto from
   > the Perl community. Flit is entirely focused on the easy things part of that,
   > and leaves the hard things up to other tools.
-
 :::
 
 
 ## Step 1: Initialize the package metadata and try a local install
 
-1. Our starting point is that we have a Python script called `countstars.py`
+1. Our starting point is that we have a Python script called `example.py`
    which we want to package.
 
 2. Now we follow the [flit quick-start usage](https://flit.pypa.io/en/stable/#usage) and add a docstring to the script and a `__version__`.
 
 3. We then run `flit init` to create a `pyproject.toml` file and answer few questions. I obtained:
-   ```toml
+   ```{code-block} toml
+   ---
+   emphasize-lines: 6, 13
+   ---
    [build-system]
    requires = ["flit_core >=3.2,<4"]
    build-backend = "flit_core.buildapi"
 
    [project]
-   name = "countstars"
-   authors = [{name = "Radovan Bast", email = "radovan.bast@uit.no"}]
+   name = "example"
+   authors = [{name = "Firstname Lastname", email = "first.last@example.org"}]
    license = {file = "LICENSE"}
-   classifiers = ["License :: OSI Approved :: MIT License"]
+   classifiers = ["License :: OSI Approved :: European Union Public Licence 1.2 (EUPL 1.2)"]
    dynamic = ["version", "description"]
 
    [project.urls]
-   Home = "https://github.com/workshop-material/countstars"
+   Home = "https://example.org"
    ```
+   To have a more concrete example, if we package the `generate_data.py` script
+   from the [example
+   repository](https://github.com/workshop-material/classification-task), then
+   replace the name `example` with `generate_data`.
 
 4. We now add dependencies and also an entry point for the script:
    ```{code-block} toml
@@ -64,22 +70,22 @@ There are unfortunately many ways to package a Python project:
    build-backend = "flit_core.buildapi"
 
    [project]
-   name = "countstars"
-   authors = [{name = "Radovan Bast", email = "radovan.bast@uit.no"}]
+   name = "example"
+   authors = [{name = "Firstname Lastname", email = "first.last@example.org"}]
    license = {file = "LICENSE"}
-   classifiers = ["License :: OSI Approved :: MIT License"]
+   classifiers = ["License :: OSI Approved :: European Union Public Licence 1.2 (EUPL 1.2)"]
    dynamic = ["version", "description"]
    dependencies = [
        "click",
-       "matplotlib",
-       "scikit-image",
+       "numpy",
+       "pandas",
    ]
 
    [project.urls]
-   Home = "https://github.com/workshop-material/countstars"
+   Home = "https://example.org"
 
    [project.scripts]
-   count-stars = "countstars:main"
+   example = "example:main"
    ```
 
 5. Before moving on, try a local install:
@@ -99,21 +105,23 @@ There are unfortunately many ways to package a Python project:
 
 If a local install worked, push the `pyproject.toml` to GitHub and try to install the package from GitHub.
 
-In a `requirements.txt` file, you can specify the GitHub repository and the branch:
+In a `requirements.txt` file, you can specify the GitHub repository and the
+branch (adapt the names):
 ```
-git+https://github.com/workshop-material/countstars.git@main
+git+https://github.com/ORGANIZATION/REPOSITORY.git@main
 ```
 
-A corresponding `envionment.yml` file for conda would look like this:
+A corresponding `envionment.yml` file for conda would look like this (adapt the
+names):
 ```yaml
-name: countstars
+name: experiment
 channels:
   - conda-forge
 dependencies:
-  - python=3.12
+  - python <= 3.12
   - pip
   - pip:
-      - git+https://github.com/workshop-material/countstars.git@main
+      - git+https://github.com/ORGANIZATION/REPOSITORY.git@main
 ```
 
 Does it install and run? If yes, move on to the next step (test-PyPI and later
@@ -141,7 +149,7 @@ on:
 jobs:
   build:
     permissions: write-all
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
     - name: Switch branch
