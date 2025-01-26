@@ -85,8 +85,8 @@ Comments:
 :::
 
 :::{discussion}
-- What if my code uses libraries like `scikit-image`, `scikit-learn`, `numpy`,
-  `matplotlib`, etc. Do we need to look at their licenses? In other words,
+- What if my code uses libraries like `numpy`, `pandas`, `scipy`,
+  `altair`, etc. Do we need to look at their licenses? In other words,
   **is our project derivative work** of something else?
 :::
 
