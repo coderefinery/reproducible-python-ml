@@ -78,9 +78,11 @@ them to own projects**.
 - 09:00-10:00 - {doc}`testing`
 
 - 10:15-11:30 - Code quality and good practices
-  - Tools (page coming up)
-  - {doc}`refactoring-concepts` (this will be re-worked)
-  - {doc}`refactoring-demo` (this will be re-worked)
+  - Tools
+  - Concepts in refactoring and modular code design
+  - Concepts in refactoring and modular code design
+  - From a notebook to a script to a workflow
+  - Good practices
 
 - 11:30-12:15 - Lunch break
 
@@ -121,10 +123,8 @@ example
 version-control
 documentation
 collaboration
-testing
 dependencies
-refactoring-concepts
-refactoring-demo
+testing
 software-licensing
 publishing
 packaging
