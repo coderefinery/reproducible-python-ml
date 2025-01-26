@@ -83,6 +83,7 @@ them to own projects**.
   - Concepts in refactoring and modular code design
   - From a notebook to a script to a workflow
   - Good practices
+  - {doc}`profiling`
 
 - 11:30-12:15 - Lunch break
 
@@ -125,6 +126,7 @@ documentation
 collaboration
 dependencies
 testing
+profiling
 software-licensing
 publishing
 packaging
