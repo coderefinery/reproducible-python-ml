@@ -26,7 +26,7 @@ Is it enough to make the code public for the code to remain **findable and acces
 
 ## How to make your software citable
 
-```{discussion} Discussion (Citation-1): Explain how you currently cite software
+```{discussion} Discussion: Explain how you currently cite software
 - Do you cite software that you use? How?
 - If I wanted to cite your code/scripts, what would I need to do?
 ```
@@ -117,8 +117,8 @@ software citation examples):
     GitHub.
   - We will follow [these steps](https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content)
     and finally create a GitHub release and get a DOI.
-- We will use the [Binder badge on our example repository](https://github.com/coderefinery/imgfilters) to run the Notebook
-  in the cloud and discuss how we could make it persistent and citable.
+- We can try to create an example repository with a Jupyter Notebook and run it through [Binder](https://mybinder.org/)
+  to make it persistent and citable.
 :::
 
 :::{discussion}
