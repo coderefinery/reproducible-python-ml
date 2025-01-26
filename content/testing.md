@@ -2,6 +2,7 @@
 
 :::{objectives}
 - Know **where to start** in your own project.
+- Know what possibilities and techniques are available in the Python world.
 - Have an example for how to make the **testing part of code review**.
 :::
 
@@ -53,76 +54,62 @@ from our example project.
 
 ## Where to start
 
-Short answer: **Start with an end-to-end test**.
-
-:::{solution} Longer answer
+**Do I even need testing?**:
 - A simple script or notebook probably does not need an automated test.
 
 **If you have nothing yet**:
 - Start with an end-to-end test.
 - Describe in words how *you* check whether the code still works.
 - Translate the words into a script (any language).
-- Run the script automatically on every code change.
+- Run the script automatically on every code change (GitHub Actions or GitLab CI).
 
 **If you want to start with unit-testing**:
 - You want to rewrite a function? Start adding a unit test right there first.
-:::
+- You spend few days chasing a bug? Once you fix it, add a test to make sure it does not come back.
 
 
 ## End-to-end tests
 
-- This is our end-to-end test: <https://github.com/workshop-material/planets/blob/main/test.sh>
-- Note how we can run it [on GitHub automatically](https://github.com/workshop-material/planets/blob/813d49a247f36e9c1e10cbe78ecf1ae4b6e971c3/.github/workflows/test.yml#L28).
-- Also browse <https://github.com/workshop-material/planets/actions>.
+- This is our end-to-end test: <https://github.com/workshop-material/classification-task/blob/main/test.sh>
+- Note how we can run it [on GitHub automatically](https://github.com/workshop-material/classification-task/blob/d5baee6a7600986b5fccc2fca4ee80a90c2d5f69/.github/workflows/test.yml#L28).
+- Also browse <https://github.com/workshop-material/classification-task/actions>.
 - If we have time, we can try to create a pull request which would break the
   code and see how the test fails.
-
-:::{discussion}
-Is the [end-to-end test](https://github.com/workshop-material/planets/blob/main/test.sh)
-perfect? No. But it's a good starting point. Discuss its limitations.
-:::
 
 
 ## Pytest
 
-First we need to add a test function, for instance
-for [this function](https://github.com/workshop-material/planets/blob/813d49a247f36e9c1e10cbe78ecf1ae4b6e971c3/simulate.py#L31-L39):
+Here is a simple example of a test:
 ```{code-block} python
 ---
-emphasize-lines: 12-20
+emphasize-lines: 10-14
 ---
-def force_between_planets(position1, mass1, position2, mass2):
-    G = 1.0  # gravitational constant
-
-    r = position2 - position1
-    distance = (r[0] ** 2 + r[1] ** 2 + r[2] ** 2) ** 0.5
-    force_magnitude = G * mass1 * mass2 / distance**2
-    force = (r / distance) * force_magnitude
-
-    return force
+def fahrenheit_to_celsius(temp_f):
+    """Converts temperature in Fahrenheit
+    to Celsius.
+    """
+    temp_c = (temp_f - 32.0) * (5.0/9.0)
+    return temp_c
 
 
-def test_force_between_planets():
-    position1 = np.array([0.0, 0.0, 0.0])
-    mass1 = 1.0
-    position2 = np.array([1.0, 0.0, 0.0])
-    mass2 = 2.0
-
-    force = force_between_planets(position1, mass1, position2, mass2)
-
-    assert np.allclose(force, [2.0, 0.0, 0.0])
+# this is the test function
+def test_fahrenheit_to_celsius():
+    temp_c = fahrenheit_to_celsius(temp_f=100.0)
+    expected_result = 37.777777
+    # assert raises an error if the condition is not met
+    assert abs(temp_c - expected_result) < 1.0e-6
 ```
 
-Let us run the test with:
+To run the test(s):
 ```console
-$ pytest simulate.py
+$ pytest example.py
 ```
 
 Explanation: `pytest` will look for functions starting with `test_` in files
 and directories given as arguments. It will run them and report the results.
 
-Now let us try this:
-- Commit the test.
+Good practice to add unit tests:
+- Add the test function and run it.
 - Break the function on purpose and run the test.
 - Does the test fail as expected?
 
@@ -133,19 +120,22 @@ Our next goal is that we want GitHub to run the unit test
 automatically on every change.
 
 First we need to extend our
-[environment.yml](https://github.com/workshop-material/planets/blob/main/environment.yml):
+[environment.yml](https://github.com/workshop-material/classification-task/blob/main/environment.yml):
 ```{code-block} yaml
 ---
-emphasize-lines: 9
+emphasize-lines: 12
 ---
-name: planets
+name: classification-task
 channels:
   - conda-forge
 dependencies:
-  - python=3.12
-  - numpy
+  - python <= 3.12
   - click
-  - matplotlib
+  - numpy
+  - pandas
+  - scipy
+  - altair
+  - vl-convert-python
   - pytest
 ```
 
@@ -164,7 +154,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
     - name: Checkout
@@ -172,7 +162,7 @@ jobs:
 
     - uses: mamba-org/setup-micromamba@v1
       with:
-        micromamba-version: '1.5.8-0' # any version from https://github.com/mamba-org/micromamba-releases
+        micromamba-version: '2.0.5-0' # any version from https://github.com/mamba-org/micromamba-releases
         environment-file: environment.yml
         init-shell: bash
         cache-environment: true
@@ -182,15 +172,21 @@ jobs:
     - name: Run tests
       run: |
         ./test.sh
-        pytest simulate.py
+        pytest generate-predictions.py
       shell: bash -el {0}
 ```
+
+In the above example, we assume that we added a test function to `generate-predictions.py`.
 
 If we have time, we can try to create a pull request which would break the
 code and see how the test fails.
 
 
 ## What else is possible
+
+- Run the test set **automatically** on every code change:
+  - [GitHub Actions](https://github.com/features/actions)
+  - [GitLab CI](https://docs.gitlab.com/ee/ci/)
 
 - The testing above used **example-based** testing.
 
@@ -210,11 +206,17 @@ code and see how the test fails.
 
 ## Exercises
 
-Experiment with the example project and what we learned above or try it on your
-own project:
-- Add a unit test.
-- Try to run it locally.
+:::{exercise}
+Experiment with the example project and what we learned above or try it **on
+the example project or on your own project**:
+- Add a unit test. **If you are unsure where to start**, you can try to move
+  [the majority
+  vote](https://github.com/workshop-material/classification-task/blob/d5baee6a7600986b5fccc2fca4ee80a90c2d5f69/generate-predictions.py#L28)
+  into a separate function and write a test function for it.
+- Try to run pytest locally.
 - Check whether it fails when you break the corresponding function.
 - Try to run it on GitHub Actions.
 - Create a pull request which would break the code and see whether the automatic test would catch it.
-- Try to design an end-to-end test for your project.
+- Try to design an end-to-end test for your project. Already the thought
+  process can be very helpful.
+:::
