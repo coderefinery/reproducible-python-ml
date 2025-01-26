@@ -13,6 +13,7 @@ dependencies:
   - jupyterlab
   - pytest
   - scalene
+  - flit
   - ruff
   - icecream
   - snakemake-minimal

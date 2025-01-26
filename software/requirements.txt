@@ -7,6 +7,7 @@ vl-convert-python
 jupyterlab
 pytest
 scalene
+flit
 ruff
 icecream
 myst-parser
