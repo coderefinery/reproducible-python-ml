@@ -51,18 +51,17 @@ them to own projects**.
 
 ### Tuesday
 
-- 09:00-10:00 - {doc}`collaboration` (1/3)
+- 09:00-10:00 - {doc}`collaboration` (1/2)
   - {doc}`collaboration/concepts` (15 min)
   - {doc}`collaboration/same-repository` (45 min)
 
-- 10:15-11:30 - {doc}`collaboration` (2/3)
+- 10:15-11:30 - {doc}`collaboration` (2/2)
   - {doc}`collaboration/code-review` (35 min)
   - {doc}`collaboration/forking-workflow` (35 min)
 
 - 11:30-12:15 - Lunch break
 
-- 12:15-13:00 - {doc}`collaboration` (3/3)
-  - {doc}`collaboration/demo-discussion` (45 min)
+- 12:15-13:00 - TBA
 
 - 13:15-14:00 - {doc}`dependencies`
 
