@@ -8,7 +8,8 @@ workshop we assume that most workshop participants use Python in their work or
 are leading a group which uses Python.  Therefore, some of the examples will use
 Python as the example language.
 
-We will work with an example project and go through all important steps of a typical
+We will work with an example project ({doc}`example`)
+and go through all important steps of a typical
 software project.  Once we have seen the building blocks, we will try to **apply
 them to own projects**.
 
@@ -25,76 +26,93 @@ them to own projects**.
 
 ## Schedule
 
-### Day 1
+### Monday
 
-- 13:00-13:30 - **Welcome and introduction**
-  - Practical information (tools, communication, breaks, etc.)
-  - Motivation (reproducibility, robustness, distribution, improvement, trust, etc.)
+- 09:00-10:00 - Getting started
+  - Welcome and introduction
+  - {doc}`installation`
   - {doc}`example`
 
-- 13:30-14:45 - {ref}`version-control` (1/2)
-  - {ref}`version-control-motivation` (15 min)
-  - {ref}`browsing` (30 min)
-  - {ref}`branching-and-committing` (30 min)
+- 10:15-11:30 - {doc}`version-control` (1/2)
+  - {doc}`version-control/motivation` (15 min)
+  - {doc}`version-control/browsing` (30 min)
+  - {doc}`version-control/branching-and-committing` (30 min)
 
-- 15:00-16:30 - {ref}`version-control` (2/2)
-  - {ref}`merging` (40 min)
-  - {ref}`conflict-resolution` (30 min)
-  - {ref}`practical-advice` (20 min)
-  - {ref}`sharing-repositories` (30 min)
+- 11:30-12:15 - Lunch break
 
-- 16:45-18:00 - {ref}`documentation`
+- 12:15-13:30 - {doc}`version-control` (2/2)
+  - {doc}`version-control/merging` (40 min)
+  - {doc}`version-control/conflict-resolution` (30 min)
+  - {doc}`version-control/practical-advice` (20 min)
+  - {doc}`version-control/sharing` (30 min)
+
+- 13:45-15:00 - {doc}`documentation`
 
 
-### Day 2
+### Tuesday
 
-- 09:00-10:30 - {ref}`collaboration` (1/2)
-  - {ref}`concepts` (10 min)
-  - {ref}`same-repository` (40 min)
-  - {ref}`code-review` (40 min)
+- 09:00-10:00 - {doc}`collaboration` (1/3)
+  - {doc}`collaboration/concepts` (15 min)
+  - {doc}`collaboration/same-repository` (45 min)
 
-- 10:45-12:15 - {ref}`collaboration` (2/2)
-  - {ref}`forking-workflow` (50 min)
-  - {ref}`collaboration-demo-discussion` (40 min)
+- 10:15-11:30 - {doc}`collaboration` (2/3)
+  - {doc}`collaboration/code-review` (35 min)
+  - {doc}`collaboration/forking-workflow` (35 min)
 
-- 16:45-18:00 - **Debriefing and Q&A**
+- 11:30-12:15 - Lunch break
+
+- 12:15-13:00 - {doc}`collaboration` (3/3)
+  - {doc}`collaboration/demo-discussion` (45 min)
+
+- 13:15-14:00 - {doc}`dependencies`
+
+- 14:15-15:00 - Debriefing and Q&A
   - Participants work on their projects
   - Together we study actual codes that participants wrote or work on
   - Constructively we discuss possible improvements
   - Give individual feedback on code projects
 
 
-### Day 3
+### Wednesday
 
-- 09:00-10:30 - {ref}`testing`
+- 09:00-10:00 - {doc}`testing`
 
-- 10:45-12:15 - {doc}`dependencies`
+- 10:15-11:30 - Code quality and good practices
+  - Tools (page coming up)
+  - {doc}`refactoring-concepts` (this will be re-worked)
+  - {doc}`refactoring-demo` (this will be re-worked)
 
-- 13:00-14:45 - Code quality and good practices
-  - {ref}`refactoring-concepts` (15 min)
-  - {ref}`refactoring-demo` (90 min)
+- 11:30-12:15 - Lunch break
 
-- 15:00-16:30 - How to release and publish your code
-  - {ref}`software-licensing` (30 min)
-  - {ref}`publishing` (15 min)
-  - {ref}`packaging` (45 min)
+- 12:15-14:00 - How to release and publish your code
+  - {doc}`software-licensing` (30 min)
+  - {doc}`publishing` (15 min)
+  - {doc}`packaging` (45 min)
 
-- 16:45-18:00 - **Debriefing and Q&A**
+- 14:15-15:00 - Debriefing and Q&A
   - Participants work on their projects
   - Together we study actual codes that participants wrote or work on
   - Constructively we discuss possible improvements
   - Give individual feedback on code projects
 
 
-```{toctree}
+### Thursday
+
+- 09:00-15:00
+  - Moving from laptop to high-performance computing (demo/type-along)
+  - Introduction to the exam
+
+
+:::{toctree}
 :maxdepth: 1
 :caption: Software environment
 :hidden:
 
 installation.md
-```
+:::
 
-```{toctree}
+
+:::{toctree}
 :maxdepth: 1
 :caption: Episodes
 :hidden:
@@ -110,7 +128,8 @@ refactoring-demo
 software-licensing
 publishing
 packaging
-```
+:::
+
 
 :::{toctree}
 :maxdepth: 1

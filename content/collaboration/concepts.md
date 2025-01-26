@@ -1,5 +1,3 @@
-(concepts)=
-
 # Concepts around collaboration
 
 ```{objectives}

@@ -1,5 +1,3 @@
-(software-licensing)=
-
 # Choosing a software license
 
 :::{objectives}

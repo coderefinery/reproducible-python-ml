@@ -1,5 +1,3 @@
-(documentation)=
-
 # Code documentation
 
 :::{objectives}

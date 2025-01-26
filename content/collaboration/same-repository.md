@@ -1,5 +1,3 @@
-(same-repository)=
-
 # Collaborating within the same repository
 
 In this episode, we will learn how to collaborate within the same repository.

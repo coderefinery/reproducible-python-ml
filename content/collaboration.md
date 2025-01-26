@@ -1,5 +1,3 @@
-(collaboration)=
-
 # Collaborative version control and code review
 
 ```{toctree}

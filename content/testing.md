@@ -1,5 +1,3 @@
-(testing)=
-
 # Automated testing
 
 :::{objectives}

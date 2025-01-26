@@ -1,5 +1,3 @@
-(forking-workflow)=
-
 # How to contribute changes to repositories that belong to others
 
 In this episode we prepare you to suggest and contribute changes to

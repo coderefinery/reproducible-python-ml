@@ -1,5 +1,3 @@
-(installation)=
-
 # Software install instructions
 
 [this page is adapted from <https://aaltoscicomp.github.io/python-for-scicomp/installation/>]

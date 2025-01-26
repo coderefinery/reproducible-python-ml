@@ -1,5 +1,3 @@
-(code-review)=
-
 # Practicing code review
 
 In this episode we will practice the code review process. We will learn how to

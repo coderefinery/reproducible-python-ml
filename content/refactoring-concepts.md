@@ -1,5 +1,3 @@
-(refactoring-concepts)=
-
 # Concepts in refactoring and modular code design
 
 

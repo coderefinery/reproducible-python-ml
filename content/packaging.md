@@ -1,5 +1,3 @@
-(packaging)=
-
 # Creating a Python package and deploying it to PyPI
 
 :::{objectives}

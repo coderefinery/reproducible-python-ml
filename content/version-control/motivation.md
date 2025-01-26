@@ -1,5 +1,3 @@
-(version-control-motivation)=
-
 # Motivation
 
 :::{objectives}

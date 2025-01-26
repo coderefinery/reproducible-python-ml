@@ -1,5 +1,3 @@
-(refactoring-demo)=
-
 # Demo: From a script towards a workflow
 
 In this episode we will explore code quality and good practices in Python using

@@ -1,5 +1,3 @@
-(merging)=
-
 # Merging changes and contributing to the project
 
 Git allows us to have different development lines where we can try things out.
@@ -135,8 +133,6 @@ $ git switch main
 ::::
 :::::
 
-
-(create-pull-request)=
 
 ### (2) Begin the pull request process
 

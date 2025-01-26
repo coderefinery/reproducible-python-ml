@@ -1,5 +1,3 @@
-(practical-advice)=
-
 # Practical advice: How much Git is necessary?
 
 

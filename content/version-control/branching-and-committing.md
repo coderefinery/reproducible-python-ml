@@ -1,5 +1,3 @@
-(branching-and-committing)=
-
 # Creating branches and commits
 
 The first and most basic task to do in Git is **record changes** using
@@ -334,6 +332,6 @@ can track several lines of work at once, and can compare their differences.
 - Not all files should be added to Git. For example, temporary files or
   files with sensitive information or files which are generated as part of
   the build process should not be added to Git. For this we use
-  `.gitignore` (more about this later: {ref}`practical-advice`).
+  `.gitignore` (more about this later: {doc}`practical-advice`).
 - Unsure on which branch you are or what state the repository is in?
   On the command line, use `git status` frequently to get a quick overview.

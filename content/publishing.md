@@ -1,5 +1,3 @@
-(publishing)=
-
 # How to publish your code
 
 :::{objectives}

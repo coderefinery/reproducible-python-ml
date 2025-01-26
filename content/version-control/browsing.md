@@ -1,5 +1,3 @@
-(browsing)=
-
 # Forking, cloning, and browsing
 
 In this episode, we will look at an **existing repository** to understand how
