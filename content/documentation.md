@@ -1,4 +1,4 @@
-# Code documentation
+# Where to start with documentation
 
 :::{objectives}
 - Discuss what makes good documentation.
@@ -147,9 +147,8 @@ sphinx-autobuild
 ```
 
 Which repository to use? You have 3 options:
-- Clone **your fork** of the planets example repository.
-- If you don't have that, you can clone the original repository itself:
-  <https://github.com/workshop-material/planets>
+- Clone **your fork** of the example repository.
+- If you don't have that, you can clone the exercise repository itself.
 - You can try this with **your own project** and the project does not have to
   be a Python project.
 :::
@@ -162,7 +161,7 @@ There are at least two ways to get started with Sphinx:
 ::::{exercise} Exercise: Set up a Sphinx documentation
 1. Create the following three files in your project:
    ```
-   planets/      <- or your own project
+   your-project/
    ├── doc/
    │   ├── conf.py
    │   ├── index.md
@@ -172,8 +171,8 @@ There are at least two ways to get started with Sphinx:
 
    This is `conf.py`:
    ```python
-   project = "planets"
-   copyright = "2024, Authors"
+   project = "your-project"
+   copyright = "2025, Authors"
    author = "Authors"
    release = "0.1"
 
@@ -253,16 +252,19 @@ There is a lot more you can do:
 First we need to extend the `environment.yml` file to include the necessary packages:
 ```{code-block} yaml
 ---
-emphasize-lines: 9-12
+emphasize-lines: 12-15
 ---
-name: planets
+name: classification-task
 channels:
   - conda-forge
 dependencies:
-  - python=3.12
-  - numpy
+  - python <= 3.12
   - click
-  - matplotlib
+  - numpy
+  - pandas
+  - scipy
+  - altair
+  - vl-convert-python
   - myst-parser
   - sphinx
   - sphinx-rtd-theme
@@ -287,7 +289,7 @@ permissions:
 
 jobs:
   docs:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
     - name: Checkout
@@ -295,7 +297,7 @@ jobs:
 
     - uses: mamba-org/setup-micromamba@v1
       with:
-        micromamba-version: '1.5.8-0' # any version from https://github.com/mamba-org/micromamba-releases
+        micromamba-version: '2.0.5-0' # any version from https://github.com/mamba-org/micromamba-releases
         environment-file: environment.yml
         init-shell: bash
         cache-environment: true
@@ -338,8 +340,8 @@ Add three tiny modifications (highlighted) to `doc/conf.py` to auto-generate API
 ---
 emphasize-lines: 10, 14, 17
 ---
-project = "planets"
-copyright = "2024, Authors"
+project = "your-project"
+copyright = "2025, Authors"
 author = "Authors"
 release = "0.1"
 
@@ -365,6 +367,13 @@ html_theme = "sphinx_rtd_theme"
 
 Then rebuild the documentation (or push the changes and let GitHub rebuild it)
 and you should see a new section "API Reference".
+
+
+## Possibilities to host Sphinx documentation
+
+- Build with [GitHub Actions](https://github.com/features/actions) and deploy to [GitHub Pages](https://pages.github.com/).
+- Build with [GitLab CI/CD](https://docs.gitlab.com/ee/ci/) and deploy to [GitLab Pages](https://docs.gitlab.com/ee/user/project/pages/).
+- Build with [Read the Docs](https://about.readthedocs.com/) and host there.
 
 
 ## Confused about reStructuredText vs. Markdown vs. MyST?
