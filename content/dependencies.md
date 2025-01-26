@@ -177,14 +177,14 @@ for this course in the {doc}`installation`.
 
 We have used **Miniforge** and the long command we have used was:
 ```console
-$ mamba env create -n course -f https://raw.githubusercontent.com/coderefinery/python-progression/main/software/environment.yml
+$ mamba env create -n course -f https://raw.githubusercontent.com/coderefinery/reproducible-python-ml/main/software/environment.yml
 ```
 
 This command did two things:
 - Create a new environment with name "course" (specified by `-n`).
 - Installed all dependencies listed in the `environment.yml` file (specified by
   `-f`), which we fetched directly from the web.
-  [Here](https://github.com/coderefinery/python-progression/blob/main/software/environment.yml)
+  [Here](https://github.com/coderefinery/reproducible-python-ml/blob/main/software/environment.yml)
   you can browse it.
 
 For your own projects:
@@ -321,8 +321,8 @@ you realize that you need a new dependency? Or you don't need some dependency an
 ## Pinning package versions
 
 Let us look at the
-[environment.yml](https://github.com/coderefinery/python-progression/blob/main/software/environment.yml)
-which we used to set up the environment for this progression course.
+[environment.yml](https://github.com/coderefinery/reproducible-python-ml/blob/main/software/environment.yml)
+which we used to set up the environment for this course.
 Dependencies are listed without version numbers. Should we **pin the
 versions**?
 
