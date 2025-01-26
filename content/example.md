@@ -37,9 +37,9 @@ of samples and file names. Later we will discuss advantages of this approach.
 
 Let us try to get the help text:
 ```console
-$ python generate-data.py --help
+$ python generate_data.py --help
 
-Usage: generate-data.py [OPTIONS]
+Usage: generate_data.py [OPTIONS]
 
   Program that generates a set of training and test samples for a non-linear
   classification task.
@@ -53,21 +53,21 @@ Options:
 
 We first generate the training and test data:
 ```console
-$ python generate-data.py --num-samples 50 --training-data train.csv --test-data test.csv
+$ python generate_data.py --num-samples 50 --training-data train.csv --test-data test.csv
 
 Generated 50 training samples (train.csv) and test samples (test.csv).
 ```
 
 In a second step we generate predictions for the test data:
 ```console
-$ python generate-predictions.py --num-neighbors 7 --training-data train.csv --test-data test.csv --predictions predictions.csv
+$ python generate_predictions.py --num-neighbors 7 --training-data train.csv --test-data test.csv --predictions predictions.csv
 
 Predictions saved to predictions.csv
 ```
 
 Finally, we can plot the results:
 ```console
-$ python plot-results.py --training-data train.csv --predictions predictions.csv --output-chart chart.svg
+$ python plot_results.py --training-data train.csv --predictions predictions.csv --output-chart chart.svg
 
 Accuracy: 0.94
 Saved chart to chart.svg

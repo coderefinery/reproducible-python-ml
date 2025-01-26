@@ -211,7 +211,7 @@ Experiment with the example project and what we learned above or try it **on
 the example project or on your own project**:
 - Add a unit test. **If you are unsure where to start**, you can try to move
   [the majority
-  vote](https://github.com/workshop-material/classification-task/blob/d5baee6a7600986b5fccc2fca4ee80a90c2d5f69/generate-predictions.py#L28)
+  vote](https://github.com/workshop-material/classification-task/blob/79ce3be8fc187afbc33c91c11ea7003ce9bf56cd/generate_predictions.py#L28)
   into a separate function and write a test function for it.
 - Try to run pytest locally.
 - Check whether it fails when you break the corresponding function.
