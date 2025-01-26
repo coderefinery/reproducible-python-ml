@@ -49,7 +49,7 @@ Illustration of what we want to achieve in this exercise.
 1. First create a new branch and then either add a new file or modify an
    existing file and commit the change.  Make sure that you now work **on your
    copy** of the example repository. In your new commit you can share a Git or
-   programming trick you like.
+   programming trick you like or improve the documentation.
 1. In a new commit, modify the file again.
 1. Switch to the `main` branch and create a commit there.
 1. Browse the network and locate the commits that you just created ("Insights" -> "Network").
@@ -58,6 +58,16 @@ Illustration of what we want to achieve in this exercise.
 1. Try to rename the branch that you created and then browse the network again.
 1. Try to create a tag for one of the commits that you created (on GitHub,
    create a "release").
+1. Optional: If this was too easy, you can try to create a new branch and on
+   this branch work on one of these new features:
+   - The random seed is now set to a specific number (42). Make it possible to
+     set the seed to another number or to turn off the seed setting via the command line interface.
+   - Move the code that does the majority vote to an own function.
+   - Write a test for the new majority vote function.
+   - The `num_neighbors` in the code needs to be odd. Change the code so that it stops with an error message if an even number is given.
+   - Add type annotations to some functions.
+   - When calling the `scatter_plot` function, call the function with named arguments.
+   - Add example usage to README.md.
 :::
 
 The solution below goes over most of the answers, and you are
@@ -208,7 +218,7 @@ it makes sense later on.
 ::::{group-tab} GitHub
 A nice way to compare branches is to add `/compare` to the URL of the repository,
 for example (replace USER):
-https://github.com/**USER**/planets/compare
+https://github.com/**USER**/classification-task/compare
 ::::
 
 ::::{group-tab} VS Code
@@ -241,7 +251,7 @@ This is similar to above, but not only between branches.
 ::::{group-tab} GitHub
 Following the `/compare`-trick above, one can compare commits on GitHub by
 adjusting the following URL:
-https://github.com/**USER**/planets/compare/**VERSION1**..**VERSION2**
+https://github.com/**USER**/classification-task/compare/**VERSION1**..**VERSION2**
 
 Replace `USER` with your username and `VERSION1` and `VERSION2` with a commit hash or branch name.
 Please try it out.

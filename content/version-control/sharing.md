@@ -297,3 +297,5 @@ accessible**, consider making your code **citable and persistent**: Get a
 persistent identifier (PID) such as DOI in addition to sharing the code
 publicly, by using services like [Zenodo](https://zenodo.org) or similar
 services.
+
+More about this in {doc}`../publishing`.

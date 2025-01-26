@@ -8,7 +8,7 @@
    version="1.1"
    id="svg1"
    xml:space="preserve"
-   inkscape:version="1.3.2 (091e20ef0f, 2023-11-25)"
+   inkscape:version="1.4 (e7c3feb100, 2024-10-09)"
    sodipodi:docname="drawing.svg"
    inkscape:export-filename="drawing.png"
    inkscape:export-xdpi="90"
@@ -27,7 +27,7 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      inkscape:zoom="0.63473917"
-     inkscape:cx="697.13675"
+     inkscape:cx="697.92447"
      inkscape:cy="822.38504"
      inkscape:window-width="2560"
      inkscape:window-height="1440"
@@ -41,7 +41,7 @@
      id="layer1"><g
        id="g1265"
        transform="translate(-12.151194,0.05188715)"
-       inkscape:export-filename="./clone-of-fork.png"
+       inkscape:export-filename="fork.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><path
          style="fill:#000000;stroke-width:0.377692"
@@ -83,7 +83,7 @@
          id="tspan1268"
          x="32.386288"
          y="23.845901"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;font-family:'Ubuntu Mono derivative Powerline';-inkscape-font-specification:'Ubuntu Mono derivative Powerline';fill:#000000;stroke-width:0.2">workshop-material/planets</tspan></text><text
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;font-family:'Ubuntu Mono derivative Powerline';-inkscape-font-specification:'Ubuntu Mono derivative Powerline';fill:#000000;stroke-width:0.2">workshop-material/example</tspan></text><text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;font-family:'Ubuntu Mono derivative Powerline';-inkscape-font-specification:'Ubuntu Mono derivative Powerline';fill:#999999;stroke-width:0.2"
        x="39.303219"
@@ -95,7 +95,7 @@
          y="75.153587"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;font-family:'Ubuntu Mono derivative Powerline';-inkscape-font-specification:'Ubuntu Mono derivative Powerline';fill:#000000;stroke-width:0.2"><tspan
    style="fill:#999999"
-   id="tspan1270">USER</tspan>/planets</tspan></text><text
+   id="tspan1270">USER</tspan>/example</tspan></text><text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;font-family:'Ubuntu Mono derivative Powerline';-inkscape-font-specification:'Ubuntu Mono derivative Powerline';fill:#999999;stroke-width:0.2"
        x="7.9501438"
@@ -623,7 +623,7 @@
            id="tspan1319">local repository</tspan></text></g><g
        id="g1321"
        transform="translate(135.33919,14.028646)"
-       inkscape:export-filename="./clone.png"
+       inkscape:export-filename="clone.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><path
          style="fill:#000000;stroke-width:0.377692"
@@ -685,7 +685,7 @@
          id="tspan1"
          x="178.51526"
          y="36.621483"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;font-family:'Ubuntu Mono derivative Powerline';-inkscape-font-specification:'Ubuntu Mono derivative Powerline';fill:#000000;stroke-width:0.2">workshop-material/planets</tspan></text><path
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;font-family:'Ubuntu Mono derivative Powerline';-inkscape-font-specification:'Ubuntu Mono derivative Powerline';fill:#000000;stroke-width:0.2">workshop-material/example</tspan></text><path
        style="fill:#000000;stroke-width:0.377692"
        d="m 50.891314,137.06656 c -0.0341,-0.025 -0.0512,-0.0561 -0.0381,-0.0693 0.0132,-0.0132 0.024,-0.007 0.024,0.0134 0,0.0205 0.0207,0.0373 0.0461,0.0373 0.0254,0 0.055,0.0144 0.0658,0.032 0.0288,0.0466 -0.026,0.0391 -0.0978,-0.0134 z"
        id="path1" /><g

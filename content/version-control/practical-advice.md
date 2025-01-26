@@ -27,7 +27,7 @@ this is based on a discussion in #123
 - **Why something was changed is more important than what has changed.**
 - Cross-reference to issues and discussions if possible/relevant.
 - Bad commit messages: "fix", "oops", "save work"
-- Bad examples: [http://whatthecommit.com](http://whatthecommit.com)
+- Just for fun, a page collecting bad examples: [http://whatthecommit.com](http://whatthecommit.com)
 - Write commit messages that will be understood
   15 years from now by someone else than you. Or by your future you.
 - Many projects start out as projects "just for me" and end up to be successful projects

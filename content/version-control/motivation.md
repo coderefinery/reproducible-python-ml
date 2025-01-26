@@ -33,17 +33,17 @@ of them?):
 
 ## Demonstration
 
-- Example repository: <https://github.com/workshop-material/planets>
+- Example repository: <https://github.com/workshop-material/classification-task>
 - Commits are like **snapshots** and if we break something we can go back to a
   previous snapshot.
 - Commits carry **metadata** about changes: author, date, commit message, and
   a checksum.
 - **Branches** are like parallel universes where you can experiment with
   changes without affecting the default branch:
-  <https://github.com/workshop-material/planets/network>
+  <https://github.com/workshop-material/classification-task/network>
   ("Insights" -> "Network")
 - With version control we can **annotate code**
-  ([example](https://github.com/workshop-material/planets/blame/main/simulate.py)).
+  ([example](https://github.com/workshop-material/classification-tas/blame/main/generate_predictions.py)).
 - **Collaboration**: We can fork (make a copy on GitHub), clone (make a copy
   to our computer), review, compare, share, and discuss.
 - **Code review**: Others can suggest changes using pull requests or merge
@@ -70,15 +70,15 @@ Image created using <https://gopherize.me/>
 
 - **Collaboration**: review, compare, share, discuss
 
-- [Example network graph](https://github.com/workshop-material/planets/network)
+- [Example network graph](https://github.com/workshop-material/classification-task/network)
 
 
 ## Talking about code
 
 Which of these two is more practical?
-1. "Clone the code, go to the file 'simulate.py', and search for 'force_between_planets'.
-   Oh! But make sure you use the version from September 2024."
-1. Or I can send you a permalink: <https://github.com/workshop-material/planets/blob/1343ac0/simulate.py#L31C5-L39>
+1. "Clone the code, go to the file 'generate_predictions.py', and search for 'majority_index'.
+   Oh! But make sure you use the version from January 2025."
+1. Or I can send you a permalink: <https://github.com/workshop-material/classification-task/blob/79ce3be8/generate_predictions.py#L25-L28>
 
 
 ## What we typically like to snapshot

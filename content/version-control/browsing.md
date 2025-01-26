@@ -55,15 +55,15 @@ It is also possible to do this: to clone a forked repository to your computer.
 
 At all times you should be aware of if you are looking at **your repository**
 or the **upstream repository** (original repository):
-- Your repository: https://github.com/**USER**/planets
-- Upstream repository: https://github.com/**workshop-material**/planets
+- Your repository: https://github.com/**USER**/classification-task
+- Upstream repository: https://github.com/**workshop-material**/classification-task
 
 :::{admonition} How to create a fork
-1. Go to the repository view on GitHub: <https://github.com/workshop-material/planets>
+1. Go to the repository view on GitHub: <https://github.com/workshop-material/classification-task>
 1. First, on GitHub, click the button that says "Fork". It is towards
    the top-right of the screen.
 1. You should shortly be redirected to your copy of the repository
-   **USER/planets**.
+   **USER/classification-task**.
 :::
 
 :::{instructor-note}
@@ -95,7 +95,7 @@ Work on this by yourself or in pairs.
 In this case you will work on a fork.
 
 You only need to open your own view, as described above.  The browser
-URL should look like https://github.com/**USER**/planets, where
+URL should look like https://github.com/**USER**/classification-task, where
 USER is your GitHub username.
 ::::
 
@@ -110,7 +110,7 @@ locally.
 open), go to File → New Window.
 1. Under "Start" on the screen, select "Clone Git Repository...". Alternatively
    navigate to the "Source Control" tab on the left sidebar and click on the "Clone Repository" button.
-1. Paste in this URL: `https://github.com/USER/planets`, where
+1. Paste in this URL: `https://github.com/USER/classification-task`, where
    `USER` is your username.  You can copy this from the browser.
 1. Browse and select the folder in which you want to clone the
    repository.
@@ -134,10 +134,10 @@ locally.
    (`cd ~/code` for example, if the `~/code` directory is where you
    store your files).
 1. Run the following command: `git clone
-   https://github.com/USER/planets`, where `USER` is your
+   https://github.com/USER/classification-task`, where `USER` is your
    username.  You might need to use a SSH clone command instead of
    HTTPS, depending on your setup.
-1. Change to that directory: `cd planets`
+1. Change to that directory: `cd classification-task`
 ::::
 :::::
 ::::::
@@ -145,19 +145,19 @@ locally.
 
 :::{exercise} Exercise: Browsing an existing project (20 min)
 
-Browse the [example project](https://github.com/workshop-material/planets) and
+Browse the [example project](https://github.com/workshop-material/classification-task) and
 explore commits and branches, either on a fork or on a clone.  Take notes and
 prepare questions.  The hints are for the GitHub path in the browser.
 
 1. Browse the **commit history**: Are commit messages understandable?
    (Hint: "Commit history", the timeline symbol, above the file list)
 1. Compare the commit history with the **network graph** ("Insights" -> "Network"). Can you find the branches?
-1. Try to find the **history of commits for a single file**, e.g. `simulate.py`.
+1. Try to find the **history of commits for a single file**, e.g. `generate_predictions.py`.
    (Hint: "History" button in the file view)
-1. **Which files include the word "position"**?
+1. **Which files include the word "training"**?
    (Hint: the GitHub search on top of the repository view)
-1. In the `simulate.py` file,
-   find out who modified the "time step"
+1. In the `generate_predictions.py` file,
+   find out who modified the evaluation of "majority_index"
    last and **in which commit**.
    (Hint: "Blame" view in the file view)
 1. Can you use this code yourself? **Are you allowed to share
@@ -178,7 +178,7 @@ The most basic thing to look at is the history of commits.
 
 * This is visible from a button in the repository view.  We see every
   change, when, and who has committed.
-* Every change has a unique identifier, such as `244c993`.  This can
+* Every change has a unique identifier, such as `79ce3be`.  This can
   be used to identify both this change, and the whole project's
   version as of that change.
 * Clicking on a change in the view shows more.
@@ -263,12 +263,12 @@ for a single file.
 :::::{tabs}
 
 ::::{group-tab} GitHub
-Navigate to the file view: Main page → simulate.py.
+Navigate to the file view: Main page → generate_predictions.py.
 Click the "History" button near the top right.
 ::::
 
 ::::{group-tab} VS Code
-Open simulate.py file in the editor.  Under the file browser,
+Open generate_predictions.py file in the editor.  Under the file browser,
 we see a "Timeline" view there.
 ::::
 
@@ -277,14 +277,14 @@ The `git log` command can take a filename and provide the log of only
 a single file:
 
 ```
-$ git log simulate.py
+$ git log generate_predictions.py
 ```
 ::::
 
 :::::
 
 
-### (4) Which files include the word "position"?
+### (4) Which files include the word "training"?
 
 Version control makes it very easy to find all occurrences of a
 word or pattern. This is useful for things like finding where functions or
@@ -293,7 +293,7 @@ variables are defined or used.
 :::::{tabs}
 ::::{group-tab} GitHub
 We go to the main file view.  We click the Search magnifying
-class at the very top, type "position", and click enter. We see every
+class at the very top, type "training", and click enter. We see every
 instance, including the context.
 
 :::{admonition} Searching in a forked repository will not work instantaneously!
@@ -306,16 +306,16 @@ Start it, continue with other steps, then come back to this.
 
 ::::{group-tab} VS Code
 If you use the "Search" magnifying class on the left sidebar, and
-search for "position" it shows the occurrences in every file. You can
+search for "training" it shows the occurrences in every file. You can
 click to see the usage in context.
 ::::
 
 ::::{group-tab} Command line
 `grep` is the command line tool that searches for lines matching a term
 ```console
-$ git grep position          # only the lines
-$ git grep -C 3 position     # three lines of context
-$ git grep -i position       # case insensitive
+$ git grep training          # only the lines
+$ git grep -C 3 training     # three lines of context
+$ git grep -i training       # case insensitive
 ```
 ::::
 
@@ -344,8 +344,8 @@ line version, after opening a terminal.
 ::::{group-tab} Command line
 These two commands are similar but have slightly different output.
 ```console
-$ git annotate simulate.py
-$ git blame simulate.py
+$ git annotate generate_predictions.py
+$ git blame generate_predictions.py
 ```
 ::::
 
