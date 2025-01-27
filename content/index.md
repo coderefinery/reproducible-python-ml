@@ -79,7 +79,6 @@ them to own projects**.
 - 10:15-11:30 - Code quality and good practices
   - Tools
   - Concepts in refactoring and modular code design
-  - Concepts in refactoring and modular code design
   - From a notebook to a script to a workflow
   - Good practices
   - {doc}`profiling`
