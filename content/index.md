@@ -64,7 +64,7 @@ them to own projects**.
 - 12:15-12:45 - {doc}`dependencies`
 
 - 12:45-13:30 - Working with Notebooks
-  - Notebooks and version control
+  - {doc}`notebooks/version-control`
   - {doc}`notebooks/tooling`
   - {doc}`notebooks/sharing`
 
@@ -127,6 +127,7 @@ version-control
 documentation
 collaboration
 dependencies
+notebooks/version-control
 notebooks/tooling
 notebooks/sharing
 good-practices
