@@ -68,6 +68,7 @@ Illustration of what we want to achieve in this exercise.
    - Add type annotations to some functions.
    - When calling the `scatter_plot` function, call the function with named arguments.
    - Add example usage to README.md.
+   - Add a Jupyter Notebook version of the example code.
 :::
 
 The solution below goes over most of the answers, and you are
