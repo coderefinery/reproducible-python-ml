@@ -66,7 +66,7 @@ them to own projects**.
 - 12:45-13:30 - Working with Notebooks
   - Notebooks and version control
   - Other tooling
-  - Sharing notebooks
+  - {doc}`notebooks/sharing`
 
 - 13:30-14:15 - Other useful tools for Python development
   - {doc}`good-practices`
@@ -128,6 +128,7 @@ documentation
 collaboration
 dependencies
 testing
+notebooks/sharing
 refactoring-concepts
 good-practices
 profiling
