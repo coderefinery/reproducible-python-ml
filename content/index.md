@@ -127,12 +127,12 @@ version-control
 documentation
 collaboration
 dependencies
-testing
 notebooks/tooling
 notebooks/sharing
-refactoring-concepts
 good-practices
 profiling
+testing
+refactoring-concepts
 software-licensing
 publishing
 packaging
