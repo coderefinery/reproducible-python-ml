@@ -34,17 +34,17 @@ them to own projects**.
   - {doc}`example`
 
 - 10:15-11:30 - {doc}`version-control` (1/2)
-  - {doc}`version-control/motivation` (15 min)
-  - {doc}`version-control/browsing` (30 min)
-  - {doc}`version-control/branching-and-committing` (30 min)
+  - {doc}`version-control/motivation`
+  - {doc}`version-control/browsing`
+  - {doc}`version-control/branching-and-committing`
 
 - 11:30-12:15 - Lunch break
 
 - 12:15-13:30 - {doc}`version-control` (2/2)
-  - {doc}`version-control/merging` (40 min)
-  - {doc}`version-control/conflict-resolution` (30 min)
-  - {doc}`version-control/practical-advice` (20 min)
-  - {doc}`version-control/sharing` (30 min)
+  - {doc}`version-control/merging`
+  - {doc}`version-control/conflict-resolution`
+  - {doc}`version-control/practical-advice`
+  - {doc}`version-control/sharing`
 
 - 13:45-15:00 - {doc}`documentation`
 
@@ -52,12 +52,12 @@ them to own projects**.
 ### Tuesday
 
 - 09:00-10:00 - {doc}`collaboration` (1/2)
-  - {doc}`collaboration/concepts` (15 min)
-  - {doc}`collaboration/same-repository` (45 min)
+  - {doc}`collaboration/concepts`
+  - {doc}`collaboration/same-repository`
 
 - 10:15-11:30 - {doc}`collaboration` (2/2)
-  - {doc}`collaboration/code-review` (35 min)
-  - {doc}`collaboration/forking-workflow` (35 min)
+  - {doc}`collaboration/code-review`
+  - {doc}`collaboration/forking-workflow`
 
 - 11:30-12:15 - Lunch break
 
@@ -90,9 +90,9 @@ them to own projects**.
 - 11:30-12:15 - Lunch break
 
 - 12:15-14:00 - How to release and publish your code
-  - {doc}`software-licensing` (30 min)
-  - {doc}`publishing` (15 min)
-  - {doc}`packaging` (45 min)
+  - {doc}`software-licensing`
+  - {doc}`publishing`
+  - {doc}`packaging`
 
 - 14:15-15:00 - Debriefing and Q&A
   - Participants work on their projects
