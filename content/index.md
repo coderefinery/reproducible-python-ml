@@ -61,9 +61,16 @@ them to own projects**.
 
 - 11:30-12:15 - Lunch break
 
-- 12:15-13:00 - TBA
+- 12:15-12:45 - {doc}`dependencies`
 
-- 13:15-14:00 - {doc}`dependencies`
+- 12:45-13:30 - Working with Notebooks
+  - Notebooks and version control
+  - Other tooling
+  - Sharing notebooks
+
+- 13:30-14:15 - Other useful tools for Python development
+  - {doc}`good-practices`
+  - {doc}`profiling`
 
 - 14:15-15:00 - Debriefing and Q&A
   - Participants work on their projects
@@ -76,12 +83,9 @@ them to own projects**.
 
 - 09:00-10:00 - {doc}`testing`
 
-- 10:15-11:30 - Code quality and good practices
-  - Tools
-  - Concepts in refactoring and modular code design
-  - From a notebook to a script to a workflow
-  - Good practices
-  - {doc}`profiling` (30 min)
+- 10:15-11:30 - Modular code development
+  - {doc}`refactoring-concepts`
+  - How to parallelize independent tasks using workflows
 
 - 11:30-12:15 - Lunch break
 
@@ -124,6 +128,8 @@ documentation
 collaboration
 dependencies
 testing
+refactoring-concepts
+good-practices
 profiling
 software-licensing
 publishing

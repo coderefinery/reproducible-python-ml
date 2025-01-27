@@ -1,7 +1,3 @@
----
-orphan: true
----
-
 # Concepts in refactoring and modular code design
 
 
