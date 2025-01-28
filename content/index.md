@@ -85,7 +85,7 @@ them to own projects**.
 
 - 10:15-11:30 - Modular code development
   - {doc}`refactoring-concepts`
-  - How to parallelize independent tasks using workflows
+  - {doc}`snakemake`
 
 - 11:30-12:15 - Lunch break
 
@@ -134,6 +134,7 @@ good-practices
 profiling
 testing
 refactoring-concepts
+snakemake
 software-licensing
 publishing
 packaging
