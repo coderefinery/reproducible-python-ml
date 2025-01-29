@@ -21,18 +21,18 @@ This could be one way to do it:
 num_rounds=10
 
 for i in $(seq -w 1 ${num_rounds}); do
-    ./conda.sif python generate_data.py \
+    python generate_data.py \
             --num-samples 2000 \
             --training-data data/train_${i}.csv \
             --test-data data/test_${i}.csv
 
-    ./conda.sif python generate_predictions.py \
+    python generate_predictions.py \
             --num-neighbors 7 \
             --training-data data/train_${i}.csv \
             --test-data data/test_${i}.csv
             --predictions results/predictions_${i}.csv
 
-    ./conda.sif python plot_results.py \
+    python plot_results.py \
             --training-data data/train_${i}.csv \
             --predictions results/predictions_${i}.csv \
             --output-chart results/chart_${i}.png
@@ -51,7 +51,7 @@ For the following we will assume that we have the input data available:
 num_rounds=10
 
 for i in $(seq -w 1 ${num_rounds}); do
-    ./conda.sif python generate_data.py \
+    python generate_data.py \
             --num-samples 2000 \
             --training-data data/train_${i}.csv \
             --test-data data/test_${i}.csv
