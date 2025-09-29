@@ -103,9 +103,13 @@ them to own projects**.
 
 ### Thursday
 
-- 09:00-15:00
-  - Moving from laptop to high-performance computing (demo/type-along)
-  - Introduction to the exam
+- 09:00-09:30 - Concepts of high-performance computing
+- 09:30-10:15 - Running AI training jobs in HPC
+- 10:30-11:30 - Using, building and extending containers in HPC
+- 11:30-12:15 - Lunch break
+- 12:15-13:00 - Scaling AI training to multiple GPUs
+- 13:00-14:00 - Monitoring and profiling AI training jobs
+- 14:00-15:00 - Debriefing and introduction to the exam
 
 
 :::{toctree}
