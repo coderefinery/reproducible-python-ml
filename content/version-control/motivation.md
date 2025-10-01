@@ -43,7 +43,7 @@ of them?):
   <https://github.com/workshop-material/classification-task/network>
   ("Insights" -> "Network")
 - With version control we can **annotate code**
-  ([example](https://github.com/workshop-material/classification-tas/blame/main/generate_predictions.py)).
+  ([example](https://github.com/workshop-material/classification-task/blame/main/generate_predictions.py)).
 - **Collaboration**: We can fork (make a copy on GitHub), clone (make a copy
   to our computer), review, compare, share, and discuss.
 - **Code review**: Others can suggest changes using pull requests or merge
