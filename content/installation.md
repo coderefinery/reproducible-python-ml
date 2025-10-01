@@ -129,6 +129,12 @@ We will call the environment `course`.
   ```console
   $ mamba env create -n course -f https://raw.githubusercontent.com/coderefinery/reproducible-python-ml/main/software/environment.yml
   ```
+  If this throws an error you can download the ``environmet.yml`` file first
+  and set up the environment via
+  ```console
+  $ curl -O https://raw.githubusercontent.com/coderefinery/reproducible-python-ml/main/software/environment.yml
+  $ mamba env create -n course -f environment.yml
+  ```
   :::
 
   :::{group-tab} Linux / MacOS
