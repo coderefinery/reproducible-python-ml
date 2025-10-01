@@ -314,6 +314,7 @@ click to see the usage in context.
 `grep` is the command line tool that searches for lines matching a term
 ```console
 $ git grep training          # only the lines
+$ git grep -n training       # shows line numbers
 $ git grep -C 3 training     # three lines of context
 $ git grep -i training       # case insensitive
 ```
