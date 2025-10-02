@@ -69,8 +69,8 @@ them to own projects**.
   - {doc}`notebooks/sharing`
 
 - 13:30-14:15 - Other useful tools for Python development
-  - {doc}`good-practices`
   - {doc}`profiling`
+  - {doc}`good-practices`
 
 - 14:15-15:00 - Debriefing and Q&A
   - Participants work on their projects
