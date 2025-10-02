@@ -1,0 +1,297 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reproducible research software development using Python (ML example) &mdash; Reproducible research software development using Python (ML example)  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx_lesson.css?v=e9df6548" />
+      <link rel="stylesheet" type="text/css" href="_static/term_role_formatting.css?v=4194e21c" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx_rtd_theme_ext_color_contrast.css?v=8e8ea19f" />
+      <link rel="stylesheet" type="text/css" href="_static/style.css?v=791bfbd6" />
+
+  
+    <link rel="shortcut icon" href="_static/coderefinery.ico"/>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=187304be"></script>
+      <script src="_static/doctools.js?v=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=35a8b989"></script>
+      <script src="_static/minipres.js?v=a0d29692"></script>
+      <script>let toggleHintShow = 'Click to show';</script>
+      <script>let toggleHintHide = 'Click to hide';</script>
+      <script>let toggleOpenOnPrint = 'true';</script>
+      <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script data-domain="coderefinery.github.io" defer="defer" src="https://plausible.cs.aalto.fi/js/script.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex/" />
+    <link rel="search" title="Search" href="search/" />
+    <link rel="next" title="Software install instructions" href="installation/" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            Reproducible research software development using Python (ML example)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Software environment</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation/">Software install instructions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Episodes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="example/">Example project: 2D classification task using a nearest-neighbor predictor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="version-control/">Introduction to version control with Git and GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentation/">Where to start with documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="collaboration/">Collaborative version control and code review</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dependencies/">Reproducible environments and dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/version-control/">Notebooks and version control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/tooling/">Other useful tooling for notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/sharing/">Sharing notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="good-practices/">Tools and useful practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="profiling/">Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing/">Automated testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="refactoring-concepts/">Concepts in refactoring and modular code design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snakemake/">How to parallelize independent tasks using workflows (example: Snakemake)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="software-licensing/">Choosing a software license</a></li>
+<li class="toctree-l1"><a class="reference internal" href="publishing/">How to publish your code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="packaging/">Creating a Python package and deploying it to PyPI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://coderefinery.github.io/reproducible-python-ml/lesson.pdf">PDF version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credit/">Credit</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://coderefinery.org/lessons/">All lessons</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://coderefinery.org/">CodeRefinery</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://coderefinery.org/lessons/reusing/">Reusing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Reproducible research software development using Python (ML example)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Reproducible research software development using Python (ML example)</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/coderefinery/reproducible-python-ml/blob/main/content/index.md" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="reproducible-research-software-development-using-python-ml-example">
+<h1>Reproducible research software development using Python (ML example)<a class="headerlink" href="#reproducible-research-software-development-using-python-ml-example" title="Link to this heading"></a></h1>
+<section id="big-picture-goal">
+<h2>Big-picture goal<a class="headerlink" href="#big-picture-goal" title="Link to this heading"></a></h2>
+<p>This is a <strong>hands-on course on research software engineering</strong>. In this
+workshop we assume that most workshop participants use Python in their work or
+are leading a group which uses Python.  Therefore, some of the examples will use
+Python as the example language.</p>
+<p>We will work with an example project (<a class="reference internal" href="example/"><span class="doc">Example project: 2D classification task using a nearest-neighbor predictor</span></a>)
+and go through all important steps of a typical
+software project.  Once we have seen the building blocks, we will try to <strong>apply
+them to own projects</strong>.</p>
+<div class="admonition-preparation prerequisites admonition" id="prerequisites-0">
+<p class="admonition-title">Preparation</p>
+<ol class="arabic simple">
+<li><p>Get a <strong>GitHub account</strong> following <a class="reference external" href="https://coderefinery.github.io/installation/github/">these instructions</a>.</p></li>
+<li><p>You will need a <strong>text editor</strong>. If you don’t have a favorite one, we recommend
+<a class="reference external" href="https://coderefinery.github.io/installation/vscode/">VS Code</a>.</p></li>
+<li><p><strong>If you prefer to work in the terminal</strong> and not in VS Code, set up these two (skip this if you use VS Code):</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://coderefinery.github.io/installation/git-in-terminal/">Git in the terminal</a></p></li>
+<li><p><a class="reference external" href="https://coderefinery.github.io/installation/ssh/">SSH or HTTPS connection to GitHub from terminal</a></p></li>
+</ul>
+</li>
+<li><p>Follow <a class="reference internal" href="installation/"><span class="doc">Software install instructions</span></a> (but we will do this together at the beginning of the workshop).</p></li>
+</ol>
+</div>
+</section>
+<section id="schedule">
+<h2>Schedule<a class="headerlink" href="#schedule" title="Link to this heading"></a></h2>
+<section id="monday">
+<h3>Monday<a class="headerlink" href="#monday" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>09:00-10:00 - Getting started</p>
+<ul>
+<li><p>Welcome and introduction</p></li>
+<li><p><a class="reference internal" href="installation/"><span class="doc">Software install instructions</span></a></p></li>
+<li><p><a class="reference internal" href="example/"><span class="doc">Example project: 2D classification task using a nearest-neighbor predictor</span></a></p></li>
+</ul>
+</li>
+<li><p>10:15-11:30 - <a class="reference internal" href="version-control/"><span class="doc">Introduction to version control with Git and GitHub</span></a> (1/2)</p>
+<ul>
+<li><p><a class="reference internal" href="version-control/motivation/"><span class="doc">Motivation</span></a></p></li>
+<li><p><a class="reference internal" href="version-control/browsing/"><span class="doc">Forking, cloning, and browsing</span></a></p></li>
+<li><p><a class="reference internal" href="version-control/branching-and-committing/"><span class="doc">Creating branches and commits</span></a></p></li>
+</ul>
+</li>
+<li><p>11:30-12:15 - Lunch break</p></li>
+<li><p>12:15-13:30 - <a class="reference internal" href="version-control/"><span class="doc">Introduction to version control with Git and GitHub</span></a> (2/2)</p>
+<ul>
+<li><p><a class="reference internal" href="version-control/merging/"><span class="doc">Merging changes and contributing to the project</span></a></p></li>
+<li><p><a class="reference internal" href="version-control/conflict-resolution/"><span class="doc">Conflict resolution</span></a></p></li>
+<li><p><a class="reference internal" href="version-control/practical-advice/"><span class="doc">Practical advice: How much Git is necessary?</span></a></p></li>
+<li><p><a class="reference internal" href="version-control/sharing/"><span class="doc">Optional: How to turn your project to a Git repo and share it</span></a></p></li>
+</ul>
+</li>
+<li><p>13:45-15:00 - <a class="reference internal" href="documentation/"><span class="doc">Where to start with documentation</span></a></p></li>
+</ul>
+</section>
+<section id="tuesday">
+<h3>Tuesday<a class="headerlink" href="#tuesday" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>09:00-10:00 - <a class="reference internal" href="collaboration/"><span class="doc">Collaborative version control and code review</span></a> (1/2)</p>
+<ul>
+<li><p><a class="reference internal" href="collaboration/concepts/"><span class="doc">Concepts around collaboration</span></a></p></li>
+<li><p><a class="reference internal" href="collaboration/same-repository/"><span class="doc">Collaborating within the same repository</span></a></p></li>
+</ul>
+</li>
+<li><p>10:15-11:30 - <a class="reference internal" href="collaboration/"><span class="doc">Collaborative version control and code review</span></a> (2/2)</p>
+<ul>
+<li><p><a class="reference internal" href="collaboration/code-review/"><span class="doc">Practicing code review</span></a></p></li>
+<li><p><a class="reference internal" href="collaboration/forking-workflow/"><span class="doc">How to contribute changes to repositories that belong to others</span></a></p></li>
+</ul>
+</li>
+<li><p>11:30-12:15 - Lunch break</p></li>
+<li><p>12:15-12:45 - <a class="reference internal" href="dependencies/"><span class="doc">Reproducible environments and dependencies</span></a></p></li>
+<li><p>12:45-13:30 - Working with Notebooks</p>
+<ul>
+<li><p><a class="reference internal" href="notebooks/version-control/"><span class="doc">Notebooks and version control</span></a></p></li>
+<li><p><a class="reference internal" href="notebooks/tooling/"><span class="doc">Other useful tooling for notebooks</span></a></p></li>
+<li><p><a class="reference internal" href="notebooks/sharing/"><span class="doc">Sharing notebooks</span></a></p></li>
+</ul>
+</li>
+<li><p>13:30-14:15 - Other useful tools for Python development</p>
+<ul>
+<li><p><a class="reference internal" href="profiling/"><span class="doc">Profiling</span></a></p></li>
+<li><p><a class="reference internal" href="good-practices/"><span class="doc">Tools and useful practices</span></a></p></li>
+</ul>
+</li>
+<li><p>14:15-15:00 - Debriefing and Q&amp;A</p>
+<ul>
+<li><p>Participants work on their projects</p></li>
+<li><p>Together we study actual codes that participants wrote or work on</p></li>
+<li><p>Constructively we discuss possible improvements</p></li>
+<li><p>Give individual feedback on code projects</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="wednesday">
+<h3>Wednesday<a class="headerlink" href="#wednesday" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>09:00-10:00 - <a class="reference internal" href="testing/"><span class="doc">Automated testing</span></a></p></li>
+<li><p>10:15-11:30 - Modular code development</p>
+<ul>
+<li><p><a class="reference internal" href="refactoring-concepts/"><span class="doc">Concepts in refactoring and modular code design</span></a></p></li>
+<li><p><a class="reference internal" href="snakemake/"><span class="doc">How to parallelize independent tasks using workflows (example: Snakemake)</span></a></p></li>
+</ul>
+</li>
+<li><p>11:30-12:15 - Lunch break</p></li>
+<li><p>12:15-14:00 - How to release and publish your code</p>
+<ul>
+<li><p><a class="reference internal" href="software-licensing/"><span class="doc">Choosing a software license</span></a></p></li>
+<li><p><a class="reference internal" href="publishing/"><span class="doc">How to publish your code</span></a></p></li>
+<li><p><a class="reference internal" href="packaging/"><span class="doc">Creating a Python package and deploying it to PyPI</span></a></p></li>
+</ul>
+</li>
+<li><p>14:15-15:00 - Debriefing and Q&amp;A</p>
+<ul>
+<li><p>Participants work on their projects</p></li>
+<li><p>Together we study actual codes that participants wrote or work on</p></li>
+<li><p>Constructively we discuss possible improvements</p></li>
+<li><p>Give individual feedback on code projects</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="thursday">
+<h3>Thursday<a class="headerlink" href="#thursday" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>09:00-09:30 - Concepts of high-performance computing</p></li>
+<li><p>09:30-10:15 - Running AI training jobs in HPC</p></li>
+<li><p>10:30-11:30 - Using, building and extending containers in HPC</p></li>
+<li><p>11:30-12:15 - Lunch break</p></li>
+<li><p>12:15-13:00 - Scaling AI training to multiple GPUs</p></li>
+<li><p>13:00-14:00 - Monitoring and profiling AI training jobs</p></li>
+<li><p>14:00-15:00 - Debriefing and introduction to the exam</p></li>
+</ul>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="installation/" class="btn btn-neutral float-right" title="Software install instructions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CodeRefinery contributors (CC-BY license).</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

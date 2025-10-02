@@ -1,0 +1,324 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Choosing a software license &mdash; Reproducible research software development using Python (ML example)  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx_lesson.css?v=e9df6548" />
+      <link rel="stylesheet" type="text/css" href="../_static/term_role_formatting.css?v=4194e21c" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx_rtd_theme_ext_color_contrast.css?v=8e8ea19f" />
+      <link rel="stylesheet" type="text/css" href="../_static/style.css?v=791bfbd6" />
+
+  
+    <link rel="shortcut icon" href="../_static/coderefinery.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=187304be"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=35a8b989"></script>
+      <script src="../_static/minipres.js?v=a0d29692"></script>
+      <script>let toggleHintShow = 'Click to show';</script>
+      <script>let toggleHintHide = 'Click to hide';</script>
+      <script>let toggleOpenOnPrint = 'true';</script>
+      <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script data-domain="coderefinery.github.io" defer="defer" src="https://plausible.cs.aalto.fi/js/script.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex/" />
+    <link rel="search" title="Search" href="../search/" />
+    <link rel="next" title="How to publish your code" href="../publishing/" />
+    <link rel="prev" title="How to parallelize independent tasks using workflows (example: Snakemake)" href="../snakemake/" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../" class="icon icon-home">
+            Reproducible research software development using Python (ML example)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Software environment</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/">Software install instructions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Episodes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../example/">Example project: 2D classification task using a nearest-neighbor predictor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../version-control/">Introduction to version control with Git and GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/">Where to start with documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../collaboration/">Collaborative version control and code review</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dependencies/">Reproducible environments and dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/version-control/">Notebooks and version control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/tooling/">Other useful tooling for notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/sharing/">Sharing notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../good-practices/">Tools and useful practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../profiling/">Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/">Automated testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../refactoring-concepts/">Concepts in refactoring and modular code design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snakemake/">How to parallelize independent tasks using workflows (example: Snakemake)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Choosing a software license</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#copyright-and-derivative-work-sampling-remixing">Copyright and derivative work: Sampling/remixing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#why-software-licenses-matter">Why software licenses matter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#taxonomy-of-software-licenses">Taxonomy of software licenses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exercise-demo">Exercise/demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#more-resources">More resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#more-exercises">More exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../publishing/">How to publish your code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../packaging/">Creating a Python package and deploying it to PyPI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://coderefinery.github.io/reproducible-python-ml/lesson.pdf">PDF version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../credit/">Credit</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://coderefinery.org/lessons/">All lessons</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://coderefinery.org/">CodeRefinery</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://coderefinery.org/lessons/reusing/">Reusing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../">Reproducible research software development using Python (ML example)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Choosing a software license</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/coderefinery/reproducible-python-ml/blob/main/content/software-licensing.md" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="choosing-a-software-license">
+<h1>Choosing a software license<a class="headerlink" href="#choosing-a-software-license" title="Link to this heading"></a></h1>
+<div class="admonition-objectives objectives admonition" id="objectives-0">
+<p class="admonition-title">Objectives</p>
+<ul class="simple">
+<li><p>Knowing about what derivative work is and whether we can share it.</p></li>
+<li><p>Get familiar with terminology around licensing.</p></li>
+<li><p>We will add a license to our example project.</p></li>
+</ul>
+</div>
+<section id="copyright-and-derivative-work-sampling-remixing">
+<h2>Copyright and derivative work: Sampling/remixing<a class="headerlink" href="#copyright-and-derivative-work-sampling-remixing" title="Link to this heading"></a></h2>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/record-player.png"><img alt="Generated image of a monk operating a record player" src="../_images/record-player.png" style="width: 50%;" />
+</a>
+</figure>
+<p>[Midjourney, CC-BY-NC 4.0]</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/turntable.png"><img alt="Generated image of a monk operating two record players" src="../_images/turntable.png" style="width: 50%;" />
+</a>
+</figure>
+<p>[Midjourney, CC-BY-NC 4.0]</p>
+<ul class="simple">
+<li><p>Copyright controls whether and how we can distribute
+the original work or the <strong>derivative work</strong>.</p></li>
+<li><p>In the <strong>context of software</strong> it is more about
+being able to change and <strong>distribute changes</strong>.</p></li>
+<li><p>Changing and distributing software is similar to changing and distributing
+music</p></li>
+<li><p>You can do almost anything if you don’t distribute it</p></li>
+</ul>
+<p><strong>Often we don’t have the choice</strong>:</p>
+<ul class="simple">
+<li><p>We are expected to publish software</p></li>
+<li><p>Sharing can be good insurance against being locked out</p></li>
+</ul>
+<p><strong>Can we distribute our changes</strong> with the research community or our future selves?</p>
+</section>
+<section id="why-software-licenses-matter">
+<h2>Why software licenses matter<a class="headerlink" href="#why-software-licenses-matter" title="Link to this heading"></a></h2>
+<p>You find some great code that you want to reuse for your own publication.</p>
+<ul class="simple">
+<li><p>This is good for the original author - you will cite them. Maybe other people who cite you will cite them.</p></li>
+<li><p>You modify and remix the code.</p></li>
+<li><p>Two years later … ⌛</p></li>
+<li><p>Time to publish: You realize <strong>there is no license to the original work</strong> 😱</p></li>
+</ul>
+<p><strong>Now we have a problem</strong>:</p>
+<ul class="simple">
+<li><p>😬 “Best” case: You manage to publish the paper without the software/data.
+Others cannot build on your software and data.</p></li>
+<li><p>😱 Worst case: You cannot publish it at all.
+Journal requires that papers should come with data and software so that they are reproducible.</p></li>
+</ul>
+</section>
+<section id="taxonomy-of-software-licenses">
+<h2>Taxonomy of software licenses<a class="headerlink" href="#taxonomy-of-software-licenses" title="Link to this heading"></a></h2>
+<figure class="align-default" id="id1">
+<img alt="European Union Public Licence (EUPL): guidelines July 2021" src="../_images/license-models.png" />
+<figcaption>
+<p><span class="caption-text">European Commission, Directorate-General for Informatics, Schmitz, P., European Union Public Licence (EUPL): guidelines July 2021, Publications Office, 2021, <a class="reference external" href="https://data.europa.eu/doi/10.2799/77160">https://data.europa.eu/doi/10.2799/77160</a></span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>Comments:</p>
+<ul class="simple">
+<li><p>Arrows represent compatibility (A -&gt; B: B can reuse A)</p></li>
+<li><p>Proprietary/custom: Derivative work typically not possible (no arrow goes from proprietary to open)</p></li>
+<li><p>Permissive: Derivative work does not have to be shared</p></li>
+<li><p>Copyleft/reciprocal: Derivative work must be made available under the same license terms</p></li>
+<li><p>NC (non-commercial) and ND (non-derivative) exist for data licenses but not really for software licenses</p></li>
+</ul>
+<p><strong>Great resource for comparing software licenses</strong>: <a class="reference external" href="https://joinup.ec.europa.eu/collection/eupl/solution/joinup-licensing-assistant/jla-find-and-compare-software-licenses">Joinup Licensing Assistant</a></p>
+<ul class="simple">
+<li><p>Provides comments on licenses</p></li>
+<li><p>Easy to compare licenses (<a class="reference external" href="https://joinup.ec.europa.eu/licence/compare/BSD-3-Clause;Apache-2.0">example</a>)</p></li>
+<li><p><a class="reference external" href="https://joinup.ec.europa.eu/collection/eupl/solution/joinup-licensing-assistant/jla-compatibility-checker">Joinup Licensing Assistant - Compatibility Checker</a></p></li>
+<li><p>Not biased by some company agenda</p></li>
+</ul>
+</section>
+<section id="exercise-demo">
+<h2>Exercise/demo<a class="headerlink" href="#exercise-demo" title="Link to this heading"></a></h2>
+<div class="admonition-exercise exercise important admonition" id="exercise-0">
+<p class="admonition-title">Exercise</p>
+<ul class="simple">
+<li><p>Let us choose a license for our example project.</p></li>
+<li><p>We will add a LICENSE to the repository.</p></li>
+</ul>
+</div>
+<div class="admonition-discussion discussion important admonition" id="discussion-0">
+<p class="admonition-title">Discussion</p>
+<ul class="simple">
+<li><p>What if my code uses libraries like <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, <code class="docutils literal notranslate"><span class="pre">scipy</span></code>,
+<code class="docutils literal notranslate"><span class="pre">altair</span></code>, etc. Do we need to look at their licenses? In other words,
+<strong>is our project derivative work</strong> of something else?</p></li>
+</ul>
+</div>
+</section>
+<section id="more-resources">
+<h2>More resources<a class="headerlink" href="#more-resources" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Presentation slides “Practical software licensing” (R. Bast): <a class="reference external" href="https://doi.org/10.5281/zenodo.11554001">https://doi.org/10.5281/zenodo.11554001</a></p></li>
+<li><p><a class="reference external" href="https://coderefinery.github.io/social-coding/">Social coding lesson material</a></p></li>
+<li><p><a class="reference external" href="https://research-software.uit.no/blog/2023-software-licensing-guide/">UiT research software licensing guide (draft)</a></p></li>
+<li><p><a class="reference external" href="https://www.researchsoft.org/software-policies/">Research institution policies to support research software (compiled by the Research Software Alliance)</a></p></li>
+<li><p>More <a class="reference external" href="https://coderefinery.github.io/social-coding/software-licensing/#great-resources">reading material</a></p></li>
+</ul>
+</section>
+<section id="more-exercises">
+<h2>More exercises<a class="headerlink" href="#more-exercises" title="Link to this heading"></a></h2>
+<div class="admonition-exercise-what-constitutes-derivative-work exercise important admonition" id="exercise-1">
+<p class="admonition-title">Exercise: What constitutes derivative work?</p>
+<p>Which of these are derivative works?  Also reflect/discuss how this affects the
+choice of license.</p>
+<ul class="simple">
+<li><p>A. Download some code from a website and add on to it</p></li>
+<li><p>B. Download some code and use one of the functions in your code</p></li>
+<li><p>C. Changing code you got from somewhere</p></li>
+<li><p>D. Extending code you got from somewhere</p></li>
+<li><p>E. Completely rewriting code you got from somewhere</p></li>
+<li><p>F. Rewriting code to a different programming language</p></li>
+<li><p>G. Linking to libraries (static or dynamic), plug-ins, and drivers</p></li>
+<li><p>H. Clean room design (somebody explains you the code but you have never seen it)</p></li>
+<li><p>I. You read a paper, understand algorithm, write own code</p></li>
+</ul>
+<div class="admonition-solution solution important dropdown admonition" id="solution-0">
+<p class="admonition-title">Solution</p>
+<ul class="simple">
+<li><p>Derivative work: A-F</p></li>
+<li><p>Not derivative work: G-I</p></li>
+<li><p>E and F: This depends on how you do it, see “clean room design”.</p></li>
+</ul>
+</div>
+</div>
+<div class="admonition-exercise-licensing-situations exercise important admonition" id="exercise-2">
+<p class="admonition-title">Exercise: Licensing situations</p>
+<p>Consider some common licensing situations. If you are part of an exercise
+group, discuss these with others:</p>
+<ol class="arabic simple">
+<li><p>What is the StackOverflow license for code you copy and paste?</p></li>
+<li><p>A journal requests that you release your software during publication. You have
+copied a portion of the code from another package, which you have forgotten.
+Can you satisfy the journal’s request?</p></li>
+<li><p>You want to fix a bug in a project someone else has released, but there is no license. What risks are there?</p></li>
+<li><p>How would you ask someone to add a license?</p></li>
+<li><p>You incorporate MIT, GPL, and BSD3 licensed code into your project. What possible licenses can you pick for your project?</p></li>
+<li><p>You do the same as above but add in another license that looks strong copyleft. What possible licenses can you use now?</p></li>
+<li><p>Do licenses apply if you don’t distribute your code? Why or why not?</p></li>
+<li><p>Which licenses are most/least attractive for companies with proprietary software?</p></li>
+</ol>
+<div class="admonition-solution solution important dropdown admonition" id="solution-1">
+<p class="admonition-title">Solution</p>
+<ol class="arabic simple">
+<li><p>As indicated <a class="reference external" href="https://stackoverflow.com/help/licensing">here</a>, all publicly accessible user contributions are licensed under <a class="reference external" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike</a> license. See Stackoverflow <a class="reference external" href="https://stackoverflow.com/legal/terms-of-service/public#licensing">Terms of service</a> for more detailed information.</p></li>
+<li><p>“Standard” licensing rules apply. So in this case, you would need to remove the portion of code you have copied from another package before being able to release your software.</p></li>
+<li><p>By default you are no authorized to use the content of a repository when there is no license. And derivative work is also not possible by default. Other risks: it may not be clear whether you can use and distribute (publish) the bugfixed code. For the repo owners it may not be clear whether they can use and distributed the bugfixed code. However, the authors may have forgotten to add a license so we suggest you to contact the authors (e.g. make an issue) and ask whether they are willing to add a license.</p></li>
+<li><p>As mentionned in 3., the easiest is to fill an issue and explain the reasons why you would like to use this software (or update it).</p></li>
+<li><p>Combining software with different licenses can be tricky and it is important to understand compatibilities (or lack of compatibilities) of the various licenses. GPL license is the most protective (BSD and MIT are quite permissive) so for the resulting combined software you could use a GPL license. However, re-licensing may not be necessary.</p></li>
+<li><p>Derivative work would need to be shared under this strong copyleft license (e.g. AGPL or GPL), unless the components are only plugins or libraries.</p></li>
+<li><p>If you keep your code for yourself, you may think you do not need a license. However, remember that in most companies/universities, your employer is “owning” your work and when you leave you may not be allowed to “distribute your code to your future self”. So the best is always to add a license!</p></li>
+<li><p>The least attractive licenses for companies with proprietary software are licenses where you would need to keep an open license when creating derivative work. For instance GPL and and AGPL. The most attractive licenses are permissive licenses where they can reuse, modify and relicense with no conditions. For instance MIT, BSD and Apache License.</p></li>
+</ol>
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../snakemake/" class="btn btn-neutral float-left" title="How to parallelize independent tasks using workflows (example: Snakemake)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../publishing/" class="btn btn-neutral float-right" title="How to publish your code" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CodeRefinery contributors (CC-BY license).</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

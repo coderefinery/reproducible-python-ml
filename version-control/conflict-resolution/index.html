@@ -1,0 +1,241 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Conflict resolution &mdash; Reproducible research software development using Python (ML example)  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx_lesson.css?v=e9df6548" />
+      <link rel="stylesheet" type="text/css" href="../../_static/term_role_formatting.css?v=4194e21c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx_rtd_theme_ext_color_contrast.css?v=8e8ea19f" />
+      <link rel="stylesheet" type="text/css" href="../../_static/style.css?v=791bfbd6" />
+
+  
+    <link rel="shortcut icon" href="../../_static/coderefinery.ico"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=187304be"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=35a8b989"></script>
+      <script src="../../_static/minipres.js?v=a0d29692"></script>
+      <script>let toggleHintShow = 'Click to show';</script>
+      <script>let toggleHintHide = 'Click to hide';</script>
+      <script>let toggleOpenOnPrint = 'true';</script>
+      <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script data-domain="coderefinery.github.io" defer="defer" src="https://plausible.cs.aalto.fi/js/script.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex/" />
+    <link rel="search" title="Search" href="../../search/" />
+    <link rel="next" title="Practical advice: How much Git is necessary?" href="../practical-advice/" />
+    <link rel="prev" title="Merging changes and contributing to the project" href="../merging/" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../" class="icon icon-home">
+            Reproducible research software development using Python (ML example)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Software environment</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation/">Software install instructions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Episodes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../example/">Example project: 2D classification task using a nearest-neighbor predictor</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../">Introduction to version control with Git and GitHub</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../motivation/">Motivation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../browsing/">Forking, cloning, and browsing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../branching-and-committing/">Creating branches and commits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../merging/">Merging changes and contributing to the project</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Conflict resolution</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#resolving-a-conflict-demonstration">Resolving a conflict (demonstration)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#avoiding-conflicts">Avoiding conflicts</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../practical-advice/">Practical advice: How much Git is necessary?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sharing/">Optional: How to turn your project to a Git repo and share it</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/">Where to start with documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../collaboration/">Collaborative version control and code review</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dependencies/">Reproducible environments and dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notebooks/version-control/">Notebooks and version control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notebooks/tooling/">Other useful tooling for notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notebooks/sharing/">Sharing notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../good-practices/">Tools and useful practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../profiling/">Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/">Automated testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../refactoring-concepts/">Concepts in refactoring and modular code design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../snakemake/">How to parallelize independent tasks using workflows (example: Snakemake)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software-licensing/">Choosing a software license</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../publishing/">How to publish your code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../packaging/">Creating a Python package and deploying it to PyPI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://coderefinery.github.io/reproducible-python-ml/lesson.pdf">PDF version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../credit/">Credit</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://coderefinery.org/lessons/">All lessons</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://coderefinery.org/">CodeRefinery</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://coderefinery.org/lessons/reusing/">Reusing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../">Reproducible research software development using Python (ML example)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../">Introduction to version control with Git and GitHub</a></li>
+      <li class="breadcrumb-item active">Conflict resolution</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/coderefinery/reproducible-python-ml/blob/main/content/version-control/conflict-resolution.md" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="conflict-resolution">
+<h1>Conflict resolution<a class="headerlink" href="#conflict-resolution" title="Link to this heading"></a></h1>
+<section id="resolving-a-conflict-demonstration">
+<h2>Resolving a conflict (demonstration)<a class="headerlink" href="#resolving-a-conflict-demonstration" title="Link to this heading"></a></h2>
+<p>A conflict is when Git asks humans to decide during a merge which of two
+changes to keep <strong>if the same portion of a file has been changed in two
+different ways on two different branches</strong>.</p>
+<p>We will practice conflict resolution in the collaborative Git lesson (next
+day).</p>
+<p>Here we will only demonstrate how to create a conflict and how to resolve it,
+<strong>all on GitHub</strong>. Once we understand how this works, we will be more confident
+to resolve conflicts also in the <strong>command line</strong> (we can demonstrate this if
+we have time).</p>
+<p>How to create a conflict (please try this in your own time <em>and just watch now</em>):</p>
+<ul class="simple">
+<li><p>Create a new branch from <code class="docutils literal notranslate"><span class="pre">main</span></code> and on it make a change to a file.</p></li>
+<li><p>On <code class="docutils literal notranslate"><span class="pre">main</span></code>, make a different change to the same part of the same file.</p></li>
+<li><p>Now try to merge the new branch to <code class="docutils literal notranslate"><span class="pre">main</span></code>. You will get a conflict.</p></li>
+</ul>
+<p>How to resolve conflicts:</p>
+<ul class="simple">
+<li><p>On GitHub, you can resolve conflicts by clicking on the “Resolve conflicts”
+button. This will open a text editor where you can choose which changes to
+keep.
+Make sure to remove the conflict markers.
+After resolving the conflict, you can commit the changes and merge the
+pull request.</p></li>
+<li><p>Sometimes a conflict is between your change and somebody else’s change. In
+that case, you might have to discuss with the other person which changes to
+keep.</p></li>
+</ul>
+</section>
+<section id="avoiding-conflicts">
+<h2>Avoiding conflicts<a class="headerlink" href="#avoiding-conflicts" title="Link to this heading"></a></h2>
+<div class="admonition-the-human-side-of-conflicts discussion important admonition" id="discussion-0">
+<p class="admonition-title">The human side of conflicts</p>
+<ul class="simple">
+<li><p>What does it mean if two people do the same thing in two different ways?</p></li>
+<li><p>What if you work on the same file but do two different things in the different sections?</p></li>
+<li><p>What if you do something, don’t tell someone from 6 months, and then try to combine it with other people’s work?</p></li>
+<li><p>How are conflicts avoided in other work? (Only one person working at once?
+Declaring what you are doing before you start, if there is any chance someone
+else might do the same thing, helps.)</p></li>
+</ul>
+</div>
+<ul class="simple">
+<li><p>Human measures</p>
+<ul>
+<li><p>Think and plan to which branch you will commit to.</p></li>
+<li><p>Do not put unrelated changes on the same branch.</p></li>
+</ul>
+</li>
+<li><p>Collaboration measures</p>
+<ul>
+<li><p>Open an issue and discuss with collaborators before starting a long-living
+branch.</p></li>
+</ul>
+</li>
+<li><p>Project layout measures</p>
+<ul>
+<li><p>Modifying global data often causes conflicts.</p></li>
+<li><p>Modular programming reduces this risk.</p></li>
+</ul>
+</li>
+<li><p>Technical measures</p>
+<ul>
+<li><p><strong>Share your changes early and often</strong>: This is one of the happy,
+rare circumstances when everyone doing the selfish thing (publishing your
+changes as early as practical) results in best case for everyone!</p></li>
+<li><p>Pull/rebase often to keep up to date with upstream.</p></li>
+<li><p>Resolve conflicts early.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../merging/" class="btn btn-neutral float-left" title="Merging changes and contributing to the project" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../practical-advice/" class="btn btn-neutral float-right" title="Practical advice: How much Git is necessary?" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CodeRefinery contributors (CC-BY license).</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
