@@ -32,7 +32,7 @@ to make it easier to interact with Git and GitHub:
 
 All three extensions can be used from within the JupyterLab interface and our
 [Conda
-environment](https://coderefinery.github.io/installation/conda-environment/)
+environment](https://coderefinery.github.io/installation/conda/)
 provides [jupyterlab-git](https://github.com/jupyterlab/jupyterlab-git) and
 [nbdime](http://nbdime.readthedocs.io/).  To install additional extensions,
 please consult the [official
