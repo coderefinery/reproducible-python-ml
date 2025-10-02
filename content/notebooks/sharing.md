@@ -62,7 +62,7 @@ faster access to cloud resources:
   - This exercise can be done entirely through the GitHub web interface (but
     using the terminal is of course also OK). You can use the "Add file" button
     to upload files:
-    ```{figure} img/github-upload.png
+    ```{figure} binder.jpg
     :alt: Screenshot of Binder web interface
 
     Screenshot of Binder web interface.
