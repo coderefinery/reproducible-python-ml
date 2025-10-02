@@ -61,18 +61,12 @@ faster access to cloud resources:
 
   - This exercise can be done entirely through the GitHub web interface (but
     using the terminal is of course also OK). You can use the "Add file" button
-    to upload files:
-    ```{figure} binder.jpg
-    :alt: Screenshot of Binder web interface
-
-    Screenshot of Binder web interface.
-    ```
+    to upload files.
 
   ````{tabs}
     ```{group-tab} Jupyter Notebooks
-    - Upload the notebook which we have created earlier to this repository. If you got stuck earlier,
-      you can download [this notebook](https://raw.githubusercontent.com/coderefinery/jupyter/main/example/darts.ipynb)
-      (right-click, "Save as ..."). You can also try this with a different notebook. 
+    - Download [this notebook](https://raw.githubusercontent.com/coderefinery/jupyter/main/example/darts.ipynb)
+      (right-click, "Save as ...") and upload it to this repository. You can also try this with a different notebook. 
 
     - Add also a `requirements.txt` file which contains (adapt this if your notebook has other dependencies):
       ```
@@ -105,7 +99,7 @@ faster access to cloud resources:
   ````
 
   - Visit [https://mybinder.org](https://mybinder.org):
-    ```{figure} img/binder.jpg
+    ```{figure} binder.jpg
     :alt: Screenshot of Binder web interface
 
     Screenshot of Binder web interface.
