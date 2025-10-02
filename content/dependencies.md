@@ -161,9 +161,9 @@ and distributing this project as Python package.
   [SingularityCE](https://sylabs.io/singularity/).
 
 Containers offer the following advantages:
-- **Reproducibility**: The same software environment can be recreated on
+- **Reproducibility**: The same software environment can be recreated (most of the time) on
   different computers. They force you to know and **document all your dependencies**.
-- **Portability**: The same software environment can be run on different computers.
+- **Portability**: The same software environment can be run (most of the time) on different computers.
 - **Isolation**: The software environment is isolated from the host system.
 - "**Time travel**":
   - You can run old/unmaintained software on new systems.
