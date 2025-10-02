@@ -129,6 +129,7 @@ able to answer this question **with a file**.
 In Python, the two most common ways to do this are:
 - **requirements.txt** (for pip and virtual environments)
 - **environment.yml** (for conda and similar)
+- **pyproject.toml** (for uv, poetry and similar)
 
 You can export ("freeze") the dependencies from your current environment into these files:
 ```bash
