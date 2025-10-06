@@ -78,6 +78,9 @@ software?  Great list/summary is provided in this blog post: ["In which
 journals should I publish my software?" (Neil P. Chue
 Hong)](https://www.software.ac.uk/top-tip/which-journals-should-i-publish-my-software)
 
+Have a look at [The Journal of Open Source Software (JOSS)](https://joss.theoj.org/). 
+JOSS is an open access journal with zero article processing charges where you can submit your GitHub repository directly (it requires writing a short markdown document as the "paper").
+Example publication: [Blobmodel: A Python package for generating superpositions of pulses in one and two dimensions](https://joss.theoj.org/papers/10.21105/joss.08032).
 
 ## How to cite software
 
