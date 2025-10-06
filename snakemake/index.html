@@ -1,0 +1,398 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to parallelize independent tasks using workflows (example: Snakemake) &mdash; Reproducible research software development using Python (ML example)  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx_lesson.css?v=e9df6548" />
+      <link rel="stylesheet" type="text/css" href="../_static/term_role_formatting.css?v=4194e21c" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx_rtd_theme_ext_color_contrast.css?v=8e8ea19f" />
+      <link rel="stylesheet" type="text/css" href="../_static/style.css?v=791bfbd6" />
+
+  
+    <link rel="shortcut icon" href="../_static/coderefinery.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=187304be"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=35a8b989"></script>
+      <script src="../_static/minipres.js?v=a0d29692"></script>
+      <script>let toggleHintShow = 'Click to show';</script>
+      <script>let toggleHintHide = 'Click to hide';</script>
+      <script>let toggleOpenOnPrint = 'true';</script>
+      <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script data-domain="coderefinery.github.io" defer="defer" src="https://plausible.cs.aalto.fi/js/script.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex/" />
+    <link rel="search" title="Search" href="../search/" />
+    <link rel="next" title="Choosing a software license" href="../software-licensing/" />
+    <link rel="prev" title="Concepts in refactoring and modular code design" href="../refactoring-concepts/" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../" class="icon icon-home">
+            Reproducible research software development using Python (ML example)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Software environment</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/">Software install instructions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Episodes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../example/">Example project: 2D classification task using a nearest-neighbor predictor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../version-control/">Introduction to version control with Git and GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/">Where to start with documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../collaboration/">Collaborative version control and code review</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dependencies/">Reproducible environments and dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/version-control/">Notebooks and version control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/tooling/">Other useful tooling for notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/sharing/">Sharing notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../good-practices/">Tools and useful practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../profiling/">Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/">Automated testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../refactoring-concepts/">Concepts in refactoring and modular code design</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">How to parallelize independent tasks using workflows (example: Snakemake)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-problem">The problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#thinking-in-terms-of-dependencies">Thinking in terms of dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exercise">Exercise</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-else-is-possible">What else is possible?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#more-elaborate-example">More elaborate example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#other-workflow-management-tools">Other workflow management tools</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../software-licensing/">Choosing a software license</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../publishing/">How to publish your code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../packaging/">Creating a Python package and deploying it to PyPI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://coderefinery.github.io/reproducible-python-ml/lesson.pdf">PDF version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../credit/">Credit</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://coderefinery.org/lessons/">All lessons</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://coderefinery.org/">CodeRefinery</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://coderefinery.org/lessons/reusing/">Reusing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../">Reproducible research software development using Python (ML example)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">How to parallelize independent tasks using workflows (example: Snakemake)</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/coderefinery/reproducible-python-ml/blob/main/content/snakemake.md" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="how-to-parallelize-independent-tasks-using-workflows-example-snakemake">
+<h1>How to parallelize independent tasks using workflows (example: <a class="reference external" href="https://snakemake.github.io/">Snakemake</a>)<a class="headerlink" href="#how-to-parallelize-independent-tasks-using-workflows-example-snakemake" title="Link to this heading"></a></h1>
+<div class="admonition-objectives objectives admonition" id="objectives-0">
+<p class="admonition-title">Objectives</p>
+<ul class="simple">
+<li><p>Understand the concept of a workflow management tool.</p></li>
+<li><p>Instead of thinking in terms of individual step-by-step commands, think in
+terms of <strong>dependencies</strong> (<strong>rules</strong>).</p></li>
+<li><p>Try to port our computational pipeline to Snakemake.</p></li>
+<li><p>See how Snakemake can identify independent steps and run them in parallel.</p></li>
+<li><p>It is not our goal to remember all the details of Snakemake.</p></li>
+</ul>
+</div>
+<section id="the-problem">
+<h2>The problem<a class="headerlink" href="#the-problem" title="Link to this heading"></a></h2>
+<p>Imagine we want to process a large number of similar input data.</p>
+<p>This could be one way to do it:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env bash</span>
+
+<span class="nv">num_rounds</span><span class="o">=</span><span class="m">10</span>
+
+<span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">$(</span>seq<span class="w"> </span>-w<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="si">${</span><span class="nv">num_rounds</span><span class="si">}</span><span class="k">)</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span>python<span class="w"> </span>generate_data.py<span class="w"> </span><span class="se">\</span>
+<span class="w">            </span>--num-samples<span class="w"> </span><span class="m">2000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">            </span>--training-data<span class="w"> </span>data/train_<span class="si">${</span><span class="nv">i</span><span class="si">}</span>.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">            </span>--test-data<span class="w"> </span>data/test_<span class="si">${</span><span class="nv">i</span><span class="si">}</span>.csv
+
+<span class="w">    </span>python<span class="w"> </span>generate_predictions.py<span class="w"> </span><span class="se">\</span>
+<span class="w">            </span>--num-neighbors<span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="se">\</span>
+<span class="w">            </span>--training-data<span class="w"> </span>data/train_<span class="si">${</span><span class="nv">i</span><span class="si">}</span>.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">            </span>--test-data<span class="w"> </span>data/test_<span class="si">${</span><span class="nv">i</span><span class="si">}</span>.csv
+<span class="w">            </span>--predictions<span class="w"> </span>results/predictions_<span class="si">${</span><span class="nv">i</span><span class="si">}</span>.csv
+
+<span class="w">    </span>python<span class="w"> </span>plot_results.py<span class="w"> </span><span class="se">\</span>
+<span class="w">            </span>--training-data<span class="w"> </span>data/train_<span class="si">${</span><span class="nv">i</span><span class="si">}</span>.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">            </span>--predictions<span class="w"> </span>results/predictions_<span class="si">${</span><span class="nv">i</span><span class="si">}</span>.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">            </span>--output-chart<span class="w"> </span>results/chart_<span class="si">${</span><span class="nv">i</span><span class="si">}</span>.png
+<span class="k">done</span>
+</pre></div>
+</div>
+<p>Discuss possible problems with this approach.</p>
+</section>
+<section id="thinking-in-terms-of-dependencies">
+<h2>Thinking in terms of dependencies<a class="headerlink" href="#thinking-in-terms-of-dependencies" title="Link to this heading"></a></h2>
+<p>For the following we will assume that we have the input data available:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env bash</span>
+
+<span class="nv">num_rounds</span><span class="o">=</span><span class="m">10</span>
+
+<span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">$(</span>seq<span class="w"> </span>-w<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="si">${</span><span class="nv">num_rounds</span><span class="si">}</span><span class="k">)</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span>python<span class="w"> </span>generate_data.py<span class="w"> </span><span class="se">\</span>
+<span class="w">            </span>--num-samples<span class="w"> </span><span class="m">2000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">            </span>--training-data<span class="w"> </span>data/train_<span class="si">${</span><span class="nv">i</span><span class="si">}</span>.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">            </span>--test-data<span class="w"> </span>data/test_<span class="si">${</span><span class="nv">i</span><span class="si">}</span>.csv
+<span class="k">done</span>
+</pre></div>
+</div>
+<p>From here on we will <strong>focus on the processing part</strong>.</p>
+<p>The central file in Snakemake is the <code class="docutils literal notranslate"><span class="pre">snakefile</span></code>. This is how we can express
+the pipeline in Snakemake (below we will explain it):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># the comma is there because glob_wildcards returns a named tuple</span>
+<span class="n">numbers</span><span class="p">,</span> <span class="o">=</span> <span class="n">glob_wildcards</span><span class="p">(</span><span class="s2">&quot;data/train_</span><span class="si">{number}</span><span class="s2">.csv&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># rule that collects the target files</span>
+<span class="n">rule</span> <span class="nb">all</span><span class="p">:</span>
+    <span class="nb">input</span><span class="p">:</span>
+        <span class="n">expand</span><span class="p">(</span><span class="s2">&quot;results/chart_</span><span class="si">{number}</span><span class="s2">.svg&quot;</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="n">numbers</span><span class="p">)</span>
+
+
+<span class="n">rule</span> <span class="n">chart</span><span class="p">:</span>
+    <span class="nb">input</span><span class="p">:</span>
+        <span class="n">script</span><span class="o">=</span><span class="s2">&quot;plot_results.py&quot;</span><span class="p">,</span>
+        <span class="n">predictions</span><span class="o">=</span><span class="s2">&quot;results/predictions_</span><span class="si">{number}</span><span class="s2">.csv&quot;</span><span class="p">,</span>
+        <span class="n">training</span><span class="o">=</span><span class="s2">&quot;data/train_</span><span class="si">{number}</span><span class="s2">.csv&quot;</span>
+    <span class="n">output</span><span class="p">:</span>
+        <span class="s2">&quot;results/chart_</span><span class="si">{number}</span><span class="s2">.svg&quot;</span>
+    <span class="n">log</span><span class="p">:</span>
+        <span class="s2">&quot;logs/chart_</span><span class="si">{number}</span><span class="s2">.txt&quot;</span>
+    <span class="n">shell</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        python {input.script} --training-data {input.training} --predictions {input.predictions} --output-chart {output}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+
+<span class="n">rule</span> <span class="n">predictions</span><span class="p">:</span>
+    <span class="nb">input</span><span class="p">:</span>
+        <span class="n">script</span><span class="o">=</span><span class="s2">&quot;generate_predictions.py&quot;</span><span class="p">,</span>
+        <span class="n">training</span><span class="o">=</span><span class="s2">&quot;data/train_</span><span class="si">{number}</span><span class="s2">.csv&quot;</span><span class="p">,</span>
+        <span class="n">test</span><span class="o">=</span><span class="s2">&quot;data/test_</span><span class="si">{number}</span><span class="s2">.csv&quot;</span>
+    <span class="n">output</span><span class="p">:</span>
+        <span class="s2">&quot;results/predictions_</span><span class="si">{number}</span><span class="s2">.csv&quot;</span>
+    <span class="n">log</span><span class="p">:</span>
+        <span class="s2">&quot;logs/predictions_</span><span class="si">{number}</span><span class="s2">.txt&quot;</span>
+    <span class="n">shell</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        python {input.script} --num-neighbors 7 --training-data {input.training} --test-data {input.test} --predictions {output}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p><strong>Explanation</strong>:</p>
+<ul>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">snakefile</span></code> contains 3 <strong>rules</strong> and it will run the “all” rule by default unless
+we ask it to produce a different “target”:</p>
+<ul class="simple">
+<li><p>“all”</p></li>
+<li><p>“chart”</p></li>
+<li><p>“predictions”</p></li>
+</ul>
+</li>
+<li><p>Rules “predictions” and “chart” depend on <strong>input</strong> and produce <strong>output</strong>.</p></li>
+<li><p>Note how “all” depends on the output of the “chart” rule and how “chart” depends
+on the output of the “predictions” rule.</p></li>
+<li><p>The <strong>shell</strong> part of the rule shows how to produce the output from the
+input.</p></li>
+<li><p>We ask Snakemake to collect all files that match <code class="docutils literal notranslate"><span class="pre">&quot;data/train_{number}.csv&quot;</span></code>
+and from this to infer the <strong>wildcards</strong> <code class="docutils literal notranslate"><span class="pre">{number}</span></code>.</p></li>
+<li><p>Later we can refer to <code class="docutils literal notranslate"><span class="pre">{number}</span></code> throughout the <code class="docutils literal notranslate"><span class="pre">snakefile</span></code>.</p></li>
+<li><p>This part defines what we want to have at the end:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rule</span> <span class="nb">all</span><span class="p">:</span>
+    <span class="nb">input</span><span class="p">:</span>
+        <span class="n">expand</span><span class="p">(</span><span class="s2">&quot;results/chart_</span><span class="si">{number}</span><span class="s2">.svg&quot;</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="n">numbers</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Rules correspond to steps and parameter scanning can be done with wildcards.</p></li>
+</ul>
+</section>
+<section id="exercise">
+<h2>Exercise<a class="headerlink" href="#exercise" title="Link to this heading"></a></h2>
+<div class="admonition-exercise-practicing-with-snakemake exercise important admonition" id="exercise-0">
+<p class="admonition-title">Exercise: Practicing with Snakemake</p>
+<ol class="arabic">
+<li><p>Create a <code class="docutils literal notranslate"><span class="pre">snakefile</span></code> (above) and run it with Snakemake (adjust number of
+cores):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>snakemake<span class="w"> </span>--cores<span class="w"> </span><span class="m">8</span>
+</pre></div>
+</div>
+</li>
+<li><p>Check the output. Did it use all available cores? How did it know
+which steps it can start in parallel?</p></li>
+<li><p>Run Snakemake again. Now it should finish almost immediately because all the
+results are already there. Aha! Snakemake does not repeat steps that are
+already done.  You can force it to re-run all with <code class="docutils literal notranslate"><span class="pre">snakemake</span> <span class="pre">--delete-all-output</span></code>.</p></li>
+<li><p>Remove few files from <code class="docutils literal notranslate"><span class="pre">results/</span></code> and run it again.
+Snakemake should now only re-run the steps that are necessary to get the
+deleted files.</p></li>
+<li><p>Modify <code class="docutils literal notranslate"><span class="pre">generate_predictions.py</span></code> which is used in the rule “predictions”.
+Now Snakemake will only re-run the steps that depend on this script.</p></li>
+<li><p>It is possible to only process one file with (useful for testing):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>snakemake<span class="w"> </span>results/predictions_09.csv
+</pre></div>
+</div>
+</li>
+<li><p>Add few more data files to the input directory <code class="docutils literal notranslate"><span class="pre">data/</span></code> (for instance by
+copying some existing ones) and observe how Snakemake will pick them up next
+time you run the workflow, without changing the <code class="docutils literal notranslate"><span class="pre">snakefile</span></code>.</p></li>
+</ol>
+</div>
+</section>
+<section id="what-else-is-possible">
+<h2>What else is possible?<a class="headerlink" href="#what-else-is-possible" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>With the option <code class="docutils literal notranslate"><span class="pre">--keep-going</span></code> we can tell Snakemake to not give up on first failure.</p></li>
+<li><p>The option <code class="docutils literal notranslate"><span class="pre">--restart-times</span> <span class="pre">3</span></code> would tell Snakemake to try to restart a rule
+up to 3 times if it fails.</p></li>
+<li><p>It is possible to tell Snakemake to use a <strong>locally mounted file system</strong> instead
+of the default network file system for certain rules
+(<a class="reference external" href="https://snakemake.github.io/snakemake-plugin-catalog/plugins/storage/fs.html">documentation</a>).</p></li>
+<li><p>Sometimes you need to run different rules inside different software
+environments (e.g. <strong>Conda environments</strong>) and this is possible.</p></li>
+<li><p>A lot <strong>more is possible</strong>:</p>
+<ul>
+<li><p><a class="reference external" href="https://snakemake.readthedocs.io">Snakemake documentation</a></p></li>
+<li><p><a class="reference external" href="https://snakemake.readthedocs.io/en/stable/tutorial/tutorial.html">Snakemake tutorial</a></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="more-elaborate-example">
+<h2>More elaborate example<a class="headerlink" href="#more-elaborate-example" title="Link to this heading"></a></h2>
+<p>In this example below we also scan over a range of numbers for the <code class="docutils literal notranslate"><span class="pre">--num-neighbors</span></code> parameter:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+<span class="c1"># the comma is there because glob_wildcards returns a named tuple</span>
+<span class="n">numbers</span><span class="p">,</span> <span class="o">=</span> <span class="n">glob_wildcards</span><span class="p">(</span><span class="s2">&quot;data/train_</span><span class="si">{number}</span><span class="s2">.csv&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># define the parameter scan for num-neighbors</span>
+<span class="hll"><span class="n">neighbor_values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">11</span><span class="p">]</span>
+</span>
+
+<span class="c1"># rule that collects all target files</span>
+<span class="n">rule</span> <span class="nb">all</span><span class="p">:</span>
+    <span class="nb">input</span><span class="p">:</span>
+        <span class="n">expand</span><span class="p">(</span><span class="s2">&quot;results/chart_</span><span class="si">{number}</span><span class="s2">_</span><span class="si">{num_neighbors}</span><span class="s2">.svg&quot;</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="n">numbers</span><span class="p">,</span> <span class="n">num_neighbors</span><span class="o">=</span><span class="n">neighbor_values</span><span class="p">)</span>
+
+
+<span class="n">rule</span> <span class="n">chart</span><span class="p">:</span>
+    <span class="nb">input</span><span class="p">:</span>
+        <span class="n">script</span><span class="o">=</span><span class="s2">&quot;plot_results.py&quot;</span><span class="p">,</span>
+        <span class="n">predictions</span><span class="o">=</span><span class="s2">&quot;results/predictions_</span><span class="si">{number}</span><span class="s2">_</span><span class="si">{num_neighbors}</span><span class="s2">.csv&quot;</span><span class="p">,</span>
+        <span class="n">training</span><span class="o">=</span><span class="s2">&quot;data/train_</span><span class="si">{number}</span><span class="s2">.csv&quot;</span>
+    <span class="n">output</span><span class="p">:</span>
+        <span class="s2">&quot;results/chart_</span><span class="si">{number}</span><span class="s2">_</span><span class="si">{num_neighbors}</span><span class="s2">.svg&quot;</span>
+    <span class="n">log</span><span class="p">:</span>
+        <span class="s2">&quot;logs/chart_</span><span class="si">{number}</span><span class="s2">_</span><span class="si">{num_neighbors}</span><span class="s2">.txt&quot;</span>
+    <span class="n">shell</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        python {input.script} --training-data {input.training} --predictions {input.predictions} --output-chart {output}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+
+<span class="n">rule</span> <span class="n">predictions</span><span class="p">:</span>
+    <span class="nb">input</span><span class="p">:</span>
+        <span class="n">script</span><span class="o">=</span><span class="s2">&quot;generate_predictions.py&quot;</span><span class="p">,</span>
+        <span class="n">training</span><span class="o">=</span><span class="s2">&quot;data/train_</span><span class="si">{number}</span><span class="s2">.csv&quot;</span><span class="p">,</span>
+        <span class="n">test</span><span class="o">=</span><span class="s2">&quot;data/test_</span><span class="si">{number}</span><span class="s2">.csv&quot;</span>
+    <span class="n">output</span><span class="p">:</span>
+        <span class="s2">&quot;results/predictions_</span><span class="si">{number}</span><span class="s2">_</span><span class="si">{num_neighbors}</span><span class="s2">.csv&quot;</span>
+    <span class="n">log</span><span class="p">:</span>
+        <span class="s2">&quot;logs/predictions_</span><span class="si">{number}</span><span class="s2">_</span><span class="si">{num_neighbors}</span><span class="s2">.txt&quot;</span>
+<span class="hll">    <span class="n">params</span><span class="p">:</span>
+</span><span class="hll">        <span class="n">num_neighbors</span><span class="o">=</span><span class="k">lambda</span> <span class="n">wildcards</span><span class="p">:</span> <span class="n">wildcards</span><span class="o">.</span><span class="n">num_neighbors</span>
+</span>    <span class="n">shell</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        python {input.script} --num-neighbors {params.num_neighbors} --training-data {input.training} --test-data {input.test} --predictions {output}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="other-workflow-management-tools">
+<h2>Other workflow management tools<a class="headerlink" href="#other-workflow-management-tools" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Another very popular one is <a class="reference external" href="https://www.nextflow.io/">Nextflow</a>.</p></li>
+<li><p>Many workflow management tools exist
+(<a class="reference external" href="https://github.com/common-workflow-language/common-workflow-language/wiki/Existing-Workflow-systems">overview</a>).</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../refactoring-concepts/" class="btn btn-neutral float-left" title="Concepts in refactoring and modular code design" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../software-licensing/" class="btn btn-neutral float-right" title="Choosing a software license" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CodeRefinery contributors (CC-BY license).</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

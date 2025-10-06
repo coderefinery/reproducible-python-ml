@@ -1,0 +1,719 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tools and useful practices &mdash; Reproducible research software development using Python (ML example)  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx_lesson.css?v=e9df6548" />
+      <link rel="stylesheet" type="text/css" href="../_static/term_role_formatting.css?v=4194e21c" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx_rtd_theme_ext_color_contrast.css?v=8e8ea19f" />
+      <link rel="stylesheet" type="text/css" href="../_static/style.css?v=791bfbd6" />
+      <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+
+  
+    <link rel="shortcut icon" href="../_static/coderefinery.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=187304be"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=35a8b989"></script>
+      <script src="../_static/minipres.js?v=a0d29692"></script>
+      <script>let toggleHintShow = 'Click to show';</script>
+      <script>let toggleHintHide = 'Click to hide';</script>
+      <script>let toggleOpenOnPrint = 'true';</script>
+      <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script src="../_static/tabs.js?v=3030b3cb"></script>
+      <script data-domain="coderefinery.github.io" defer="defer" src="https://plausible.cs.aalto.fi/js/script.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex/" />
+    <link rel="search" title="Search" href="../search/" />
+    <link rel="next" title="Profiling" href="../profiling/" />
+    <link rel="prev" title="Sharing notebooks" href="../notebooks/sharing/" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../" class="icon icon-home">
+            Reproducible research software development using Python (ML example)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Software environment</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/">Software install instructions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Episodes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../example/">Example project: 2D classification task using a nearest-neighbor predictor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../version-control/">Introduction to version control with Git and GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/">Where to start with documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../collaboration/">Collaborative version control and code review</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dependencies/">Reproducible environments and dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/version-control/">Notebooks and version control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/tooling/">Other useful tooling for notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/sharing/">Sharing notebooks</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tools and useful practices</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#follow-the-pep-8-style-guide">Follow the PEP 8 style guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#linting-and-static-type-checking">Linting and static type checking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#use-an-auto-formatter">Use an auto-formatter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#consider-annotating-your-functions-with-type-hints">Consider annotating your functions with type hints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#consider-using-ai-assisted-coding">Consider using AI-assisted coding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#debugging-with-print-statements">Debugging with print statements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#often-you-can-avoid-using-indices">Often you can avoid using indices</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#iterating">Iterating</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#enumerate-if-you-need-the-index">Enumerate if you need the index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#zip-if-you-need-to-iterate-over-two-collections">Zip if you need to iterate over two collections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#unpacking">Unpacking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#prefer-catch-all-unpacking-over-indexing-slicing">Prefer catch-all unpacking over indexing/slicing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#list-comprehensions-map-and-filter-instead-of-loops">List comprehensions, map, and filter instead of loops</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#know-your-collections">Know your collections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#making-functions-more-ergonomic">Making functions more ergonomic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Iterating</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#use-relative-paths-and-pathlib">Use relative paths and pathlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#project-structure">Project structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reading-and-writing-files">Reading and writing files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#use-subprocess-instead-of-os-system">Use subprocess instead of os.system</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parallelizing">Parallelizing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../profiling/">Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/">Automated testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../refactoring-concepts/">Concepts in refactoring and modular code design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snakemake/">How to parallelize independent tasks using workflows (example: Snakemake)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software-licensing/">Choosing a software license</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../publishing/">How to publish your code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../packaging/">Creating a Python package and deploying it to PyPI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://coderefinery.github.io/reproducible-python-ml/lesson.pdf">PDF version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../credit/">Credit</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://coderefinery.org/lessons/">All lessons</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://coderefinery.org/">CodeRefinery</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://coderefinery.org/lessons/reusing/">Reusing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../">Reproducible research software development using Python (ML example)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Tools and useful practices</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/coderefinery/reproducible-python-ml/blob/main/content/good-practices.md" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tools-and-useful-practices">
+<h1>Tools and useful practices<a class="headerlink" href="#tools-and-useful-practices" title="Link to this heading"></a></h1>
+<div class="admonition-objectives objectives admonition" id="objectives-0">
+<p class="admonition-title">Objectives</p>
+<ul class="simple">
+<li><p>How does good Python code look like? And if we only had 30 minutes, which
+good practices should we highlight?</p></li>
+<li><p>Some of the points are inspired by the excellent <a class="reference external" href="https://effectivepython.com/">Effective Python</a> book by Brett Slatkin.</p></li>
+</ul>
+</div>
+<section id="follow-the-pep-8-style-guide">
+<h2>Follow the PEP 8 style guide<a class="headerlink" href="#follow-the-pep-8-style-guide" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Please browse the <a class="reference external" href="https://pep8.org/">PEP 8 style guide</a> so that you are familiar with the most important rules.</p></li>
+<li><p>Using a consistent style makes your code easier to read and understand for others.</p></li>
+<li><p>You don’t have to check and adjust your code manually. There are tools that can do this for you (see below).</p></li>
+</ul>
+</section>
+<section id="linting-and-static-type-checking">
+<h2>Linting and static type checking<a class="headerlink" href="#linting-and-static-type-checking" title="Link to this heading"></a></h2>
+<p>A <strong>linter</strong> is a tool that analyzes source code to detect potential errors, unused
+imports, unused variables, code style violations, and to improve readability.</p>
+<ul class="simple">
+<li><p>Popular linters:</p>
+<ul>
+<li><p><a class="reference external" href="https://pypi.org/project/autoflake/">Autoflake</a></p></li>
+<li><p><a class="reference external" href="https://flake8.pycqa.org/">Flake8</a></p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/pyflakes/">Pyflakes</a></p></li>
+<li><p><a class="reference external" href="https://pycodestyle.pycqa.org/">Pycodestyle</a></p></li>
+<li><p><a class="reference external" href="https://pylint.readthedocs.io/">Pylint</a></p></li>
+<li><p><a class="reference external" href="https://docs.astral.sh/ruff/">Ruff</a></p></li>
+</ul>
+</li>
+</ul>
+<p>We recommend <a class="reference external" href="https://docs.astral.sh/ruff/">Ruff</a> since it
+can do <strong>both checking and formatting</strong> and you don’t have to switch between
+multiple tools.</p>
+<div class="admonition-linters-and-formatters-can-be-configured-to-your-liking discussion important admonition" id="discussion-0">
+<p class="admonition-title">Linters and formatters can be configured to your liking</p>
+<p>These tools typically have good defaults. But if you don’t like the defaults,
+you can configure what they should ignore or how they should format or not format.</p>
+</div>
+<p>This code example (which we possibly recognize from the previous section about
+<a class="reference internal" href="../profiling/"><span class="doc">Profiling</span></a>)
+has few problems (highlighted):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="hll"><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">count_unique_words</span><span class="p">(</span><span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="n">unique_words</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+<span class="hll">    <span class="n">forgotten_variable</span> <span class="o">=</span> <span class="mi">13</span>
+</span>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file</span><span class="p">:</span>
+<span class="hll">            <span class="n">words</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\b\w+\b&quot;</span><span class="p">,</span> <span class="n">line</span><span class="o">.</span><span class="n">lower</span><span class="p">()))</span>
+</span>            <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+                <span class="n">unique_words</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">unique_words</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Please try whether you can locate these problems using Ruff:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ruff<span class="w"> </span>check
+</pre></div>
+</div>
+<p>If you use version control and like to have your code checked or formatted
+<strong>before you commit the change</strong>, you can use tools like <a class="reference external" href="https://pre-commit.com/">pre-commit</a>.</p>
+<p>Many editors can be configured to automatically check your code as you type. Ruff can also
+be used as a <strong>language server</strong>.</p>
+</section>
+<section id="use-an-auto-formatter">
+<h2>Use an auto-formatter<a class="headerlink" href="#use-an-auto-formatter" title="Link to this heading"></a></h2>
+<p><a class="reference external" href="https://docs.astral.sh/ruff/">Ruff</a> is one of the best tools to automatically
+format your code according to a consistent style.</p>
+<p>To demonstrate how it works, let us try to auto-format a code example which is badly formatted and also difficult
+to read:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">Badly formatted</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">Auto-formatted</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="k">def</span><span class="w">  </span><span class="nf">count_unique_words</span> <span class="p">(</span><span class="n">file_path</span> <span class="p">:</span> <span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">int</span><span class="p">:</span>
+  <span class="n">unique_words</span><span class="o">=</span><span class="nb">set</span><span class="p">()</span>
+  <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span><span class="s2">&quot;r&quot;</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file</span><span class="p">:</span>
+      <span class="n">words</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\b\w+\b&quot;</span><span class="p">,</span><span class="n">line</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+      <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+        <span class="n">unique_words</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+  <span class="k">return</span> <span class="nb">len</span><span class="p">(</span>   <span class="n">unique_words</span>   <span class="p">)</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">count_unique_words</span><span class="p">(</span><span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="n">unique_words</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file</span><span class="p">:</span>
+            <span class="n">words</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\b\w+\b&quot;</span><span class="p">,</span> <span class="n">line</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+            <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+                <span class="n">unique_words</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">unique_words</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This was done using:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ruff<span class="w"> </span>format
+</pre></div>
+</div>
+</div></div>
+<p>Other popular formatters:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://black.readthedocs.io/">Black</a></p></li>
+<li><p><a class="reference external" href="https://github.com/google/yapf">YAPF</a></p></li>
+</ul>
+<p>Many editors can be configured to automatically format for you when you save the file.</p>
+<p>It is possible to automatically format your code in Jupyter notebooks!
+For this to work you need
+the following three dependencies installed:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyterlab</span><span class="o">-</span><span class="n">code</span><span class="o">-</span><span class="n">formatter</span>
+<span class="n">black</span>
+<span class="n">isort</span>
+</pre></div>
+</div>
+<p>More information and a screen-cast of how this works can be found at
+<a class="reference external" href="https://jupyterlab-code-formatter.readthedocs.io/">https://jupyterlab-code-formatter.readthedocs.io/</a>.</p>
+</section>
+<section id="consider-annotating-your-functions-with-type-hints">
+<h2>Consider annotating your functions with type hints<a class="headerlink" href="#consider-annotating-your-functions-with-type-hints" title="Link to this heading"></a></h2>
+<p>Compare these two versions of the same function and discuss how the type hints
+can help you and the Python interpreter to understand the function better:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-1-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-1-1-0" name="1-0" role="tab" tabindex="0">Without type hints</button><button aria-controls="panel-1-1-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-1" name="1-1" role="tab" tabindex="-1">With type hints</button></div><div aria-labelledby="tab-1-1-0" class="sphinx-tabs-panel" id="panel-1-1-0" name="1-0" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="k">def</span><span class="w"> </span><span class="nf">count_unique_words</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+</span>    <span class="n">unique_words</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file</span><span class="p">:</span>
+            <span class="n">words</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\b\w+\b&quot;</span><span class="p">,</span> <span class="n">line</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+            <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+                <span class="n">unique_words</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">unique_words</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-1-1-1" class="sphinx-tabs-panel" hidden="true" id="panel-1-1-1" name="1-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="k">def</span><span class="w"> </span><span class="nf">count_unique_words</span><span class="p">(</span><span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span>    <span class="n">unique_words</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file</span><span class="p">:</span>
+            <span class="n">words</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\b\w+\b&quot;</span><span class="p">,</span> <span class="n">line</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+            <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+                <span class="n">unique_words</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">unique_words</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></div>
+<p>A (static) type checker is a tool that checks whether the types of variables in your
+code match the types that you have specified.
+Popular tools:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://mypy.readthedocs.io/">Mypy</a></p></li>
+<li><p><a class="reference external" href="https://github.com/microsoft/pyright">Pyright</a> (Microsoft)</p></li>
+<li><p><a class="reference external" href="https://pyre-check.org/">Pyre</a> (Meta)</p></li>
+</ul>
+</section>
+<section id="consider-using-ai-assisted-coding">
+<h2>Consider using AI-assisted coding<a class="headerlink" href="#consider-using-ai-assisted-coding" title="Link to this heading"></a></h2>
+<p>We can use AI as an assistant/apprentice:</p>
+<ul class="simple">
+<li><p>Code completion</p></li>
+<li><p>Write a test based on an implementation</p></li>
+<li><p>Write an implementation based on a test</p></li>
+</ul>
+<p>Or we can use AI as a mentor:</p>
+<ul class="simple">
+<li><p>Explain a concept</p></li>
+<li><p>Improve code</p></li>
+<li><p>Show a different (possibly better) way of implementing the same thing</p></li>
+</ul>
+<figure class="align-default" id="id2">
+<a class="reference internal image-reference" href="../_images/chatgpt.png"><img alt="Screenshot of ChatGPT" src="../_images/chatgpt.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Example for using a chat-based AI tool.</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id3">
+<a class="reference internal image-reference" href="../_images/code-completion.gif"><img alt="Screen-cast of working with GitHub Copilot" src="../_images/code-completion.gif" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Example for using AI to complete code in an editor.</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<div class="admonition-ai-tools-open-up-a-box-of-questions-which-are-beyond-our-scope-here admonition">
+<p class="admonition-title">AI tools open up a box of questions which are beyond our scope here</p>
+<ul class="simple">
+<li><p>Legal</p></li>
+<li><p>Ethical</p></li>
+<li><p>Privacy</p></li>
+<li><p>Lock-in/ monopolies</p></li>
+<li><p>Lack of diversity</p></li>
+<li><p>Will we still need to learn programming?</p></li>
+<li><p>How will it affect learning and teaching programming?</p></li>
+</ul>
+</div>
+</section>
+<section id="debugging-with-print-statements">
+<h2>Debugging with print statements<a class="headerlink" href="#debugging-with-print-statements" title="Link to this heading"></a></h2>
+<p>Print-debugging is a simple, effective, and popular way to debug your code like
+this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;file_path: </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Or more elaborate:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;I am in function count_unique_words and the value of file_path is </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>But there can be better alternatives:</p>
+<ul>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/logging.html">Logging</a> module</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;This is a debug message&quot;</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;This is an info message&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><a class="reference external" href="https://github.com/gruns/icecream">IceCream</a> offers compact helper functions for print-debugging</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">icecream</span><span class="w"> </span><span class="kn">import</span> <span class="n">ic</span>
+
+<span class="n">ic</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="often-you-can-avoid-using-indices">
+<h2>Often you can avoid using indices<a class="headerlink" href="#often-you-can-avoid-using-indices" title="Link to this heading"></a></h2>
+<p>Especially people coming to Python from other languages tend to use indices
+where they are not needed. Indices can be error-prone (off-by-one errors and
+reading/writing past the end of the collection).</p>
+<section id="iterating">
+<h3>Iterating<a class="headerlink" href="#iterating" title="Link to this heading"></a></h3>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-2-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-2-2-0" name="2-0" role="tab" tabindex="0">Verbose and can be brittle</button><button aria-controls="panel-2-2-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-2-2-1" name="2-1" role="tab" tabindex="-1">Better</button></div><div aria-labelledby="tab-2-2-0" class="sphinx-tabs-panel" id="panel-2-2-0" name="2-0" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">scores</span> <span class="o">=</span> <span class="p">[</span><span class="mi">13</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">scores</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-2-2-1" class="sphinx-tabs-panel" hidden="true" id="panel-2-2-1" name="2-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">scores</span> <span class="o">=</span> <span class="p">[</span><span class="mi">13</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">score</span> <span class="ow">in</span> <span class="n">scores</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></div>
+</section>
+<section id="enumerate-if-you-need-the-index">
+<h3>Enumerate if you need the index<a class="headerlink" href="#enumerate-if-you-need-the-index" title="Link to this heading"></a></h3>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-3-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-3-3-0" name="3-0" role="tab" tabindex="0">Verbose and can be brittle</button><button aria-controls="panel-3-3-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-3-3-1" name="3-1" role="tab" tabindex="-1">Better</button></div><div aria-labelledby="tab-3-3-0" class="sphinx-tabs-panel" id="panel-3-3-0" name="3-0" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">particle_masses</span> <span class="o">=</span> <span class="p">[</span><span class="mf">7.0</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="mf">8.1</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">particle_masses</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Particle </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> has mass </span><span class="si">{</span><span class="n">particle_masses</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-3-3-1" class="sphinx-tabs-panel" hidden="true" id="panel-3-3-1" name="3-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">particle_masses</span> <span class="o">=</span> <span class="p">[</span><span class="mf">7.0</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="mf">8.1</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">mass</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">particle_masses</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Particle </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> has mass </span><span class="si">{</span><span class="n">mass</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></div>
+</section>
+<section id="zip-if-you-need-to-iterate-over-two-collections">
+<h3>Zip if you need to iterate over two collections<a class="headerlink" href="#zip-if-you-need-to-iterate-over-two-collections" title="Link to this heading"></a></h3>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-4-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-4-4-0" name="4-0" role="tab" tabindex="0">Using an index can be brittle</button><button aria-controls="panel-4-4-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-4-4-1" name="4-1" role="tab" tabindex="-1">Better</button></div><div aria-labelledby="tab-4-4-0" class="sphinx-tabs-panel" id="panel-4-4-0" name="4-0" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">persons</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="s2">&quot;Charlie&quot;</span><span class="p">,</span> <span class="s2">&quot;David&quot;</span><span class="p">,</span> <span class="s2">&quot;Eve&quot;</span><span class="p">]</span>
+<span class="n">favorite_ice_creams</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;vanilla&quot;</span><span class="p">,</span> <span class="s2">&quot;chocolate&quot;</span><span class="p">,</span> <span class="s2">&quot;strawberry&quot;</span><span class="p">,</span> <span class="s2">&quot;mint&quot;</span><span class="p">,</span> <span class="s2">&quot;chocolate&quot;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">persons</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">persons</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2"> likes </span><span class="si">{</span><span class="n">favorite_ice_creams</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2"> ice cream&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-4-4-1" class="sphinx-tabs-panel" hidden="true" id="panel-4-4-1" name="4-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">persons</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="s2">&quot;Charlie&quot;</span><span class="p">,</span> <span class="s2">&quot;David&quot;</span><span class="p">,</span> <span class="s2">&quot;Eve&quot;</span><span class="p">]</span>
+<span class="n">favorite_ice_creams</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;vanilla&quot;</span><span class="p">,</span> <span class="s2">&quot;chocolate&quot;</span><span class="p">,</span> <span class="s2">&quot;strawberry&quot;</span><span class="p">,</span> <span class="s2">&quot;mint&quot;</span><span class="p">,</span> <span class="s2">&quot;chocolate&quot;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">person</span><span class="p">,</span> <span class="n">flavor</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">persons</span><span class="p">,</span> <span class="n">favorite_ice_creams</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">person</span><span class="si">}</span><span class="s2"> likes </span><span class="si">{</span><span class="n">flavor</span><span class="si">}</span><span class="s2"> ice cream&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></div>
+</section>
+<section id="unpacking">
+<h3>Unpacking<a class="headerlink" href="#unpacking" title="Link to this heading"></a></h3>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-5-5-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-5-5-0" name="5-0" role="tab" tabindex="0">Verbose and can be brittle</button><button aria-controls="panel-5-5-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-5-5-1" name="5-1" role="tab" tabindex="-1">Better</button></div><div aria-labelledby="tab-5-5-0" class="sphinx-tabs-panel" id="panel-5-5-0" name="5-0" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">coordinates</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">coordinates</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">coordinates</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">coordinates</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-5-5-1" class="sphinx-tabs-panel" hidden="true" id="panel-5-5-1" name="5-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">coordinates</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">coordinates</span>
+</pre></div>
+</div>
+</div></div>
+</section>
+<section id="prefer-catch-all-unpacking-over-indexing-slicing">
+<h3>Prefer catch-all unpacking over indexing/slicing<a class="headerlink" href="#prefer-catch-all-unpacking-over-indexing-slicing" title="Link to this heading"></a></h3>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-6-6-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-6-6-0" name="6-0" role="tab" tabindex="0">Verbose and can be brittle</button><button aria-controls="panel-6-6-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-6-6-1" name="6-1" role="tab" tabindex="-1">Better</button></div><div aria-labelledby="tab-6-6-0" class="sphinx-tabs-panel" id="panel-6-6-0" name="6-0" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">scores</span> <span class="o">=</span> <span class="p">[</span><span class="mi">13</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+
+<span class="n">sorted_scores</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+
+<span class="n">smallest</span> <span class="o">=</span> <span class="n">sorted_scores</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">rest</span> <span class="o">=</span> <span class="n">sorted_scores</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">largest</span> <span class="o">=</span> <span class="n">sorted_scores</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">smallest</span><span class="p">,</span> <span class="n">rest</span><span class="p">,</span> <span class="n">largest</span><span class="p">)</span>
+<span class="c1"># Output: 2 [3, 3, 4, 5] 13</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-6-6-1" class="sphinx-tabs-panel" hidden="true" id="panel-6-6-1" name="6-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">scores</span> <span class="o">=</span> <span class="p">[</span><span class="mi">13</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+
+<span class="n">sorted_scores</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+
+<span class="n">smallest</span><span class="p">,</span> <span class="o">*</span><span class="n">rest</span><span class="p">,</span> <span class="n">largest</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">smallest</span><span class="p">,</span> <span class="n">rest</span><span class="p">,</span> <span class="n">largest</span><span class="p">)</span>
+<span class="c1"># Output: 2 [3, 3, 4, 5] 13</span>
+</pre></div>
+</div>
+</div></div>
+</section>
+<section id="list-comprehensions-map-and-filter-instead-of-loops">
+<h3>List comprehensions, map, and filter instead of loops<a class="headerlink" href="#list-comprehensions-map-and-filter-instead-of-loops" title="Link to this heading"></a></h3>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-7-7-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-7-7-0" name="7-0" role="tab" tabindex="0">For-loop</button><button aria-controls="panel-7-7-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-7-7-1" name="7-1" role="tab" tabindex="-1">List comprehension</button><button aria-controls="panel-7-7-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-7-7-2" name="7-2" role="tab" tabindex="-1">Map</button></div><div aria-labelledby="tab-7-7-0" class="sphinx-tabs-panel" id="panel-7-7-0" name="7-0" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">string_numbers</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="s2">&quot;3&quot;</span><span class="p">,</span> <span class="s2">&quot;4&quot;</span><span class="p">,</span> <span class="s2">&quot;5&quot;</span><span class="p">]</span>
+
+<span class="n">integer_numbers</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">string_numbers</span><span class="p">:</span>
+    <span class="n">integer_numbers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">element</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">integer_numbers</span><span class="p">)</span>
+<span class="c1"># Output: [1, 2, 3, 4, 5]</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-7-7-1" class="sphinx-tabs-panel" hidden="true" id="panel-7-7-1" name="7-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">string_numbers</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="s2">&quot;3&quot;</span><span class="p">,</span> <span class="s2">&quot;4&quot;</span><span class="p">,</span> <span class="s2">&quot;5&quot;</span><span class="p">]</span>
+
+<span class="n">integer_numbers</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">element</span><span class="p">)</span> <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">string_numbers</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">integer_numbers</span><span class="p">)</span>
+<span class="c1"># Output: [1, 2, 3, 4, 5]</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-7-7-2" class="sphinx-tabs-panel" hidden="true" id="panel-7-7-2" name="7-2" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">string_numbers</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="s2">&quot;3&quot;</span><span class="p">,</span> <span class="s2">&quot;4&quot;</span><span class="p">,</span> <span class="s2">&quot;5&quot;</span><span class="p">]</span>
+
+<span class="n">integer_numbers</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">string_numbers</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">integer_numbers</span><span class="p">)</span>
+<span class="c1"># Output: [1, 2, 3, 4, 5]</span>
+</pre></div>
+</div>
+</div></div>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-8-8-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-8-8-0" name="8-0" role="tab" tabindex="0">For-loop</button><button aria-controls="panel-8-8-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-8-8-1" name="8-1" role="tab" tabindex="-1">List comprehension</button><button aria-controls="panel-8-8-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-8-8-2" name="8-2" role="tab" tabindex="-1">Filter</button></div><div aria-labelledby="tab-8-8-0" class="sphinx-tabs-panel" id="panel-8-8-0" name="8-0" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">is_even</span><span class="p">(</span><span class="n">number</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">number</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span>
+
+
+<span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+
+<span class="n">even_numbers</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="n">numbers</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">is_even</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+        <span class="n">even_numbers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">even_numbers</span><span class="p">)</span>
+<span class="c1"># Output: [2, 4, 6]</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-8-8-1" class="sphinx-tabs-panel" hidden="true" id="panel-8-8-1" name="8-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">is_even</span><span class="p">(</span><span class="n">number</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">number</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span>
+
+
+<span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+
+<span class="n">even_numbers</span> <span class="o">=</span> <span class="p">[</span><span class="n">number</span> <span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="n">numbers</span> <span class="k">if</span> <span class="n">is_even</span><span class="p">(</span><span class="n">number</span><span class="p">)]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">even_numbers</span><span class="p">)</span>
+<span class="c1"># Output: [2, 4, 6]</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-8-8-2" class="sphinx-tabs-panel" hidden="true" id="panel-8-8-2" name="8-2" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">is_even</span><span class="p">(</span><span class="n">number</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">number</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span>
+
+
+<span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+
+<span class="n">even_numbers</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="n">is_even</span><span class="p">,</span> <span class="n">numbers</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">even_numbers</span><span class="p">)</span>
+<span class="c1"># Output: [2, 4, 6]</span>
+</pre></div>
+</div>
+</div></div>
+</section>
+</section>
+<section id="know-your-collections">
+<h2>Know your collections<a class="headerlink" href="#know-your-collections" title="Link to this heading"></a></h2>
+<p>How to choose the right collection type:</p>
+<ul class="simple">
+<li><p>Ordered and modifiable: <code class="docutils literal notranslate"><span class="pre">list</span></code></p></li>
+<li><p>Fixed and (rather) immutable: <code class="docutils literal notranslate"><span class="pre">tuple</span></code></p></li>
+<li><p>Key-value pairs: <code class="docutils literal notranslate"><span class="pre">dict</span></code></p></li>
+<li><p>Dictionary with default values: <code class="docutils literal notranslate"><span class="pre">defaultdict</span></code> from <code class="xref py py-mod docutils literal notranslate"><span class="pre">collections</span></code></p></li>
+<li><p>Members are unique, no duplicates: <code class="docutils literal notranslate"><span class="pre">set</span></code></p></li>
+<li><p>Optimized operations at both ends: <code class="docutils literal notranslate"><span class="pre">deque</span></code> from <code class="xref py py-mod docutils literal notranslate"><span class="pre">collections</span></code></p></li>
+<li><p>Cyclical iteration: <code class="docutils literal notranslate"><span class="pre">cycle</span></code> from <code class="xref py py-mod docutils literal notranslate"><span class="pre">itertools</span></code></p></li>
+<li><p>Adding/removing elements in the middle: Create a linked list (e.g. using a dictionary or a dataclass)</p></li>
+<li><p>Priority queue: <code class="xref py py-mod docutils literal notranslate"><span class="pre">heapq</span></code> library</p></li>
+<li><p>Search in sorted collections: <code class="xref py py-mod docutils literal notranslate"><span class="pre">bisect</span></code> library</p></li>
+</ul>
+<p>What to avoid:</p>
+<ul class="simple">
+<li><p>Need to add/remove elements at the beginning or in the middle? Don’t use a list.</p></li>
+<li><p>Need to make sure that elements are unique? Don’t use a list.</p></li>
+</ul>
+</section>
+<section id="making-functions-more-ergonomic">
+<h2>Making functions more ergonomic<a class="headerlink" href="#making-functions-more-ergonomic" title="Link to this heading"></a></h2>
+<ul>
+<li><p>Less error-prone API functions and fewer backwards-incompatible changes by enforcing keyword-only arguments:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">send_message</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">recipient</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sending to </span><span class="si">{</span><span class="n">recipient</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Use dataclasses or named tuples or dictionaries instead of too many input or output arguments.</p></li>
+<li><p>Docstrings instead of comments:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">send_message</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">recipient</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Sends a message to a recipient.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    - message (str): The content of the message.</span>
+<span class="sd">    - recipient (str): The name of the person receiving the message.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sending to </span><span class="si">{</span><span class="n">recipient</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Consider using <code class="docutils literal notranslate"><span class="pre">DeprecationWarning</span></code> from the <code class="xref py py-mod docutils literal notranslate"><span class="pre">warnings</span></code> module for deprecating functions or arguments.</p></li>
+</ul>
+</section>
+<section id="id1">
+<h2>Iterating<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<ul>
+<li><p>When working with large lists or large data sets, consider using generators or iterators instead of lists.
+Discuss and compare these two:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">even_numbers1</span> <span class="o">=</span> <span class="p">[</span><span class="n">number</span> <span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000000</span><span class="p">)</span> <span class="k">if</span> <span class="n">number</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="n">even_numbers2</span> <span class="o">=</span> <span class="p">(</span><span class="n">number</span> <span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000000</span><span class="p">)</span> <span class="k">if</span> <span class="n">number</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Beware of functions which iterate over the same collection multiple times.
+With generators, you can iterate only once.</p></li>
+<li><p>Know about <code class="xref py py-mod docutils literal notranslate"><span class="pre">itertools</span></code> which provides a lot of functions for working with iterators.</p></li>
+</ul>
+</section>
+<section id="use-relative-paths-and-pathlib">
+<h2>Use relative paths and pathlib<a class="headerlink" href="#use-relative-paths-and-pathlib" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Scripts that read data from absolute paths are not portable and typically
+break when shared with a colleague or support help desk or reused by the next
+student/PhD student/postdoc.</p></li>
+<li><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">pathlib</span></code> is a modern and portable way to handle paths in Python.</p></li>
+</ul>
+</section>
+<section id="project-structure">
+<h2>Project structure<a class="headerlink" href="#project-structure" title="Link to this heading"></a></h2>
+<ul>
+<li><p>As your project grows from a simple script, you should consider organizing
+your code into modules and packages.</p></li>
+<li><p>Function too long? Consider splitting it into multiple functions.</p></li>
+<li><p>File too long? Consider splitting it into multiple files.</p></li>
+<li><p>Difficult to name a function or file? It might be doing too much or unrelated things.</p></li>
+<li><p>If your script can be imported into other scripts, wrap your main function in
+a <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">&quot;__main__&quot;:</span></code> block:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="o">...</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>Why this construct? You can try to either import or run the following script:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;I am being run as a script&quot;</span><span class="p">)</span>  <span class="c1"># importing will not run this part</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;I am being imported&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Try to have all code inside some function. This can make it easier to
+understand, test, and reuse. It can also help Python to free up memory when
+the function is done.</p></li>
+</ul>
+</section>
+<section id="reading-and-writing-files">
+<h2>Reading and writing files<a class="headerlink" href="#reading-and-writing-files" title="Link to this heading"></a></h2>
+<ul>
+<li><p>Good construct to know to read a file:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;input.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Reading a huge data file? Read and process it in chunks or buffered or use a library which does it for you.</p></li>
+<li><p>On supercomputers, avoid reading and writing thousands of small files.</p></li>
+<li><p>For input files, consider using standard formats like CSV, YAML, or TOML - then you don’t need to write a parser.</p></li>
+</ul>
+</section>
+<section id="use-subprocess-instead-of-os-system">
+<h2>Use subprocess instead of os.system<a class="headerlink" href="#use-subprocess-instead-of-os-system" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Many things can go wrong when launching external processes from Python. The <code class="xref py py-mod docutils literal notranslate"><span class="pre">subprocess</span></code> module is the recommended way to do this.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">os.system</span></code> is not portable and not secure enough.</p></li>
+</ul>
+</section>
+<section id="parallelizing">
+<h2>Parallelizing<a class="headerlink" href="#parallelizing" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Use one of the many libraries: <code class="xref py py-mod docutils literal notranslate"><span class="pre">multiprocessing</span></code>, <code class="xref py py-mod docutils literal notranslate"><span class="pre">mpi4py</span></code>, <a class="reference external" href="https://dask.org/">Dask</a>, <a class="reference external" href="https://parsl-project.org/">Parsl</a>, …</p></li>
+<li><p>Identify independent tasks.</p></li>
+<li><p>More often than not, you can convert an expensive loop into a command-line
+tool and parallelize it using workflow management tools like
+<a class="reference external" href="https://snakemake.github.io/">Snakemake</a>.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../notebooks/sharing/" class="btn btn-neutral float-left" title="Sharing notebooks" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../profiling/" class="btn btn-neutral float-right" title="Profiling" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CodeRefinery contributors (CC-BY license).</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

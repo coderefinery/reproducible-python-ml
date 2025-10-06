@@ -1,0 +1,289 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Motivation &mdash; Reproducible research software development using Python (ML example)  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx_lesson.css?v=e9df6548" />
+      <link rel="stylesheet" type="text/css" href="../../_static/term_role_formatting.css?v=4194e21c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx_rtd_theme_ext_color_contrast.css?v=8e8ea19f" />
+      <link rel="stylesheet" type="text/css" href="../../_static/style.css?v=791bfbd6" />
+
+  
+    <link rel="shortcut icon" href="../../_static/coderefinery.ico"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=187304be"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=35a8b989"></script>
+      <script src="../../_static/minipres.js?v=a0d29692"></script>
+      <script>let toggleHintShow = 'Click to show';</script>
+      <script>let toggleHintHide = 'Click to hide';</script>
+      <script>let toggleOpenOnPrint = 'true';</script>
+      <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script data-domain="coderefinery.github.io" defer="defer" src="https://plausible.cs.aalto.fi/js/script.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex/" />
+    <link rel="search" title="Search" href="../../search/" />
+    <link rel="next" title="Forking, cloning, and browsing" href="../browsing/" />
+    <link rel="prev" title="Introduction to version control with Git and GitHub" href="../" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../" class="icon icon-home">
+            Reproducible research software development using Python (ML example)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Software environment</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation/">Software install instructions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Episodes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../example/">Example project: 2D classification task using a nearest-neighbor predictor</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../">Introduction to version control with Git and GitHub</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Motivation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#why-do-we-need-to-keep-track-of-versions">Why do we need to keep track of versions?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#demonstration">Demonstration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#features-roll-back-branching-merging-collaboration">Features: roll-back, branching, merging, collaboration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#talking-about-code">Talking about code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-we-typically-like-to-snapshot">What we typically like to snapshot</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../browsing/">Forking, cloning, and browsing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../branching-and-committing/">Creating branches and commits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../merging/">Merging changes and contributing to the project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../conflict-resolution/">Conflict resolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../practical-advice/">Practical advice: How much Git is necessary?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sharing/">Optional: How to turn your project to a Git repo and share it</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/">Where to start with documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../collaboration/">Collaborative version control and code review</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dependencies/">Reproducible environments and dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notebooks/version-control/">Notebooks and version control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notebooks/tooling/">Other useful tooling for notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notebooks/sharing/">Sharing notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../good-practices/">Tools and useful practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../profiling/">Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/">Automated testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../refactoring-concepts/">Concepts in refactoring and modular code design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../snakemake/">How to parallelize independent tasks using workflows (example: Snakemake)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software-licensing/">Choosing a software license</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../publishing/">How to publish your code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../packaging/">Creating a Python package and deploying it to PyPI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://coderefinery.github.io/reproducible-python-ml/lesson.pdf">PDF version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../credit/">Credit</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://coderefinery.org/lessons/">All lessons</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://coderefinery.org/">CodeRefinery</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://coderefinery.org/lessons/reusing/">Reusing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../">Reproducible research software development using Python (ML example)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../">Introduction to version control with Git and GitHub</a></li>
+      <li class="breadcrumb-item active">Motivation</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/coderefinery/reproducible-python-ml/blob/main/content/version-control/motivation.md" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="motivation">
+<h1>Motivation<a class="headerlink" href="#motivation" title="Link to this heading"></a></h1>
+<div class="admonition-objectives objectives admonition" id="objectives-0">
+<p class="admonition-title">Objectives</p>
+<ul class="simple">
+<li><p>Browse <strong>commits</strong> and <strong>branches</strong> of a Git repository.</p></li>
+<li><p>Remember that commits are like <strong>snapshots</strong> of the repository at a certain
+point in time.</p></li>
+<li><p>Know the difference between <strong>Git</strong> (something that tracks changes) and
+<strong>GitHub/GitLab</strong> (a web platform to host Git repositories).</p></li>
+</ul>
+</div>
+<section id="why-do-we-need-to-keep-track-of-versions">
+<h2>Why do we need to keep track of versions?<a class="headerlink" href="#why-do-we-need-to-keep-track-of-versions" title="Link to this heading"></a></h2>
+<p>Version control is an answer to the following questions (do you recognize some
+of them?):</p>
+<ul class="simple">
+<li><p>“It broke … hopefully I have a working version somewhere?”</p></li>
+<li><p>“Can you please send me the latest version?”</p></li>
+<li><p>“Where is the latest version?”</p></li>
+<li><p>“Which version are you using?”</p></li>
+<li><p>“Which version have the authors used in the paper I am trying to reproduce?”</p></li>
+<li><p>“Found a bug! Since when was it there?”</p></li>
+<li><p>“I am sure it used to work. When did it change?”</p></li>
+<li><p>“My laptop is gone. Is my thesis now gone?”</p></li>
+</ul>
+</section>
+<section id="demonstration">
+<h2>Demonstration<a class="headerlink" href="#demonstration" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Example repository: <a class="reference external" href="https://github.com/workshop-material/classification-task">https://github.com/workshop-material/classification-task</a></p></li>
+<li><p>Commits are like <strong>snapshots</strong> and if we break something we can go back to a
+previous snapshot.</p></li>
+<li><p>Commits carry <strong>metadata</strong> about changes: author, date, commit message, and
+a checksum.</p></li>
+<li><p><strong>Branches</strong> are like parallel universes where you can experiment with
+changes without affecting the default branch:
+<a class="reference external" href="https://github.com/workshop-material/classification-task/network">https://github.com/workshop-material/classification-task/network</a>
+(“Insights” -&gt; “Network”)</p></li>
+<li><p>With version control we can <strong>annotate code</strong>
+(<a class="reference external" href="https://github.com/workshop-material/classification-task/blame/main/generate_predictions.py">example</a>).</p></li>
+<li><p><strong>Collaboration</strong>: We can fork (make a copy on GitHub), clone (make a copy
+to our computer), review, compare, share, and discuss.</p></li>
+<li><p><strong>Code review</strong>: Others can suggest changes using pull requests or merge
+requests. These can be reviewed and discussed before they are merged.
+Conceptually, they are similar to “suggesting changes” in Google Docs.</p></li>
+</ul>
+</section>
+<section id="features-roll-back-branching-merging-collaboration">
+<h2>Features: roll-back, branching, merging, collaboration<a class="headerlink" href="#features-roll-back-branching-merging-collaboration" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Roll-back</strong>: you can always go back to a previous version and compare</p></li>
+<li><p><strong>Branching and merging</strong>:</p>
+<ul>
+<li><p>Work on different ideas at the same time</p></li>
+<li><p>You can experiment with an idea and discard it if it turns out to be a bad idea</p></li>
+<li><p>Different people can work on the same code/project without interfering</p></li>
+</ul>
+</li>
+</ul>
+<figure class="align-default" id="id1">
+<a class="reference internal image-reference" href="../../_images/gophers.png"><img alt="Branching explained with a gopher" src="../../_images/gophers.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Image created using <a class="reference external" href="https://gopherize.me/">https://gopherize.me/</a>
+(<a class="reference external" href="https://twitter.com/jay_gee/status/703360688618536960">inspiration</a>).</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p><strong>Collaboration</strong>: review, compare, share, discuss</p></li>
+<li><p><a class="reference external" href="https://github.com/workshop-material/classification-task/network">Example network graph</a></p></li>
+</ul>
+</section>
+<section id="talking-about-code">
+<h2>Talking about code<a class="headerlink" href="#talking-about-code" title="Link to this heading"></a></h2>
+<p>Which of these two is more practical?</p>
+<ol class="arabic simple">
+<li><p>“Clone the code, go to the file ‘generate_predictions.py’, and search for ‘majority_index’.
+Oh! But make sure you use the version from January 2025.”</p></li>
+<li><p>Or I can send you a permalink: <a class="reference external" href="https://github.com/workshop-material/classification-task/blob/79ce3be8/generate_predictions.py#L25-L28">https://github.com/workshop-material/classification-task/blob/79ce3be8/generate_predictions.py#L25-L28</a></p></li>
+</ol>
+</section>
+<section id="what-we-typically-like-to-snapshot">
+<h2>What we typically like to snapshot<a class="headerlink" href="#what-we-typically-like-to-snapshot" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Software (this is how it started but Git/GitHub can track a lot more)</p></li>
+<li><p>Scripts</p></li>
+<li><p>Documents (plain text files much better suitable than Word documents)</p></li>
+<li><p>Manuscripts (Git is great for collaborating/sharing LaTeX or <a class="reference external" href="https://quarto.org/">Quarto</a> manuscripts)</p></li>
+<li><p>Configuration files</p></li>
+<li><p>Website sources</p></li>
+<li><p>Data</p></li>
+</ul>
+<div class="admonition-discussion discussion important admonition" id="discussion-0">
+<p class="admonition-title">Discussion</p>
+<p>In this example somebody tried to keep track of versions without a version
+control system tool like Git.  Discuss the following directory listing. What
+possible problems do you anticipate with this kind of “version control”:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>myproject-2019.zip
+myproject-2020-february.zip
+myproject-2021-august.zip
+myproject-2023-09-19-working.zip
+myproject-2023-09-21.zip
+myproject-2023-09-21-test.zip
+myproject-2023-09-21-myversion.zip
+myproject-2023-09-21-newfeature.zip
+...
+(100 more files like these)
+</pre></div>
+</div>
+<div class="admonition-solution solution important dropdown admonition" id="solution-0">
+<p class="admonition-title">Solution</p>
+<ul class="simple">
+<li><p>Giving a version to a collaborator and merging changes later with own
+changes sounds like lots of work.</p></li>
+<li><p>What if you discover a bug and want to know since when the bug existed?</p></li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../" class="btn btn-neutral float-left" title="Introduction to version control with Git and GitHub" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../browsing/" class="btn btn-neutral float-right" title="Forking, cloning, and browsing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CodeRefinery contributors (CC-BY license).</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
