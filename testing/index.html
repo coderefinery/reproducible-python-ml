@@ -1,0 +1,387 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Automated testing &mdash; Reproducible research software development using Python (ML example)  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx_lesson.css?v=e9df6548" />
+      <link rel="stylesheet" type="text/css" href="../_static/term_role_formatting.css?v=4194e21c" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx_rtd_theme_ext_color_contrast.css?v=8e8ea19f" />
+      <link rel="stylesheet" type="text/css" href="../_static/style.css?v=791bfbd6" />
+
+  
+    <link rel="shortcut icon" href="../_static/coderefinery.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=187304be"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=35a8b989"></script>
+      <script src="../_static/minipres.js?v=a0d29692"></script>
+      <script>let toggleHintShow = 'Click to show';</script>
+      <script>let toggleHintHide = 'Click to hide';</script>
+      <script>let toggleOpenOnPrint = 'true';</script>
+      <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script data-domain="coderefinery.github.io" defer="defer" src="https://plausible.cs.aalto.fi/js/script.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex/" />
+    <link rel="search" title="Search" href="../search/" />
+    <link rel="next" title="Concepts in refactoring and modular code design" href="../refactoring-concepts/" />
+    <link rel="prev" title="Profiling" href="../profiling/" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../" class="icon icon-home">
+            Reproducible research software development using Python (ML example)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Software environment</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/">Software install instructions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Episodes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../example/">Example project: 2D classification task using a nearest-neighbor predictor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../version-control/">Introduction to version control with Git and GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/">Where to start with documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../collaboration/">Collaborative version control and code review</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dependencies/">Reproducible environments and dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/version-control/">Notebooks and version control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/tooling/">Other useful tooling for notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/sharing/">Sharing notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../good-practices/">Tools and useful practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../profiling/">Profiling</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Automated testing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#motivation">Motivation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-testing-is-often-taught">How testing is often taught</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#where-to-start">Where to start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#end-to-end-tests">End-to-end tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pytest">Pytest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#adding-the-unit-test-to-github-actions">Adding the unit test to GitHub Actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-else-is-possible">What else is possible</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exercises">Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../refactoring-concepts/">Concepts in refactoring and modular code design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snakemake/">How to parallelize independent tasks using workflows (example: Snakemake)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software-licensing/">Choosing a software license</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../publishing/">How to publish your code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../packaging/">Creating a Python package and deploying it to PyPI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://coderefinery.github.io/reproducible-python-ml/lesson.pdf">PDF version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../credit/">Credit</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://coderefinery.org/lessons/">All lessons</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://coderefinery.org/">CodeRefinery</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://coderefinery.org/lessons/reusing/">Reusing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../">Reproducible research software development using Python (ML example)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Automated testing</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/coderefinery/reproducible-python-ml/blob/main/content/testing.md" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="automated-testing">
+<h1>Automated testing<a class="headerlink" href="#automated-testing" title="Link to this heading"></a></h1>
+<div class="admonition-objectives objectives admonition" id="objectives-0">
+<p class="admonition-title">Objectives</p>
+<ul class="simple">
+<li><p>Know <strong>where to start</strong> in your own project.</p></li>
+<li><p>Know what possibilities and techniques are available in the Python world.</p></li>
+<li><p>Have an example for how to make the <strong>testing part of code review</strong>.</p></li>
+</ul>
+</div>
+<div class="admonition-instructor-note instructor-note admonition" id="instructor-note-0">
+<p class="admonition-title">Instructor note</p>
+<ul class="simple">
+<li><p>(15 min) Motivation</p></li>
+<li><p>(15 min) End-to-end tests</p></li>
+<li><p>(15 min) Pytest</p></li>
+<li><p>(15 min) Adding the unit test to GitHub Actions</p></li>
+<li><p>(10 min) What else is possible</p></li>
+<li><p>(20 min) Exercise</p></li>
+</ul>
+</div>
+<section id="motivation">
+<h2>Motivation<a class="headerlink" href="#motivation" title="Link to this heading"></a></h2>
+<p>Testing is a way to check that the code does what it is expected to.</p>
+<ul class="simple">
+<li><p><strong>Less scary to change code</strong>: tests will tell you whether something broke.</p></li>
+<li><p><strong>Easier for new people</strong> to join.</p></li>
+<li><p>Easier for somebody to <strong>revive an old code</strong>.</p></li>
+<li><p><strong>End-to-end test</strong>: run the whole code and compare result to a reference.</p></li>
+<li><p><strong>Unit tests</strong>: test one unit (function or module). Can guide towards better
+structured code: complicated code is more difficult to test.</p></li>
+</ul>
+</section>
+<section id="how-testing-is-often-taught">
+<h2>How testing is often taught<a class="headerlink" href="#how-testing-is-often-taught" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_add</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="n">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span>
+</pre></div>
+</div>
+<p>How this feels:</p>
+<figure class="align-default" id="id1">
+<a class="with-border reference internal image-reference" href="../_images/owl.png"><img alt="Instruction on how to draw an owl" class="with-border" src="../_images/owl.png" style="width: 50%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">[Citation needed]</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>Instead, we will look at and <strong>discuss a real example</strong> where we test components
+from our example project.</p>
+</section>
+<section id="where-to-start">
+<h2>Where to start<a class="headerlink" href="#where-to-start" title="Link to this heading"></a></h2>
+<p><strong>Do I even need testing?</strong>:</p>
+<ul class="simple">
+<li><p>A simple script or notebook probably does not need an automated test.</p></li>
+</ul>
+<p><strong>If you have nothing yet</strong>:</p>
+<ul class="simple">
+<li><p>Start with an end-to-end test.</p></li>
+<li><p>Describe in words how <em>you</em> check whether the code still works.</p></li>
+<li><p>Translate the words into a script (any language).</p></li>
+<li><p>Run the script automatically on every code change (GitHub Actions or GitLab CI).</p></li>
+</ul>
+<p><strong>If you want to start with unit-testing</strong>:</p>
+<ul class="simple">
+<li><p>You want to rewrite a function? Start adding a unit test right there first.</p></li>
+<li><p>You spend few days chasing a bug? Once you fix it, add a test to make sure it does not come back.</p></li>
+</ul>
+</section>
+<section id="end-to-end-tests">
+<h2>End-to-end tests<a class="headerlink" href="#end-to-end-tests" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>This is our end-to-end test: <a class="reference external" href="https://github.com/workshop-material/classification-task/blob/main/test.sh">https://github.com/workshop-material/classification-task/blob/main/test.sh</a></p></li>
+<li><p>Note how we can run it <a class="reference external" href="https://github.com/workshop-material/classification-task/blob/d5baee6a7600986b5fccc2fca4ee80a90c2d5f69/.github/workflows/test.yml#L28">on GitHub automatically</a>.</p></li>
+<li><p>Also browse <a class="reference external" href="https://github.com/workshop-material/classification-task/actions">https://github.com/workshop-material/classification-task/actions</a>.</p></li>
+<li><p>If we have time, we can try to create a pull request which would break the
+code and see how the test fails.</p></li>
+</ul>
+</section>
+<section id="pytest">
+<h2>Pytest<a class="headerlink" href="#pytest" title="Link to this heading"></a></h2>
+<p>Here is a simple example of a test:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">fahrenheit_to_celsius</span><span class="p">(</span><span class="n">temp_f</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Converts temperature in Fahrenheit</span>
+<span class="sd">    to Celsius.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">temp_c</span> <span class="o">=</span> <span class="p">(</span><span class="n">temp_f</span> <span class="o">-</span> <span class="mf">32.0</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mf">5.0</span><span class="o">/</span><span class="mf">9.0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">temp_c</span>
+
+
+<span class="c1"># this is the test function</span>
+<span class="hll"><span class="k">def</span><span class="w"> </span><span class="nf">test_fahrenheit_to_celsius</span><span class="p">():</span>
+</span><span class="hll">    <span class="n">temp_c</span> <span class="o">=</span> <span class="n">fahrenheit_to_celsius</span><span class="p">(</span><span class="n">temp_f</span><span class="o">=</span><span class="mf">100.0</span><span class="p">)</span>
+</span><span class="hll">    <span class="n">expected_result</span> <span class="o">=</span> <span class="mf">37.777777</span>
+</span><span class="hll">    <span class="c1"># assert raises an error if the condition is not met</span>
+</span><span class="hll">    <span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">temp_c</span> <span class="o">-</span> <span class="n">expected_result</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1.0e-6</span>
+</span></pre></div>
+</div>
+<p>To run the test(s):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pytest<span class="w"> </span>example.py
+</pre></div>
+</div>
+<p>Explanation: <code class="docutils literal notranslate"><span class="pre">pytest</span></code> will look for functions starting with <code class="docutils literal notranslate"><span class="pre">test_</span></code> in files
+and directories given as arguments. It will run them and report the results.</p>
+<p>Good practice to add unit tests:</p>
+<ul class="simple">
+<li><p>Add the test function and run it.</p></li>
+<li><p>Break the function on purpose and run the test.</p></li>
+<li><p>Does the test fail as expected?</p></li>
+</ul>
+</section>
+<section id="adding-the-unit-test-to-github-actions">
+<h2>Adding the unit test to GitHub Actions<a class="headerlink" href="#adding-the-unit-test-to-github-actions" title="Link to this heading"></a></h2>
+<p>Our next goal is that we want GitHub to run the unit test
+automatically on every change.</p>
+<p>First we need to extend our
+<a class="reference external" href="https://github.com/workshop-material/classification-task/blob/main/environment.yml">environment.yml</a>:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">classification-task</span>
+<span class="nt">channels</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge</span>
+<span class="nt">dependencies</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python &lt;= 3.12</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">click</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">numpy</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pandas</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">scipy</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">altair</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vl-convert-python</span>
+<span class="hll"><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pytest</span>
+</span></pre></div>
+</div>
+<p>We also need to extend <code class="docutils literal notranslate"><span class="pre">.github/workflows/test.yml</span></code> (highlighted line):</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Test</span>
+
+<span class="nt">on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">main</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="nt">pull_request</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">main</span><span class="w"> </span><span class="p p-Indicator">]</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">build</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-24.04</span>
+
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Checkout</span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mamba-org/setup-micromamba@v1</span>
+<span class="w">      </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">micromamba-version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;2.0.5-0&#39;</span><span class="w"> </span><span class="c1"># any version from https://github.com/mamba-org/micromamba-releases</span>
+<span class="w">        </span><span class="nt">environment-file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">environment.yml</span>
+<span class="w">        </span><span class="nt">init-shell</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bash</span>
+<span class="w">        </span><span class="nt">cache-environment</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">        </span><span class="nt">post-cleanup</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;all&#39;</span>
+<span class="w">        </span><span class="nt">generate-run-shell</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run tests</span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">        </span><span class="no">./test.sh</span>
+<span class="hll"><span class="w">        </span><span class="no">pytest generate-predictions.py</span>
+</span><span class="w">      </span><span class="nt">shell</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bash -el {0}</span>
+</pre></div>
+</div>
+<p>In the above example, we assume that we added a test function to <code class="docutils literal notranslate"><span class="pre">generate-predictions.py</span></code>.</p>
+<p>If we have time, we can try to create a pull request which would break the
+code and see how the test fails.</p>
+</section>
+<section id="what-else-is-possible">
+<h2>What else is possible<a class="headerlink" href="#what-else-is-possible" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Run the test set <strong>automatically</strong> on every code change:</p>
+<ul>
+<li><p><a class="reference external" href="https://github.com/features/actions">GitHub Actions</a></p></li>
+<li><p><a class="reference external" href="https://docs.gitlab.com/ee/ci/">GitLab CI</a></p></li>
+</ul>
+</li>
+<li><p>The testing above used <strong>example-based</strong> testing.</p></li>
+<li><p><strong>Test coverage</strong>: how much of the code is traversed by tests?</p>
+<ul>
+<li><p>Python: <a class="reference external" href="https://pytest-cov.readthedocs.io/">pytest-cov</a></p></li>
+<li><p>Result can be deployed to services like <a class="reference external" href="https://about.codecov.io/">Codecov</a> or <a class="reference external" href="https://coveralls.io/">Coveralls</a>.</p></li>
+</ul>
+</li>
+<li><p><strong>Property-based</strong> testing: generates arbitrary data matching your specification and checks that your guarantee still holds in that case.</p>
+<ul>
+<li><p>Python: <a class="reference external" href="https://hypothesis.readthedocs.io/">hypothesis</a></p></li>
+</ul>
+</li>
+<li><p><strong>Snapshot-based</strong> testing: makes it easier to generate snapshots for regression tests.</p>
+<ul>
+<li><p>Python: <a class="reference external" href="https://syrupy-project.github.io/syrupy/">syrupy</a></p></li>
+</ul>
+</li>
+<li><p><strong>Mutation testing</strong>: tests pass -&gt; change a line of code (make a mutant) -&gt; test again and check whether all mutants get “killed”.</p>
+<ul>
+<li><p>Python: <a class="reference external" href="https://mutmut.readthedocs.io/">mutmut</a></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="exercises">
+<h2>Exercises<a class="headerlink" href="#exercises" title="Link to this heading"></a></h2>
+<div class="admonition-exercise exercise important admonition" id="exercise-0">
+<p class="admonition-title">Exercise</p>
+<p>Experiment with the example project and what we learned above or try it <strong>on
+the example project or on your own project</strong>:</p>
+<ul class="simple">
+<li><p>Add a unit test. <strong>If you are unsure where to start</strong>, you can try to move
+<a class="reference external" href="https://github.com/workshop-material/classification-task/blob/79ce3be8fc187afbc33c91c11ea7003ce9bf56cd/generate_predictions.py#L28">the majority
+vote</a>
+into a separate function and write a test function for it.</p></li>
+<li><p>Try to run pytest locally.</p></li>
+<li><p>Check whether it fails when you break the corresponding function.</p></li>
+<li><p>Try to run it on GitHub Actions.</p></li>
+<li><p>Create a pull request which would break the code and see whether the automatic test would catch it.</p></li>
+<li><p>Try to design an end-to-end test for your project. Already the thought
+process can be very helpful.</p></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../profiling/" class="btn btn-neutral float-left" title="Profiling" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../refactoring-concepts/" class="btn btn-neutral float-right" title="Concepts in refactoring and modular code design" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CodeRefinery contributors (CC-BY license).</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

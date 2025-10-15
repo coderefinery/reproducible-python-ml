@@ -1,0 +1,253 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Example project: 2D classification task using a nearest-neighbor predictor &mdash; Reproducible research software development using Python (ML example)  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx_lesson.css?v=e9df6548" />
+      <link rel="stylesheet" type="text/css" href="../_static/term_role_formatting.css?v=4194e21c" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx_rtd_theme_ext_color_contrast.css?v=8e8ea19f" />
+      <link rel="stylesheet" type="text/css" href="../_static/style.css?v=791bfbd6" />
+
+  
+    <link rel="shortcut icon" href="../_static/coderefinery.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=187304be"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=35a8b989"></script>
+      <script src="../_static/minipres.js?v=a0d29692"></script>
+      <script>let toggleHintShow = 'Click to show';</script>
+      <script>let toggleHintHide = 'Click to hide';</script>
+      <script>let toggleOpenOnPrint = 'true';</script>
+      <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script data-domain="coderefinery.github.io" defer="defer" src="https://plausible.cs.aalto.fi/js/script.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex/" />
+    <link rel="search" title="Search" href="../search/" />
+    <link rel="next" title="Introduction to version control with Git and GitHub" href="../version-control/" />
+    <link rel="prev" title="Software install instructions" href="../installation/" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../" class="icon icon-home">
+            Reproducible research software development using Python (ML example)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Software environment</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/">Software install instructions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Episodes</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Example project: 2D classification task using a nearest-neighbor predictor</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#example-run">Example run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#discussion-and-goals">Discussion and goals</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../version-control/">Introduction to version control with Git and GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/">Where to start with documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../collaboration/">Collaborative version control and code review</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dependencies/">Reproducible environments and dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/version-control/">Notebooks and version control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/tooling/">Other useful tooling for notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/sharing/">Sharing notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../good-practices/">Tools and useful practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../profiling/">Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/">Automated testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../refactoring-concepts/">Concepts in refactoring and modular code design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snakemake/">How to parallelize independent tasks using workflows (example: Snakemake)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software-licensing/">Choosing a software license</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../publishing/">How to publish your code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../packaging/">Creating a Python package and deploying it to PyPI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://coderefinery.github.io/reproducible-python-ml/lesson.pdf">PDF version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../credit/">Credit</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://coderefinery.org/lessons/">All lessons</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://coderefinery.org/">CodeRefinery</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://coderefinery.org/lessons/reusing/">Reusing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../">Reproducible research software development using Python (ML example)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Example project: 2D classification task using a nearest-neighbor predictor</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/coderefinery/reproducible-python-ml/blob/main/content/example.md" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="example-project-2d-classification-task-using-a-nearest-neighbor-predictor">
+<h1>Example project: 2D classification task using a nearest-neighbor predictor<a class="headerlink" href="#example-project-2d-classification-task-using-a-nearest-neighbor-predictor" title="Link to this heading"></a></h1>
+<p>The <a class="reference external" href="https://github.com/workshop-material/classification-task">example code</a>
+that we will study is a relatively simple nearest-neighbor predictor written in
+Python. It is not important or expected that we understand the code in detail.</p>
+<p>The code will produce something like this:</p>
+<figure class="align-default" id="id1">
+<a class="reference internal image-reference" href="../_images/chart.svg"><img alt="Results of the classification task" src="../_images/chart.svg" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">The bottom row shows the training data (two labels) and the top row shows the
+test data and whether the nearest-neighbor predictor classified their labels
+correctly.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>The <strong>big picture</strong> of the code is as follows:</p>
+<ul class="simple">
+<li><p>We can choose the number of samples (the example above has 50 samples).</p></li>
+<li><p>The code will generate samples with two labels (0 and 1) in a 2D space.</p></li>
+<li><p>One of the labels has a normal distribution and a circular distribution with
+some minimum and maximum radius.</p></li>
+<li><p>The second label only has a circular distribution with a different radius.</p></li>
+<li><p>Then we try to predict whether the test samples belong to label 0 or 1 based
+on the nearest neighbors in the training data. The number of neighbors can
+be adjusted and the code will take label of the majority of the neighbors.</p></li>
+</ul>
+<section id="example-run">
+<h2>Example run<a class="headerlink" href="#example-run" title="Link to this heading"></a></h2>
+<div class="admonition-instructor-note instructor-note admonition" id="instructor-note-0">
+<p class="admonition-title">Instructor note</p>
+<p>The instructor demonstrates running the code on their computer.</p>
+</div>
+<p>The code is written to accept <strong>command-line arguments</strong> to specify the number
+of samples and file names. Later we will discuss advantages of this approach.</p>
+<p>Let us try to get the help text:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python<span class="w"> </span>generate_data.py<span class="w"> </span>--help
+
+<span class="go">Usage: generate_data.py [OPTIONS]</span>
+
+<span class="go">  Program that generates a set of training and test samples for a non-linear</span>
+<span class="go">  classification task.</span>
+
+<span class="go">Options:</span>
+<span class="go">  --num-samples INTEGER  Number of samples for each class.  [required]</span>
+<span class="go">  --training-data TEXT   Training data is written to this file.  [required]</span>
+<span class="go">  --test-data TEXT       Test data is written to this file.  [required]</span>
+<span class="go">  --help                 Show this message and exit.</span>
+</pre></div>
+</div>
+<p>We first generate the training and test data:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python<span class="w"> </span>generate_data.py<span class="w"> </span>--num-samples<span class="w"> </span><span class="m">50</span><span class="w"> </span>--training-data<span class="w"> </span>train.csv<span class="w"> </span>--test-data<span class="w"> </span>test.csv
+
+<span class="go">Generated 50 training samples (train.csv) and test samples (test.csv).</span>
+</pre></div>
+</div>
+<p>In a second step we generate predictions for the test data:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python<span class="w"> </span>generate_predictions.py<span class="w"> </span>--num-neighbors<span class="w"> </span><span class="m">7</span><span class="w"> </span>--training-data<span class="w"> </span>train.csv<span class="w"> </span>--test-data<span class="w"> </span>test.csv<span class="w"> </span>--predictions<span class="w"> </span>predictions.csv
+
+<span class="go">Predictions saved to predictions.csv</span>
+</pre></div>
+</div>
+<p>Finally, we can plot the results:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python<span class="w"> </span>plot_results.py<span class="w"> </span>--training-data<span class="w"> </span>train.csv<span class="w"> </span>--predictions<span class="w"> </span>predictions.csv<span class="w"> </span>--output-chart<span class="w"> </span>chart.svg
+
+<span class="go">Accuracy: 0.94</span>
+<span class="go">Saved chart to chart.svg</span>
+</pre></div>
+</div>
+</section>
+<section id="discussion-and-goals">
+<h2>Discussion and goals<a class="headerlink" href="#discussion-and-goals" title="Link to this heading"></a></h2>
+<div class="admonition-discussion discussion important admonition" id="discussion-0">
+<p class="admonition-title">Discussion</p>
+<ul class="simple">
+<li><p>Together we look at the generated files (train.csv, test.csv, predictions.csv, chart.svg).</p></li>
+<li><p>We browse and discuss the <a class="reference external" href="https://github.com/workshop-material/classification-task">example code behind these scripts</a>.</p></li>
+</ul>
+</div>
+<div class="admonition-learning-goals admonition">
+<p class="admonition-title">Learning goals</p>
+<ul class="simple">
+<li><p>What are the most important steps to make this code <strong>reusable by others</strong>
+and <strong>our future selves</strong>?</p></li>
+<li><p>Be able to apply these techniques to your own code/script.</p></li>
+</ul>
+</div>
+<div class="admonition-we-will-not-focus-on admonition">
+<p class="admonition-title">We will not focus on …</p>
+<ul class="simple">
+<li><p>… how the code works internally in detail.</p></li>
+<li><p>… whether this is the most efficient algorithm.</p></li>
+<li><p>… whether the code is numerically stable.</p></li>
+<li><p>… how to code scales with system size.</p></li>
+<li><p>… whether it is portable to other operating systems (we will discuss this later).</p></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../installation/" class="btn btn-neutral float-left" title="Software install instructions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../version-control/" class="btn btn-neutral float-right" title="Introduction to version control with Git and GitHub" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CodeRefinery contributors (CC-BY license).</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,562 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Where to start with documentation &mdash; Reproducible research software development using Python (ML example)  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx_lesson.css?v=e9df6548" />
+      <link rel="stylesheet" type="text/css" href="../_static/term_role_formatting.css?v=4194e21c" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx_rtd_theme_ext_color_contrast.css?v=8e8ea19f" />
+      <link rel="stylesheet" type="text/css" href="../_static/style.css?v=791bfbd6" />
+
+  
+    <link rel="shortcut icon" href="../_static/coderefinery.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=187304be"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=35a8b989"></script>
+      <script src="../_static/minipres.js?v=a0d29692"></script>
+      <script>let toggleHintShow = 'Click to show';</script>
+      <script>let toggleHintHide = 'Click to hide';</script>
+      <script>let toggleOpenOnPrint = 'true';</script>
+      <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script data-domain="coderefinery.github.io" defer="defer" src="https://plausible.cs.aalto.fi/js/script.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex/" />
+    <link rel="search" title="Search" href="../search/" />
+    <link rel="next" title="Collaborative version control and code review" href="../collaboration/" />
+    <link rel="prev" title="Optional: How to turn your project to a Git repo and share it" href="../version-control/sharing/" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../" class="icon icon-home">
+            Reproducible research software development using Python (ML example)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Software environment</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/">Software install instructions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Episodes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../example/">Example project: 2D classification task using a nearest-neighbor predictor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../version-control/">Introduction to version control with Git and GitHub</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Where to start with documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#why-to-your-future-self">Why? 💗✉️ to your future self</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#in-code-documentation">In-code documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#many-languages-allow-docstrings">Many languages allow “docstrings”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#often-a-readme-is-enough-checklist">Often a README is enough - checklist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#diataxis">Diátaxis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-if-you-need-more-than-a-readme">What if you need more than a README?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exercise-set-up-a-sphinx-documentation">Exercise: Set up a Sphinx documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#demo-building-documentation-with-github-actions">Demo: Building documentation with GitHub Actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#optional-how-to-auto-generate-api-documentation-in-python">Optional: How to auto-generate API documentation in Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#possibilities-to-host-sphinx-documentation">Possibilities to host Sphinx documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#confused-about-restructuredtext-vs-markdown-vs-myst">Confused about reStructuredText vs. Markdown vs. MyST?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#where-to-read-more">Where to read more</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../collaboration/">Collaborative version control and code review</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dependencies/">Reproducible environments and dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/version-control/">Notebooks and version control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/tooling/">Other useful tooling for notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/sharing/">Sharing notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../good-practices/">Tools and useful practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../profiling/">Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing/">Automated testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../refactoring-concepts/">Concepts in refactoring and modular code design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snakemake/">How to parallelize independent tasks using workflows (example: Snakemake)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software-licensing/">Choosing a software license</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../publishing/">How to publish your code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../packaging/">Creating a Python package and deploying it to PyPI</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://coderefinery.github.io/reproducible-python-ml/lesson.pdf">PDF version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../credit/">Credit</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://coderefinery.org/lessons/">All lessons</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://coderefinery.org/">CodeRefinery</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://coderefinery.org/lessons/reusing/">Reusing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../">Reproducible research software development using Python (ML example)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Where to start with documentation</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/coderefinery/reproducible-python-ml/blob/main/content/documentation.md" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="where-to-start-with-documentation">
+<h1>Where to start with documentation<a class="headerlink" href="#where-to-start-with-documentation" title="Link to this heading"></a></h1>
+<div class="admonition-objectives objectives admonition" id="objectives-0">
+<p class="admonition-title">Objectives</p>
+<ul class="simple">
+<li><p>Discuss what makes good documentation.</p></li>
+<li><p>Improve the README of your project or our example project.</p></li>
+<li><p>Explore Sphinx which is a popular tool to build documentation websites.</p></li>
+<li><p>Learn how to leverage GitHub Actions and GitHub Pages to build and deploy documentation.</p></li>
+</ul>
+</div>
+<div class="admonition-instructor-note instructor-note admonition" id="instructor-note-0">
+<p class="admonition-title">Instructor note</p>
+<ul class="simple">
+<li><p>(30 min) Discussion</p></li>
+<li><p>(30 min) Exercise: Set up a Sphinx documentation and add API documentation</p></li>
+<li><p>(15 min) Demo: Building documentation with GitHub Actions</p></li>
+</ul>
+</div>
+<section id="why-to-your-future-self">
+<h2>Why? 💗✉️ to your future self<a class="headerlink" href="#why-to-your-future-self" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>You will probably use your code in the future and may forget details.</p></li>
+<li><p>You may want others to use your code or contribute
+(almost impossible without documentation).</p></li>
+</ul>
+</section>
+<section id="in-code-documentation">
+<h2>In-code documentation<a class="headerlink" href="#in-code-documentation" title="Link to this heading"></a></h2>
+<p>Not very useful (more commentary than comment):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># now we check if temperature is below -50</span>
+<span class="k">if</span> <span class="n">temperature</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">50</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ERROR: temperature is too low&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>More useful (explaining <strong>why</strong>):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># we regard temperatures below -50 degrees as measurement errors</span>
+<span class="k">if</span> <span class="n">temperature</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">50</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ERROR: temperature is too low&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Keeping zombie code “just in case” (rather use version control):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># do not run this code!</span>
+<span class="c1"># if temperature &gt; 0:</span>
+<span class="c1">#     print(&quot;It is warm&quot;)</span>
+</pre></div>
+</div>
+<p>Emulating version control:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># John Doe: threshold changed from 0 to 15 on August 5, 2013</span>
+<span class="k">if</span> <span class="n">temperature</span> <span class="o">&gt;</span> <span class="mi">15</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;It is warm&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="many-languages-allow-docstrings">
+<h2>Many languages allow “docstrings”<a class="headerlink" href="#many-languages-allow-docstrings" title="Link to this heading"></a></h2>
+<p>Example (Python):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">kelvin_to_celsius</span><span class="p">(</span><span class="n">temp_k</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Converts temperature in Kelvin to Celsius.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    temp_k : float</span>
+<span class="sd">        temperature in Kelvin</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    temp_c : float</span>
+<span class="sd">        temperature in Celsius</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="n">temp_k</span> <span class="o">&gt;=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s2">&quot;ERROR: negative T_K&quot;</span>
+
+    <span class="n">temp_c</span> <span class="o">=</span> <span class="n">temp_k</span> <span class="o">-</span> <span class="mf">273.15</span>
+
+    <span class="k">return</span> <span class="n">temp_c</span>
+</pre></div>
+</div>
+<div class="admonition-keypoints keypoints admonition" id="keypoints-0">
+<p class="admonition-title">Keypoints</p>
+<ul class="simple">
+<li><p>Documentation which is only in the source code is not enough.</p></li>
+<li><p>Often a README is enough.</p></li>
+<li><p>Documentation needs to be kept
+<strong>in the same Git repository</strong> as the code since we want it to evolve with
+the code.</p></li>
+</ul>
+</div>
+</section>
+<section id="often-a-readme-is-enough-checklist">
+<h2>Often a README is enough - checklist<a class="headerlink" href="#often-a-readme-is-enough-checklist" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Purpose</strong></p></li>
+<li><p>Requirements</p></li>
+<li><p>Installation instructions</p></li>
+<li><p><strong>Copy-paste-able example to get started</strong></p></li>
+<li><p>Tutorials covering key functionality</p></li>
+<li><p>Reference documentation (e.g. API) covering all functionality</p></li>
+<li><p>Authors and <strong>recommended citation</strong></p></li>
+<li><p>License</p></li>
+<li><p>Contribution guide</p></li>
+</ul>
+<p>See also the
+<a class="reference external" href="https://joss.readthedocs.io/en/latest/review_checklist.html">JOSS review checklist</a>.</p>
+</section>
+<section id="diataxis">
+<h2>Diátaxis<a class="headerlink" href="#diataxis" title="Link to this heading"></a></h2>
+<p>Diátaxis is a systematic approach to technical documentation authoring.</p>
+<ul class="simple">
+<li><p>Overview: <a class="reference external" href="https://diataxis.fr/">https://diataxis.fr/</a></p></li>
+<li><p>How to use Diátaxis <strong>as a guide</strong> to work: <a class="reference external" href="https://diataxis.fr/how-to-use-diataxis/">https://diataxis.fr/how-to-use-diataxis/</a></p></li>
+</ul>
+</section>
+<section id="what-if-you-need-more-than-a-readme">
+<h2>What if you need more than a README?<a class="headerlink" href="#what-if-you-need-more-than-a-readme" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Write documentation in
+<a class="reference external" href="https://en.wikipedia.org/wiki/Markdown">Markdown (.md)</a>
+or
+<a class="reference external" href="https://en.wikipedia.org/wiki/ReStructuredText">reStructuredText (.rst)</a>
+or
+<a class="reference external" href="https://rmarkdown.rstudio.com/">R Markdown (.Rmd)</a></p></li>
+<li><p>In the <strong>same repository</strong> as the code -&gt; version control and <strong>reproducibility</strong></p></li>
+<li><p>Use one of many tools to build HTML out of md/rst/Rmd:
+<a class="reference external" href="https://sphinx-doc.org">Sphinx</a>,
+<a class="reference external" href="https://www.mkdocs.org/">MkDocs</a>,
+<a class="reference external" href="https://www.getzola.org/">Zola</a>, <a class="reference external" href="https://jekyllrb.com/">Jekyll</a>,
+<a class="reference external" href="https://gohugo.io/">Hugo</a>, RStudio, <a class="reference external" href="https://yihui.org/knitr/">knitr</a>,
+<a class="reference external" href="https://bookdown.org/">bookdown</a>,
+<a class="reference external" href="https://bookdown.org/yihui/blogdown/">blogdown</a>, …</p></li>
+<li><p>Deploy the generated HTML to <a class="reference external" href="https://pages.github.com/">GitHub Pages</a> or
+<a class="reference external" href="https://docs.gitlab.com/ee/user/project/pages/">GitLab Pages</a></p></li>
+</ul>
+</section>
+<section id="exercise-set-up-a-sphinx-documentation">
+<h2>Exercise: Set up a Sphinx documentation<a class="headerlink" href="#exercise-set-up-a-sphinx-documentation" title="Link to this heading"></a></h2>
+<div class="admonition-preparation prerequisites admonition" id="prerequisites-0">
+<p class="admonition-title">Preparation</p>
+<p>In this episode we will use the following 5 packages which we installed
+previously as part of the <a class="reference internal" href="../installation/"><span class="doc">Software install instructions</span></a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">myst</span><span class="o">-</span><span class="n">parser</span>
+<span class="n">sphinx</span>
+<span class="n">sphinx</span><span class="o">-</span><span class="n">rtd</span><span class="o">-</span><span class="n">theme</span>
+<span class="n">sphinx</span><span class="o">-</span><span class="n">autoapi</span>
+<span class="n">sphinx</span><span class="o">-</span><span class="n">autobuild</span>
+</pre></div>
+</div>
+<p>Which repository to use? You have 3 options:</p>
+<ul class="simple">
+<li><p>Clone <strong>your fork</strong> of the example repository.</p></li>
+<li><p>If you don’t have that, you can clone the exercise repository itself.</p></li>
+<li><p>You can try this with <strong>your own project</strong> and the project does not have to
+be a Python project.</p></li>
+</ul>
+</div>
+<p>There are at least two ways to get started with Sphinx:</p>
+<ol class="arabic simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">sphinx-quickstart</span></code> to create a new Sphinx project.</p></li>
+<li><p><strong>This is what we will do instead</strong>: Create three files (<code class="docutils literal notranslate"><span class="pre">doc/conf.py</span></code>, <code class="docutils literal notranslate"><span class="pre">doc/index.md</span></code>, and <code class="docutils literal notranslate"><span class="pre">doc/about.md</span></code>)
+as starting point and improve from there.</p></li>
+</ol>
+<div class="admonition-exercise-set-up-a-sphinx-documentation exercise important admonition" id="exercise-0">
+<p class="admonition-title">Exercise: Set up a Sphinx documentation</p>
+<ol class="arabic">
+<li><p>Create the following three files in your project:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>your-project/
+├── doc/
+│   ├── conf.py
+│   ├── index.md
+│   └── about.md
+└── ...
+</pre></div>
+</div>
+<p>This is <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">project</span> <span class="o">=</span> <span class="s2">&quot;your-project&quot;</span>
+<span class="n">copyright</span> <span class="o">=</span> <span class="s2">&quot;2025, Authors&quot;</span>
+<span class="n">author</span> <span class="o">=</span> <span class="s2">&quot;Authors&quot;</span>
+<span class="n">release</span> <span class="o">=</span> <span class="s2">&quot;0.1&quot;</span>
+
+<span class="n">exclude_patterns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;_build&quot;</span><span class="p">,</span> <span class="s2">&quot;Thumbs.db&quot;</span><span class="p">,</span> <span class="s2">&quot;.DS_Store&quot;</span><span class="p">]</span>
+
+<span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;myst_parser&quot;</span><span class="p">,</span>  <span class="c1"># in order to use markdown</span>
+<span class="p">]</span>
+
+<span class="n">myst_enable_extensions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;colon_fence&quot;</span><span class="p">,</span>  <span class="c1"># ::: can be used instead of ``` for better rendering</span>
+<span class="p">]</span>
+
+<span class="n">html_theme</span> <span class="o">=</span> <span class="s2">&quot;sphinx_rtd_theme&quot;</span>
+</pre></div>
+</div>
+<p>This is <code class="docutils literal notranslate"><span class="pre">index.md</span></code> (feel free to change the example text):</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gh"># Our code documentation</span>
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+culpa qui officia deserunt mollit anim id est laborum.
+
+:::{toctree}
+:maxdepth: 2
+:caption: Some caption
+
+about.md
+:::
+</pre></div>
+</div>
+<p>This is <code class="docutils literal notranslate"><span class="pre">about.md</span></code> (feel free to adjust):</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gh"># About this code</span>
+
+Work in progress ...
+</pre></div>
+</div>
+</li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">sphinx-build</span></code> to build the HTML documentation:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sphinx-build<span class="w"> </span>doc<span class="w"> </span>_build
+
+<span class="go">... lots of output ...</span>
+<span class="go">The HTML pages are in _build.</span>
+</pre></div>
+</div>
+</li>
+<li><p>Try to open <code class="docutils literal notranslate"><span class="pre">_build/index.html</span></code> in your browser.</p></li>
+<li><p>Experiment with adding more content, images, equations, code blocks, …</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://myst-parser.readthedocs.io/en/latest/syntax/typography.html">typography</a></p></li>
+<li><p><a class="reference external" href="https://myst-parser.readthedocs.io/en/latest/syntax/images_and_figures.html">images</a></p></li>
+<li><p><a class="reference external" href="https://myst-parser.readthedocs.io/en/latest/syntax/math.html">math and equations</a></p></li>
+<li><p><a class="reference external" href="https://myst-parser.readthedocs.io/en/latest/syntax/code_and_apis.html">code blocks</a></p></li>
+</ul>
+</li>
+</ol>
+</div>
+<p>There is a lot more you can do:</p>
+<ul>
+<li><p>This is useful if you want to check the integrity of all internal and external links:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sphinx-build<span class="w"> </span>doc<span class="w"> </span>-W<span class="w"> </span>-b<span class="w"> </span>linkcheck<span class="w"> </span>_build
+</pre></div>
+</div>
+</li>
+<li><p><a class="reference external" href="https://pypi.org/project/sphinx-autobuild/">sphinx-autobuild</a>
+provides a local web server that will automatically refresh your view
+every time you save a file - which makes writing with live-preview much easier.</p></li>
+</ul>
+</section>
+<section id="demo-building-documentation-with-github-actions">
+<h2>Demo: Building documentation with GitHub Actions<a class="headerlink" href="#demo-building-documentation-with-github-actions" title="Link to this heading"></a></h2>
+<div class="admonition-instructor-note instructor-note admonition" id="instructor-note-1">
+<p class="admonition-title">Instructor note</p>
+<ul class="simple">
+<li><p>Instructor presents.</p></li>
+<li><p>Learners are encouraged to try this later on their own.</p></li>
+</ul>
+</div>
+<p>First we need to extend the <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file to include the necessary packages:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">classification-task</span>
+<span class="nt">channels</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge</span>
+<span class="nt">dependencies</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python &lt;= 3.12</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">click</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">numpy</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pandas</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">scipy</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">altair</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vl-convert-python</span>
+<span class="hll"><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myst-parser</span>
+</span><span class="hll"><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sphinx</span>
+</span><span class="hll"><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sphinx-rtd-theme</span>
+</span><span class="hll"><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sphinx-autoapi</span>
+</span></pre></div>
+</div>
+<p>Then we add a GitHub Actions workflow <code class="docutils literal notranslate"><span class="pre">.github/workflow/sphinx.yml</span></code> to build the documentation:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build documentation</span>
+
+<span class="nt">on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">main</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="nt">pull_request</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">main</span><span class="w"> </span><span class="p p-Indicator">]</span>
+
+<span class="nt">permissions</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">contents</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">write</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">docs</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-24.04</span>
+
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Checkout</span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mamba-org/setup-micromamba@v1</span>
+<span class="w">      </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">micromamba-version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;2.0.5-0&#39;</span><span class="w"> </span><span class="c1"># any version from https://github.com/mamba-org/micromamba-releases</span>
+<span class="w">        </span><span class="nt">environment-file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">environment.yml</span>
+<span class="w">        </span><span class="nt">init-shell</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bash</span>
+<span class="w">        </span><span class="nt">cache-environment</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">        </span><span class="nt">post-cleanup</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;all&#39;</span>
+<span class="w">        </span><span class="nt">generate-run-shell</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Sphinx build</span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="hll"><span class="w">        </span><span class="no">sphinx-build doc _build</span>
+</span><span class="w">      </span><span class="nt">shell</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bash -el {0}</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy to GitHub Pages</span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">peaceiris/actions-gh-pages@v4</span>
+<span class="w">      </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ github.event_name == &#39;push&#39; &amp;&amp; github.ref == &#39;refs/heads/main&#39; }}</span>
+<span class="w">      </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">publish_branch</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gh-pages</span>
+<span class="w">        </span><span class="nt">github_token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.GITHUB_TOKEN }}</span>
+<span class="w">        </span><span class="nt">publish_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">_build/</span>
+<span class="w">        </span><span class="nt">force_orphan</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</pre></div>
+</div>
+<p>Now:</p>
+<ul class="simple">
+<li><p>Add these two changes to the GitHub repository.</p></li>
+<li><p>Go to “Settings” -&gt; “Pages” -&gt; “Branch” -&gt; <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> -&gt; “Save”.</p></li>
+<li><p>Look at “Actions” tab and observe the workflow running and hopefully
+deploying the website.</p></li>
+<li><p>Finally visit the generated site. You can find it by clicking the About wheel
+icon on top right of your repository. There, select “Use your GitHub Pages
+website”.</p></li>
+<li><p><strong>This is how we build almost all of our lesson websites</strong>,
+including this one!</p></li>
+<li><p>Another popular place to deploy Sphinx documentation is <a class="reference external" href="https://readthedocs.org/">ReadTheDocs</a>.</p></li>
+</ul>
+</section>
+<section id="optional-how-to-auto-generate-api-documentation-in-python">
+<h2>Optional: How to auto-generate API documentation in Python<a class="headerlink" href="#optional-how-to-auto-generate-api-documentation-in-python" title="Link to this heading"></a></h2>
+<p>Add three tiny modifications (highlighted) to <code class="docutils literal notranslate"><span class="pre">doc/conf.py</span></code> to auto-generate API documentation
+(this requires the <code class="docutils literal notranslate"><span class="pre">sphinx-autoapi</span></code> package):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">project</span> <span class="o">=</span> <span class="s2">&quot;your-project&quot;</span>
+<span class="n">copyright</span> <span class="o">=</span> <span class="s2">&quot;2025, Authors&quot;</span>
+<span class="n">author</span> <span class="o">=</span> <span class="s2">&quot;Authors&quot;</span>
+<span class="n">release</span> <span class="o">=</span> <span class="s2">&quot;0.1&quot;</span>
+
+<span class="n">exclude_patterns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;_build&quot;</span><span class="p">,</span> <span class="s2">&quot;Thumbs.db&quot;</span><span class="p">,</span> <span class="s2">&quot;.DS_Store&quot;</span><span class="p">]</span>
+
+<span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;myst_parser&quot;</span><span class="p">,</span>  <span class="c1"># in order to use markdown</span>
+<span class="hll">    <span class="s2">&quot;autoapi.extension&quot;</span><span class="p">,</span>  <span class="c1"># in order to use markdown</span>
+</span><span class="p">]</span>
+
+<span class="c1"># search this directory for Python files</span>
+<span class="hll"><span class="n">autoapi_dirs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;..&quot;</span><span class="p">]</span>
+</span>
+<span class="c1"># ignore this file when generating API documentation</span>
+<span class="hll"><span class="n">autoapi_ignore</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;*/conf.py&quot;</span><span class="p">]</span>
+</span>
+<span class="n">myst_enable_extensions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;colon_fence&quot;</span><span class="p">,</span>  <span class="c1"># ::: can be used instead of ``` for better rendering</span>
+<span class="p">]</span>
+
+<span class="n">html_theme</span> <span class="o">=</span> <span class="s2">&quot;sphinx_rtd_theme&quot;</span>
+</pre></div>
+</div>
+<p>Then rebuild the documentation (or push the changes and let GitHub rebuild it)
+and you should see a new section “API Reference”.</p>
+</section>
+<section id="possibilities-to-host-sphinx-documentation">
+<h2>Possibilities to host Sphinx documentation<a class="headerlink" href="#possibilities-to-host-sphinx-documentation" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Build with <a class="reference external" href="https://github.com/features/actions">GitHub Actions</a> and deploy to <a class="reference external" href="https://pages.github.com/">GitHub Pages</a>.</p></li>
+<li><p>Build with <a class="reference external" href="https://docs.gitlab.com/ee/ci/">GitLab CI/CD</a> and deploy to <a class="reference external" href="https://docs.gitlab.com/ee/user/project/pages/">GitLab Pages</a>.</p></li>
+<li><p>Build with <a class="reference external" href="https://about.readthedocs.com/">Read the Docs</a> and host there.</p></li>
+</ul>
+</section>
+<section id="confused-about-restructuredtext-vs-markdown-vs-myst">
+<h2>Confused about reStructuredText vs. Markdown vs. MyST?<a class="headerlink" href="#confused-about-restructuredtext-vs-markdown-vs-myst" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>At the beginning there was reStructuredText and Sphinx was built for reStructuredText.</p></li>
+<li><p>Independently, Markdown was invented and evolved into a couple of flavors.</p></li>
+<li><p>Markdown became more and more popular but was limited compared to reStructuredText.</p></li>
+<li><p>Later, <a class="reference external" href="https://myst-parser.readthedocs.io/en/latest/syntax/typography.html">MyST</a>
+was invented to be able to write
+something that looks like Markdown but in addition can do everything that
+reStructuredText can do with extra directives.</p></li>
+</ul>
+</section>
+<section id="where-to-read-more">
+<h2>Where to read more<a class="headerlink" href="#where-to-read-more" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://coderefinery.github.io/documentation/">CodeRefinery documentation lesson</a></p></li>
+<li><p><a class="reference external" href="https://www.sphinx-doc.org/">Sphinx documentation</a></p></li>
+<li><p><a class="reference external" href="https://sphinx-rtd-tutorial.readthedocs.io/en/latest/index.html">Sphinx + ReadTheDocs guide</a></p></li>
+<li><p>For more Markdown functionality, see the <a class="reference external" href="https://www.markdownguide.org/basic-syntax/">Markdown guide</a>.</p></li>
+<li><p>For Sphinx additions, see <a class="reference external" href="https://www.sphinx-doc.org/en/master/markup/index.html">Sphinx Markup Constructs</a>.</p></li>
+<li><p><a class="reference external" href="https://docs.python-guide.org/writing/documentation/">An opinionated guide on documentation in Python</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../version-control/sharing/" class="btn btn-neutral float-left" title="Optional: How to turn your project to a Git repo and share it" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../collaboration/" class="btn btn-neutral float-right" title="Collaborative version control and code review" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright CodeRefinery contributors (CC-BY license).</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
