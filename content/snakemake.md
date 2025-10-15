@@ -29,7 +29,7 @@ for i in $(seq -w 1 ${num_rounds}); do
     python generate_predictions.py \
             --num-neighbors 7 \
             --training-data data/train_${i}.csv \
-            --test-data data/test_${i}.csv
+            --test-data data/test_${i}.csv \
             --predictions results/predictions_${i}.csv
 
     python plot_results.py \
