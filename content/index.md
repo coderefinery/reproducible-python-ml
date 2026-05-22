@@ -26,7 +26,7 @@ them to own projects**.
 
 ## Schedule
 
-### Monday
+### Tuesday 26.5.2026
 
 - 09:00-10:00 - Getting started
   - Welcome and introduction
@@ -49,7 +49,7 @@ them to own projects**.
 - 13:45-15:00 - {doc}`documentation`
 
 
-### Tuesday
+### Wednesday 27.5.2026
 
 - 09:00-10:00 - {doc}`collaboration` (1/2)
   - {doc}`collaboration/concepts`
@@ -79,7 +79,7 @@ them to own projects**.
   - Give individual feedback on code projects
 
 
-### Wednesday
+### Thursday 28.5.2026
 
 - 09:00-10:00 - {doc}`testing`
 
@@ -94,22 +94,12 @@ them to own projects**.
   - {doc}`publishing`
   - {doc}`packaging`
 
-- 14:15-15:00 - Debriefing and Q&A
-  - Participants work on their projects
-  - Together we study actual codes that participants wrote or work on
-  - Constructively we discuss possible improvements
-  - Give individual feedback on code projects
+- 14:15-16:00 - Coding with AI
 
 
-### Thursday
+### Thursday 11.6.2026 & Friday 12.6.2026
 
-- 09:00-09:30 - Concepts of high-performance computing
-- 09:30-10:15 - Running AI training jobs in HPC
-- 10:30-11:30 - Using, building and extending containers in HPC
-- 11:30-12:15 - Lunch break
-- 12:15-13:00 - Scaling AI training to multiple GPUs
-- 13:00-14:00 - Monitoring and profiling AI training jobs
-- 14:00-15:00 - Debriefing and introduction to the exam
+[LUMI AI workshop at UiT](https://lumi-supercomputer.eu/events/moving-your-ai-training-jobs-to-lumi-a-hands-on-workshop-june2026/)
 
 
 :::{toctree}
