@@ -11,6 +11,7 @@ dependencies:
   - altair
   - vl-convert-python
   - jupyterlab
+  - jupyterlab_code_formatter
   - pytest
   - scalene
   - flit
@@ -25,5 +26,3 @@ dependencies:
   - black
   - isort
   - pip
-  - pip:
-    - jupyterlab-code-formatter
