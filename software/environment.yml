@@ -25,4 +25,3 @@ dependencies:
   - sphinx-autobuild
   - black
   - isort
-  - pip
